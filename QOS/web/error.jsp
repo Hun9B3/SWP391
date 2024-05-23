@@ -1,15 +1,3 @@
-<%-- 
-    Copyright(C) 2021, Group Tree - SWP391, SE1509, FA21
-    Created on : Oct 2, 2021, 10:23:47 AM
-    Error page
-    Quiz practicing system
-
-    Record of change:
-    Date        Version     Author          Description
-    2/10/21     1.0         Nam             First Deploy
-    3/10/21     1.1         DuongNH         Update HTML
-    5/10/21     2.0         ChucNVHE150618  Add header and footer
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
