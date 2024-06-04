@@ -9,11 +9,22 @@ import java.util.ArrayList;
  */
 public interface SubjectDAO {
 
+     /**
+     *
+     * @param subjectId
+     * @return
+     * @throws Exception Get subject with a certain Id
+     */
+    public Subject getSubjectbyId(int subjectId) throws Exception;
     /**
      *
      * @return @throws Exception Get featured subjects
      */
     public ArrayList<Subject> getFeaturedSubjects() throws Exception;
 
-    
+      /**
+     *  Get all available subject in the Subject table (status = 1)
+     * @return @throws Exception 
+     */
+    public ArrayList<Subject> getAllSubjects() throws Exception;
 }

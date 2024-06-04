@@ -5,7 +5,6 @@ import java.util.Date;
 /**
  * Registration entity
  *
- *
  */
 public class Registration {
 
@@ -15,14 +14,6 @@ public class Registration {
     /*ID User Registered*/
     private Date regTime;
     /*Registration Time*/
-    private int packId;
-    /*Price Package ID*/
-    private double cost;
-    /*Registration Cost*/
-    private Date validFrom;
-    /*Starting valid date*/
-    private Date validTo;
-    /*Ending valid date*/
     private int lastUpdatedBy;
     /*Last updated by user(id)*/
     private String note;
@@ -30,7 +21,6 @@ public class Registration {
     private boolean status;
 
     /*Registration Status*/
-
     /**
      * Blank Constructor
      */
@@ -43,22 +33,14 @@ public class Registration {
      * @param regId
      * @param userId
      * @param regTime
-     * @param packId
-     * @param cost
-     * @param validFrom
-     * @param validTo
      * @param lastUpdatedBy
      * @param note
      * @param status
      */
-    public Registration(int regId, int userId, Date regTime, int packId, double cost, Date validFrom, Date validTo, int lastUpdatedBy, String note, boolean status) {
+    public Registration(int regId, int userId, Date regTime, int lastUpdatedBy, String note, boolean status) {
         this.regId = regId;
         this.userId = userId;
         this.regTime = regTime;
-        this.packId = packId;
-        this.cost = cost;
-        this.validFrom = validFrom;
-        this.validTo = validTo;
         this.lastUpdatedBy = lastUpdatedBy;
         this.note = note;
         this.status = status;
@@ -101,24 +83,6 @@ public class Registration {
     }
 
     /**
-     * Get price package id
-     *
-     * @return
-     */
-    public int getPackId() {
-        return packId;
-    }
-
-    /**
-     * Set price package id
-     *
-     * @param packId
-     */
-    public void setPackId(int packId) {
-        this.packId = packId;
-    }
-
-    /**
      * Get last update user
      *
      * @return
@@ -137,24 +101,6 @@ public class Registration {
     }
 
     /**
-     * Get registration cost
-     *
-     * @return
-     */
-    public double getCost() {
-        return cost;
-    }
-
-    /**
-     * Set registration cost
-     *
-     * @param cost
-     */
-    public void setCost(double cost) {
-        this.cost = cost;
-    }
-
-    /**
      * Get registration time
      *
      * @return
@@ -164,48 +110,12 @@ public class Registration {
     }
 
     /**
-     * Get starting valid date
-     *
-     * @return
-     */
-    public Date getValidFrom() {
-        return validFrom;
-    }
-
-    /**
-     * Get ending valid date
-     *
-     * @return
-     */
-    public Date getValidTo() {
-        return validTo;
-    }
-
-    /**
      * Set register time
      *
      * @param regTime
      */
     public void setRegTime(Date regTime) {
         this.regTime = regTime;
-    }
-
-    /**
-     * Set starting valid date
-     *
-     * @param validFrom
-     */
-    public void setValidFrom(Date validFrom) {
-        this.validFrom = validFrom;
-    }
-
-    /**
-     * Set ending valid date
-     *
-     * @param validTo
-     */
-    public void setValidTo(Date validTo) {
-        this.validTo = validTo;
     }
 
     /**
