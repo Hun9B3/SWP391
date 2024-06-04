@@ -19,6 +19,56 @@ import java.sql.ResultSet;
 public class SubjectDAOImpl extends DBConnection implements SubjectDAO {
 
 
+     /**
+     *
+     * @param subjectId
+     * @return
+     * @throws Exception Get subject with a certain Id
+     */
+    @Override
+    public Subject getSubjectbyId(int subjectId) throws Exception {
+        Connection conn = null;
+        ResultSet rs = null;
+        /* Result set returned by the sqlserver */
+        PreparedStatement pre = null;
+        /* Prepared statement for executing sql queries */
+
+        Subject subjectById = null;
+        DimensionDAO dimensionDAO = new DimensionDAOImpl();
+        SubjectCateDAO subjectCateDAO = new SubjectCateDAOImpl();
+
+        String sqlSubject = "SELECT * FROM [Subject] WHERE [subjectId] = ?";
+
+        /* Get the subject */
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sqlSubject);
+            pre.setInt(1, subjectId);
+            rs = pre.executeQuery();
+            /* Get information from resultset and set it to the created pointer */
+            if (rs.next()) {
+                int subjectIdResult = rs.getInt("subjectId");
+                String subjectName = rs.getString("subjectName");
+                String description = rs.getString("description");
+                String thumbnail = rs.getString("thumbnail");
+                Boolean featuredSubject = rs.getBoolean("featuredSubject");
+                Boolean status = rs.getBoolean("status");
+
+                subjectById = new Subject(subjectId, subjectName, description,
+                        thumbnail, featuredSubject, status,
+                        dimensionDAO.getDimensionBySubject(subjectId),
+                        subjectCateDAO.getSubjectCateBySubject(subjectId));
+            }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+        return subjectById;
+    }
+
     /**
      *
      * @return @throws Exception Get featured subjects
@@ -64,6 +114,52 @@ public class SubjectDAOImpl extends DBConnection implements SubjectDAO {
             closeConnection(conn);
         }
         return featuredSubjects;
+    }
+
+      /**
+     *  Get all available subject in the Subject table (status = 1)
+     * @return @throws Exception 
+     */
+    @Override
+    public ArrayList<Subject> getAllSubjects() throws Exception {
+        Connection conn = null;
+        ResultSet rs = null;
+        /* Result set returned by the sqlserver */
+        PreparedStatement pre = null;
+        /* Prepared statement for executing sql queries */
+
+        ArrayList<Subject> allSubject = new ArrayList();
+        DimensionDAO dimensionDAO = new DimensionDAOImpl();
+        SubjectCateDAO subjectCateDAO = new SubjectCateDAOImpl();
+
+        String sqlSubject = "SELECT * FROM [Subject] WHERE status=1";
+        /* Get the subject */
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sqlSubject);
+            rs = pre.executeQuery();
+            /* Get information from resultset and add it to arrayList */
+            while (rs.next()) {
+                int subjectId = rs.getInt("subjectId");
+                String subjectName = rs.getString("subjectName");
+                String description = rs.getString("description");
+                String thumbnail = rs.getString("thumbnail");
+                Boolean featured = rs.getBoolean("featuredSubject");
+                Boolean status = rs.getBoolean("status");
+
+                allSubject.add(new Subject(subjectId, subjectName, description,
+                        thumbnail, featured, status,
+                        dimensionDAO.getDimensionBySubject(subjectId),
+                        subjectCateDAO.getSubjectCateBySubject(subjectId)));
+            }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+        return allSubject;
     }
 
 }

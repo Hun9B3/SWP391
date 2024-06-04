@@ -98,7 +98,6 @@ CREATE TABLE dbo.[Lesson](
 	lessonId		int				NOT NULL identity(1,1) PRIMARY KEY,
 	subjectId		int				NOT NULL,
 	lessonName		nvarchar(255)	NOT NULL,
-	lessonOrder		int				NOT NULL,
 	lessonTypeId	int				NOT NULL,
 	--lessonTopic?
 	videoLink		nvarchar(255),
@@ -199,10 +198,6 @@ CREATE TABLE dbo.[Registration](
 	regId			int				NOT NULL identity(1,1) PRIMARY KEY,
 	userId			int				NOT NULL,
 	regTime			datetime		NOT NULL,
-	packId			int				NOT NULL,
-	cost			money,
-	validFrom		datetime		NOT NULL,
-	validTo			datetime		NOT NULL,
 	lastUpdatedBy	int				NOT NULL, --Last updated by
 	note			nvarchar(255),
 	[status]		bit,
@@ -325,18 +320,18 @@ INSERT INTO dbo.SubjectTeacher(subjectId,userId,[status]) VALUES(3,6,1);
 INSERT INTO dbo.SubjectTeacher(subjectId,userId,[status]) VALUES(3,7,1);
 INSERT INTO dbo.SubjectTeacher(subjectId,userId,[status]) VALUES(4,6,1);
 ----------dbo.[Lesson]---------------------
-INSERT INTO dbo.Lesson(subjectId,lessonName,lessonOrder,lessonTypeId,videoLink,content,[status])
-				VALUES(1,'Introduction',1,1,'','Welcome to this course. Maybe right now you dont know how to code in a object oriented way or dont even know Java but at the end of this course, we hope youll be able to master it.',1);
-INSERT INTO dbo.Lesson(subjectId,lessonName,lessonOrder,lessonTypeId,videoLink,content,[status])
-				VALUES(1,'4 main ideas of OOP in Java',2,2,'','OOP concepts in Java are the main ideas behind Java Object Oriented Programming. They are an abstraction, encapsulation, inheritance, and polymorphism. ... Basically, Java OOP concepts let us create working methods and variables, then re-use all or part of them without compromising security.',1);
-INSERT INTO dbo.Lesson(subjectId,lessonName,lessonOrder,lessonTypeId,videoLink,content,[status])
-				VALUES(1,'Quiz: 4 main ideas of OOP in Java',3,3,'','First quiz, but dont be too afraid.',1);
-INSERT INTO dbo.Lesson(subjectId,lessonName,lessonOrder,lessonTypeId,videoLink,content,[status])
-				VALUES(2,'Introduction',1,1,'','Japanese for the absolute beginners, whether for academic purposes, work or if you just admire Japan and its culture',1);
-INSERT INTO dbo.Lesson(subjectId,lessonName,lessonOrder,lessonTypeId,videoLink,content,[status])
-				VALUES(2,'Hiragana',2,2,'https://youtu.be/K-nw5EUxDz0','Hiragana and katakana are both kana systems. With few exceptions, each mora in the Japanese language is represented by one character (or one digraph) in each system. This may be either a vowel such as "a" (hiragana あ); a consonant followed by a vowel such as "ka" (か); or "n" (ん), a nasal sonorant which, depending on the context, sounds either like English m, n or ng ([ŋ]) when syllable-final or like the nasal vowels of French, Portuguese or Polish. Because the characters of the kana do not represent single consonants (except in the case of ん "n"), the kana are referred to as syllabic symbols and not alphabetic letters.',1);
-INSERT INTO dbo.Lesson(subjectId,lessonName,lessonOrder,lessonTypeId,videoLink,content,[status])
-				VALUES(2,'Basic Greetings',3,2,'https://youtu.be/o9O18DkU2Yc',
+INSERT INTO dbo.Lesson(subjectId,lessonName,lessonTypeId,videoLink,content,[status])
+				VALUES(1,'Introduction',1,'','Welcome to this course. Maybe right now you dont know how to code in a object oriented way or dont even know Java but at the end of this course, we hope youll be able to master it.',1);
+INSERT INTO dbo.Lesson(subjectId,lessonName,lessonTypeId,videoLink,content,[status])
+				VALUES(1,'4 main ideas of OOP in Java',2,'','OOP concepts in Java are the main ideas behind Java Object Oriented Programming. They are an abstraction, encapsulation, inheritance, and polymorphism. ... Basically, Java OOP concepts let us create working methods and variables, then re-use all or part of them without compromising security.',1);
+INSERT INTO dbo.Lesson(subjectId,lessonName,lessonTypeId,videoLink,content,[status])
+				VALUES(1,'Quiz: 4 main ideas of OOP in Java',3,'','First quiz, but dont be too afraid.',1);
+INSERT INTO dbo.Lesson(subjectId,lessonName,lessonTypeId,videoLink,content,[status])
+				VALUES(2,'Introduction',1,'','Japanese for the absolute beginners, whether for academic purposes, work or if you just admire Japan and its culture',1);
+INSERT INTO dbo.Lesson(subjectId,lessonName,lessonTypeId,videoLink,content,[status])
+				VALUES(2,'Hiragana',2,'https://youtu.be/K-nw5EUxDz0','Hiragana and katakana are both kana systems. With few exceptions, each mora in the Japanese language is represented by one character (or one digraph) in each system. This may be either a vowel such as "a" (hiragana あ); a consonant followed by a vowel such as "ka" (か); or "n" (ん), a nasal sonorant which, depending on the context, sounds either like English m, n or ng ([ŋ]) when syllable-final or like the nasal vowels of French, Portuguese or Polish. Because the characters of the kana do not represent single consonants (except in the case of ん "n"), the kana are referred to as syllabic symbols and not alphabetic letters.',1);
+INSERT INTO dbo.Lesson(subjectId,lessonName,lessonTypeId,videoLink,content,[status])
+				VALUES(2,'Basic Greetings',2,'https://youtu.be/o9O18DkU2Yc',
 'Konnichiwa (Hi; Good afternoon.)
 Ohayō gozaimasu/ Ohayō (Good morning [formal/informal])
 Konbanwa (Good evening)
@@ -352,21 +347,21 @@ Sayōnara. (Goodbye.)
 Oyasumi nasai. (Good night.)
 '
 ,1);
-INSERT INTO dbo.Lesson(subjectId,lessonName,lessonOrder,lessonTypeId,videoLink,content,[status])
+INSERT INTO dbo.Lesson(subjectId,lessonName,lessonTypeId,videoLink,content,[status])
 				VALUES(2,'Small Quiz',4,3,'','Just a little practice and you can do it',1);
-INSERT INTO dbo.Lesson(subjectId,lessonName,lessonOrder,lessonTypeId,videoLink,content,[status])
+INSERT INTO dbo.Lesson(subjectId,lessonName,lessonTypeId,videoLink,content,[status])
 				VALUES(2,'See you again',5,1,'','Keep on learning!',1);
-INSERT INTO dbo.Lesson(subjectId,lessonName,lessonOrder,lessonTypeId,videoLink,content,[status])
+INSERT INTO dbo.Lesson(subjectId,lessonName,lessonTypeId,videoLink,content,[status])
 				VALUES(3,'Introduction',1,1,'','Introduce realism in apps and games!',1);
-INSERT INTO dbo.Lesson(subjectId,lessonName,lessonOrder,lessonTypeId,videoLink,content,[status])
+INSERT INTO dbo.Lesson(subjectId,lessonName,lessonTypeId,videoLink,content,[status])
 				VALUES(3,'Basics',2,2,'','Physics programmers create software that forms the basis of crashes, collisions and other things that move. When, for example, a car drives through water or bursts into flames, the effect needs to be similar to what would happen in real life. Physics programmers write the code, based on the laws of physics, to make this happen. It requires high-level knowledge of both physics and programming. It also requires a sense of gameplay and the right blend of realism and fun.',1);
-INSERT INTO dbo.Lesson(subjectId,lessonName,lessonOrder,lessonTypeId,videoLink,content,[status])
+INSERT INTO dbo.Lesson(subjectId,lessonName,lessonTypeId,videoLink,content,[status])
 				VALUES(3,'Small Quiz',3,3,'','Its not done yet, more lessons are on their way.',1);
-INSERT INTO dbo.Lesson(subjectId,lessonName,lessonOrder,lessonTypeId,videoLink,content,[status])
+INSERT INTO dbo.Lesson(subjectId,lessonName,lessonTypeId,videoLink,content,[status])
 				VALUES(4,'Introduction',1,1,'','Learn how to photoshop for your own needs, and for higher, professional jobs.',1);
-INSERT INTO dbo.Lesson(subjectId,lessonName,lessonOrder,lessonTypeId,videoLink,content,[status])
+INSERT INTO dbo.Lesson(subjectId,lessonName,lessonTypeId,videoLink,content,[status])
 				VALUES(4,'Some crucial skills needed in photoshop',2,2,'https://youtu.be/IyR_uYsRdPs','The key to photoshop is patience.',1);
-INSERT INTO dbo.Lesson(subjectId,lessonName,lessonOrder,lessonTypeId,videoLink,content,[status])
+INSERT INTO dbo.Lesson(subjectId,lessonName,lessonTypeId,videoLink,content,[status])
 				VALUES(4,'Small Quiz',3,3,'','Just the basics so far.',1);
 ----------dbo.[Dimension]------------------
 INSERT INTO dbo.Dimension(dimensionName,dimensionTypeId,subjectId,[description],[status]) VALUES('Java Programming',1,1,'',1);
@@ -532,20 +527,20 @@ INSERT INTO dbo.QuizQuestion(quizId,questionId,[status]) VALUES(3,10,1)
 ----------dbo.[TakeAnswer]-----------------
 -------------------------------------------
 ----------dbo.[Registration]---------------
-INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (1,'2020-12-12',2,20.0,'2020-12-12','2021-6-12',1,null,1)
-INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (1,'2021-10-12',5,20.0,'2020-12-12','2021-6-12',1,null,NULL)
-INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (8,'2021-10-7',1,20.0,'2021-10-8','2022-6-12',1,null,1)
-INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (8,'2021-10-8',2,20.0,'2021-10-9','2022-6-12',1,null,NULL)
-INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (9,'2021-10-7',2,20.0,'2021-10-8','2022-6-12',1,null,1)
-INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (9,'2021-10-6',1,20.0,'2021-10-7','2022-6-12',1,null,0)
-INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (10,'2021-10-7',3,20.0,'2021-10-11','2022-6-12',1,null,1)
-INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (10,'2021-10-6',5,20.0,'2021-10-11','2022-6-12',1,null,NULL)
-INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (11,'2021-10-6',5,20.0,'2021-10-11','2022-6-12',1,null,0)
-INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (11,'2021-10-7',4,20.0,'2021-10-11','2022-6-12',1,null,NULL)
-INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (7,'2021-10-8',3,20.0,'2021-10-15','2022-6-12',1,null,1)
-INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (7,'2021-10-6',5,20.0,'2021-10-7','2022-6-12',1,null,NULL)
-INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (6,'2021-10-9',5,20.0,'2021-10-9','2022-6-12',1,null,1)
-INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (6,'2021-10-10',4,20.0,'2021-10-12','2022-6-12',1,null,0)
+INSERT INTO dbo.Registration([userId],[regTime],[lastUpdatedBy],[note],[status]) VALUES (1,'2020-12-12',1,null,1)
+INSERT INTO dbo.Registration([userId],[regTime],[lastUpdatedBy],[note],[status]) VALUES (1,'2021-10-12',1,null,NULL)
+INSERT INTO dbo.Registration([userId],[regTime],[lastUpdatedBy],[note],[status]) VALUES (8,'2021-10-7',1,null,1)
+INSERT INTO dbo.Registration([userId],[regTime],[lastUpdatedBy],[note],[status]) VALUES (8,'2021-10-8',1,null,NULL)
+INSERT INTO dbo.Registration([userId],[regTime],[lastUpdatedBy],[note],[status]) VALUES (9,'2021-10-7',1,null,1)
+INSERT INTO dbo.Registration([userId],[regTime],[lastUpdatedBy],[note],[status]) VALUES (9,'2021-10-6',1,null,0)
+INSERT INTO dbo.Registration([userId],[regTime],[lastUpdatedBy],[note],[status]) VALUES (10,'2021-10-7',1,null,1)
+INSERT INTO dbo.Registration([userId],[regTime],[lastUpdatedBy],[note],[status]) VALUES (10,'2021-10-6',1,null,NULL)
+INSERT INTO dbo.Registration([userId],[regTime],[lastUpdatedBy],[note],[status]) VALUES (11,'2021-10-6',1,null,0)
+INSERT INTO dbo.Registration([userId],[regTime],[lastUpdatedBy],[note],[status]) VALUES (11,'2021-10-7',1,null,NULL)
+INSERT INTO dbo.Registration([userId],[regTime],[lastUpdatedBy],[note],[status]) VALUES (7,'2021-10-8',1,null,1)
+INSERT INTO dbo.Registration([userId],[regTime],[lastUpdatedBy],[note],[status]) VALUES (7,'2021-10-6',1,null,NULL)
+INSERT INTO dbo.Registration([userId],[regTime],[lastUpdatedBy],[note],[status]) VALUES (6,'2021-10-9',1,null,1)
+INSERT INTO dbo.Registration([userId],[regTime],[lastUpdatedBy],[note],[status]) VALUES (6,'2021-10-10',1,null,0)
 -------------------------------------------
 ----------dbo.[Blog]-----------------------
 insert into Blog(blogTitle,created,lastEdited,author,detail,thumbnail,status) values('Rita’s Way: Why is it so Effective?','2021-08-10','2021-09-10','1','RMC Learning Solutions was founded in 1991 by Rita Mulcahy, who spent years working as a trainer and consultant. What started off as a project management training company with the intention of helping people pass the PMP® exam eventually grew into what it is today: a trusted and proven resource for training and exam prep courses led by renowned experts in their field.
