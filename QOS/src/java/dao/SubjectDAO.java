@@ -27,4 +27,6 @@ public interface SubjectDAO {
      * @return @throws Exception 
      */
     public ArrayList<Subject> getAllSubjects() throws Exception;
+
+    public ArrayList<Subject> getSubjectsPaging(int page) throws Exception;
 }
