@@ -16,6 +16,10 @@
         <servlet-name>SubjectListController</servlet-name>
         <servlet-class>controller.SubjectListController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PracticeController</servlet-name>
+        <servlet-class>controller.PracticeController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/homeController</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>SubjectListController</servlet-name>
         <url-pattern>/SubjectList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PracticeController</servlet-name>
+        <url-pattern>/practiceController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

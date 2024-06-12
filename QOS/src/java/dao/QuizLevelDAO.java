@@ -1,5 +1,6 @@
-
 package dao;
+
+import bean.QuizLevel;
 
 /**
  * Lớp này chứa các interface của QuizLevelDAOImpl
@@ -7,4 +8,5 @@ package dao;
  */
 public interface QuizLevelDAO {
 
+    public QuizLevel getQuizLevelById(int quizLevelId) throws Exception;
 }
