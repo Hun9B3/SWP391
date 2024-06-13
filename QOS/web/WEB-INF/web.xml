@@ -12,6 +12,38 @@
         <servlet-name>SubjectController</servlet-name>
         <servlet-class>controller.SubjectController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SubjectListController</servlet-name>
+        <servlet-class>controller.SubjectListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PracticeController</servlet-name>
+        <servlet-class>controller.PracticeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>QuizController</servlet-name>
+        <servlet-class>controller.QuizController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>QuizHandleController</servlet-name>
+        <servlet-class>controller.QuizHandleController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SimulationExamController</servlet-name>
+        <servlet-class>controller.SimulationExamController</servlet-class>
+    </servlet>
+     <servlet-mapping>
+        <servlet-name>SimulationExamController</servlet-name>
+        <url-pattern>/simulationExamController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QuizHandleController</servlet-name>
+        <url-pattern>/quizHandleController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QuizController</servlet-name>
+        <url-pattern>/quizController</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/homeController</url-pattern>
@@ -23,6 +55,14 @@
     <servlet-mapping>
         <servlet-name>SubjectController</servlet-name>
         <url-pattern>/subjectController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubjectListController</servlet-name>
+        <url-pattern>/SubjectList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PracticeController</servlet-name>
+        <url-pattern>/practiceController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

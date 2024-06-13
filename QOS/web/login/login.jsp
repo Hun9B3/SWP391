@@ -1,4 +1,3 @@
-
 <%@page import="bean.User"%>
 
 

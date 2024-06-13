@@ -2,6 +2,7 @@ package dao.impl;
 
 import bean.Registration;
 import bean.RegistrationManage;
+import bean.Subject;
 import dao.DBConnection;
 import dao.RegistrationDAO;
 import dao.SubjectDAO;
@@ -189,4 +190,32 @@ public class RegistrationDAOImpl extends DBConnection implements RegistrationDAO
         return registrationList;
     }
 
+    @Override
+    public ArrayList<Subject> getRegistedSubject(int userId) throws Exception {
+        Connection conn = null;
+        ResultSet rs = null;
+        PreparedStatement pre = null;
+        SubjectDAO subjectDAO = new SubjectDAOImpl();
+        ArrayList<Subject> registedSubject = new ArrayList<>();
+        String sql = "SELECT b.subjectId\n"
+                + "  FROM [QuizSystem].[dbo].[Registration] as a "
+                + "inner join [QuizSystem].[dbo].[PricePackage] as b "
+                + "on a.packId = b.packId where a.userId = ?";
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            pre.setInt(1, userId);
+            rs = pre.executeQuery();
+            while (rs.next()) {
+                registedSubject.add(subjectDAO.getSubjectbyId(rs.getInt("subjectId")));
+            }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+        return registedSubject;
+    }
 }

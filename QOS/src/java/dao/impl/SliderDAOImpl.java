@@ -1,4 +1,3 @@
-
 package dao.impl;
 
 import bean.Slider;

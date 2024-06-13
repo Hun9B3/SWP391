@@ -3,9 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Kì%205/SWP391/QOS/src/java/dao/impl/SubjectDAOImpl.java</file>
-            <file>file:/D:/Kì%205/SWP391/QOS/src/java/dao/SubjectDAO.java</file>
-            <file>file:/D:/Kì%205/SWP391/QOS/src/java/controller/SubjectController.java</file>
+            <file>file:/D:/Kì%205/testClone/SWP391/QOS/src/java/controller/QuizHandleController.java</file>
+            <file>file:/D:/Kì%205/testClone/SWP391/QOS/src/java/dao/QuizDAO.java</file>
+            <file>file:/D:/Kì%205/testClone/SWP391/QOS/src/java/controller/QuizController.java</file>
+            <file>file:/D:/Kì%205/testClone/SWP391/QOS/src/java/dao/QuestionQuizHandleDAO.java</file>
+            <file>file:/D:/Kì%205/testClone/SWP391/QOS/src/java/dao/QuestionDAO.java</file>
+            <file>file:/D:/Kì%205/testClone/SWP391/QOS/src/java/dao/CustomerQuizDAO.java</file>
+            <file>file:/D:/Kì%205/testClone/SWP391/QOS/src/java/dao/QuizQuizHandleDAO.java</file>
+            <file>file:/D:/Kì%205/testClone/SWP391/QOS/src/java/dao/impl/QuestionDAOImpl.java</file>
         </group>
     </open-files>
 </project-private>
