@@ -1,4 +1,3 @@
-
 package dao.impl;
 
 import bean.User;
@@ -8,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class UserDAOImpl extends DBConnection implements UserDAO {
 
@@ -92,7 +92,7 @@ public class UserDAOImpl extends DBConnection implements UserDAO {
         return null;
     }
 
-     /**
+    /**
      * Get all user
      *
      * @return
@@ -128,5 +128,68 @@ public class UserDAOImpl extends DBConnection implements UserDAO {
             closeConnection(conn);
         }
         return newUserList;
+    }
+
+    /**
+     * get new users
+     *
+     * @return <code>ArrayList<Use>r</code> object.
+     * @throws java.lang.Exception
+     */
+    @Override
+    public ArrayList<User> get10NewUser() throws Exception {
+        ArrayList<User> newUserList = new ArrayList();
+        Connection conn = null;
+        ResultSet rs = null;
+        PreparedStatement pre = null;
+        String sql = "SELECT TOP 10 * FROM [User] ORDER BY userId DESC";
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            rs = pre.executeQuery();
+            while (rs.next()) {
+                newUserList.add(new User(rs.getInt("userId"),
+                        rs.getString("userName"),
+                        rs.getString("password"),
+                        rs.getInt("roleId"),
+                        rs.getString("profilePic"),
+                        rs.getString("userMail"),
+                        rs.getBoolean("gender"),
+                        rs.getString("userMobile"),
+                        rs.getBoolean("status")));
+            }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+        return newUserList;
+    }
+
+    public HashMap<String, Integer> getUserCountByRole() throws Exception {
+        HashMap<String, Integer> map = new HashMap();
+        Connection conn = null;
+        ResultSet rs = null;
+        PreparedStatement pre = null;
+        String sql = "SELECT userRoleName, COUNT(userRoleId) AS number "
+                + "FROM [UserRole] AS a JOIN [User] AS b ON a.userRoleId = b.roleId "
+                + "GROUP BY a.userRoleId,a.userRoleName ";
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            rs = pre.executeQuery();
+            while (rs.next()) {
+                map.put(rs.getString("userRoleName"), rs.getInt("number"));
+            }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+        return map;
     }
 }

@@ -284,6 +284,8 @@ INSERT INTO dbo.[User](userName,[password],roleId,profilePic,userMail,gender,use
 				VALUES('BinhDG',1,5,'','BinhDGHE170773@fpt.edu.vn',1,'0969044713',1);
 INSERT INTO dbo.[User](userName,[password],roleId,profilePic,userMail,gender,userMobile,[status]) 
 				VALUES('ThichDV',1,5,'','ThichDvhe172796@fpt.edu.vn',1,'0969044714',1);
+INSERT INTO dbo.[User](userName,[password],roleId,profilePic,userMail,gender,userMobile,[status]) 
+				VALUES('QuyLM',1,5,'','QuyLMHE170670@fpt.edu.vn',1,'0969044777',1);
 
 INSERT INTO dbo.[User](userName,[password],roleId,profilePic,userMail,gender,userMobile,[status]) 
 				VALUES('Teacher1',1,4,'','teacher1@gmail.com',0,'0969044716',1);
