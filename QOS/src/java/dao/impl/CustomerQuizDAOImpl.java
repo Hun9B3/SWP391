@@ -18,11 +18,8 @@ import java.util.ArrayList;
  */
 public class CustomerQuizDAOImpl extends DBConnection implements CustomerQuizDAO {
 
-<<<<<<< HEAD
     @Override
-=======
-   @Override
->>>>>>> d5e36955cc9ec229149d0ec694d37420cb6e5a01
+
     public ArrayList<CustomerQuiz> getQuizByUser(int userId) throws Exception {
         Connection conn = null;
         ResultSet rs = null;
@@ -77,7 +74,6 @@ public class CustomerQuizDAOImpl extends DBConnection implements CustomerQuizDAO
         ArrayList<CustomerQuiz> allCustomerQuiz = null;
         return allCustomerQuiz;
     }
-<<<<<<< HEAD
 
     /**
      * get the last added customer quiz
@@ -157,6 +153,4 @@ public class CustomerQuizDAOImpl extends DBConnection implements CustomerQuizDAO
         }
     }
 
-=======
->>>>>>> d5e36955cc9ec229149d0ec694d37420cb6e5a01
 }

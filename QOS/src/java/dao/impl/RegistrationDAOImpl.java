@@ -189,11 +189,6 @@ public class RegistrationDAOImpl extends DBConnection implements RegistrationDAO
         }
         return registrationList;
     }
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> d5e36955cc9ec229149d0ec694d37420cb6e5a01
     @Override
     public ArrayList<Subject> getRegistedSubject(int userId) throws Exception {
         Connection conn = null;
