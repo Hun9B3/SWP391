@@ -20,6 +20,7 @@
         <servlet-name>PracticeController</servlet-name>
         <servlet-class>controller.PracticeController</servlet-class>
     </servlet>
+<<<<<<< HEAD
     <servlet>
         <servlet-name>QuizController</servlet-name>
         <servlet-class>controller.QuizController</servlet-class>
@@ -44,6 +45,8 @@
         <servlet-name>QuizController</servlet-name>
         <url-pattern>/quizController</url-pattern>
     </servlet-mapping>
+=======
+>>>>>>> d5e36955cc9ec229149d0ec694d37420cb6e5a01
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/homeController</url-pattern>

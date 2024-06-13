@@ -5,6 +5,7 @@ import bean.Subject;
 import bean.User;
 import bean.CustomerQuiz;
 import bean.Dimension;
+<<<<<<< HEAD
 import bean.Question;
 import bean.QuizQuizHandle;
 import dao.CustomerQuizDAO;
@@ -19,6 +20,17 @@ import dao.impl.QuestionDAOImpl;
 import dao.impl.QuizDAOImpl;
 import dao.impl.RegistrationDAOImpl;
 import dao.impl.SubjectDAOImpl;
+=======
+import bean.QuizQuizHandle;
+import dao.CustomerQuizDAO;
+import dao.DimensionDAO;
+import dao.QuizDAO;
+import dao.RegistrationDAO;
+import dao.impl.CustomerQuizDAOImpl;
+import dao.impl.DimensionDAOImpl;
+import dao.impl.QuizDAOImpl;
+import dao.impl.RegistrationDAOImpl;
+>>>>>>> d5e36955cc9ec229149d0ec694d37420cb6e5a01
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -70,6 +82,7 @@ public class PracticeController extends HttpServlet {
                 request.getSession().setAttribute("dimensionTypes", dimension);
                 request.getRequestDispatcher("jsp/practiceDetail.jsp").forward(request, response);
             }
+<<<<<<< HEAD
             
              //create quiz that meet user's requirement
             if (service.equalsIgnoreCase("createPractice")) {
@@ -110,6 +123,8 @@ public class PracticeController extends HttpServlet {
                 }
                 response.sendRedirect("quizHandleController?service=quizEntrance&quizId=" + practice.getQuizId());
             }
+=======
+>>>>>>> d5e36955cc9ec229149d0ec694d37420cb6e5a01
 
         } catch (Exception ex) {
             Logger.getLogger(PracticeController.class.getName()).log(Level.SEVERE, null, ex);

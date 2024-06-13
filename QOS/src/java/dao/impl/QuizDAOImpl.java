@@ -9,12 +9,18 @@ import bean.TestType;
 import dao.DBConnection;
 import dao.LessonDAO;
 import dao.QuizDAO;
+<<<<<<< HEAD
 import dao.RegistrationDAO;
+=======
+>>>>>>> d5e36955cc9ec229149d0ec694d37420cb6e5a01
 import dao.SubjectDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+>>>>>>> d5e36955cc9ec229149d0ec694d37420cb6e5a01
 
 /**
  * Lớp này có các phương thức truy xuất và thêm dữ liệu vào database liên quan
@@ -22,6 +28,7 @@ import java.util.ArrayList;
  *
  */
 public class QuizDAOImpl extends DBConnection implements QuizDAO {
+<<<<<<< HEAD
 
     /**
      * add a quiz into the database
@@ -181,6 +188,9 @@ public class QuizDAOImpl extends DBConnection implements QuizDAO {
         return question;
     }
 
+=======
+    
+>>>>>>> d5e36955cc9ec229149d0ec694d37420cb6e5a01
     @Override
     public Quiz getQuizById(int quizId) throws Exception {
         Connection conn = null;
@@ -241,6 +251,7 @@ public class QuizDAOImpl extends DBConnection implements QuizDAO {
         }
         return null;
     }
+<<<<<<< HEAD
 
     /**
      * get all simulation quiz by user search
@@ -392,4 +403,6 @@ public class QuizDAOImpl extends DBConnection implements QuizDAO {
         return null;
     }
 
+=======
+>>>>>>> d5e36955cc9ec229149d0ec694d37420cb6e5a01
 }

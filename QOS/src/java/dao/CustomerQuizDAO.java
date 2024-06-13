@@ -8,7 +8,9 @@ import java.util.ArrayList;
  *
  */
 public interface CustomerQuizDAO {
+    public ArrayList<CustomerQuiz> getAllCustomerQuiz() throws Exception;
 
+<<<<<<< HEAD
     /**
      * get the last added customer quiz
      *
@@ -28,5 +30,7 @@ public interface CustomerQuizDAO {
 
     public ArrayList<CustomerQuiz> getAllCustomerQuiz() throws Exception;
 
+=======
+>>>>>>> d5e36955cc9ec229149d0ec694d37420cb6e5a01
     public ArrayList<CustomerQuiz> getQuizByUser(int userId) throws Exception;
 }
