@@ -1,17 +1,14 @@
 package dao;
 
 import bean.Quiz;
-<<<<<<< HEAD
 import java.util.ArrayList;
-=======
->>>>>>> d5e36955cc9ec229149d0ec694d37420cb6e5a01
+
 
 /**
  * Lớp này chứa các interface của QuizDAOImpl
  *
  */
 public interface QuizDAO {
-<<<<<<< HEAD
 
     /**
      * add a quiz into the database
@@ -64,7 +61,5 @@ public interface QuizDAO {
      */
     public int addQuizQuestion(int quizId, int questionId) throws Exception;
 
-=======
->>>>>>> d5e36955cc9ec229149d0ec694d37420cb6e5a01
     public Quiz getQuizById(int quizId) throws Exception;
 }
