@@ -1,4 +1,3 @@
-
 package controller;
 
 import bean.*;
@@ -52,6 +51,8 @@ public class UserController extends HttpServlet {
                     //if loged in, get user role and forward to homepage with their role    
                 } else {
                     request.getSession().setAttribute("currUser", log);
+                    request.getSession().setAttribute("role", userRoleDAO.getUserRoleById(log.getRoleId()));
+
                 }
                 out.print(mess);
                 request.getRequestDispatcher("index.jsp").forward(request, response);
