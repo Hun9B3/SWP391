@@ -48,6 +48,10 @@
         <servlet-name>SimulationExamController</servlet-name>
         <servlet-class>controller.SimulationExamController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>QuestionController</servlet-name>
+        <servlet-class>controller.QuestionController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SimulationExamController</servlet-name>
         <url-pattern>/simulationExamController</url-pattern>
@@ -89,12 +93,18 @@
         <url-pattern>/practiceController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+
+        <servlet-name>QuestionController</servlet-name>
+        <url-pattern>/questionController</url-pattern>
+</servlet-mapping>
+  <servlet-mapping>
         <servlet-name>UserProfileController</servlet-name>
         <url-pattern>/UserProfileController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ChangePasswordController</servlet-name>
         <url-pattern>/changePassword</url-pattern>
+
     </servlet-mapping>
     <session-config>
         <session-timeout>
