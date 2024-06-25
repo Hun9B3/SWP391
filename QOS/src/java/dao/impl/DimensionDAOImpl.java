@@ -99,4 +99,37 @@ public class DimensionDAOImpl extends DBConnection implements DimensionDAO {
         return dimensions;
     }
 
+    @Override
+    public Dimension getDimensionById(int dimensionId) throws Exception {
+        Connection conn = null;
+        ResultSet rs = null;
+        /* Result set returned by the sqlserver */
+        PreparedStatement pre = null;
+        /* Prepared statement for executing sql queries */
+
+        Dimension dimensionById = null;
+        String sql = "SELECT * FROM [Dimension] WHERE [dimensionId] = ?";
+
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            pre.setInt(1, dimensionId);
+            rs = pre.executeQuery();
+            if (rs.next()) {
+                int subjectId = rs.getInt("subjectId");
+                int dimensionTypeId = rs.getInt("dimensionTypeId");
+                String dimensionName = rs.getString("dimensionName");
+                String description = rs.getString("description");
+                Boolean status = rs.getBoolean("status");
+                dimensionById = new Dimension(dimensionId, subjectId, dimensionTypeId, dimensionName, dimensionName, description, status);
+            }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+        return dimensionById;
+    }
 }

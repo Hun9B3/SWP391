@@ -1,19 +1,23 @@
-
 package controller;
 
+import bean.PricePackage;
 import bean.Registration;
 import bean.RegistrationManage;
 import bean.Subject;
 import bean.User;
 import bean.UserRole;
+import dao.PricePackageDAO;
 import dao.RegistrationDAO;
 import dao.SubjectDAO;
 import dao.UserDAO;
+import dao.impl.PricePackageDAOImpl;
 import dao.impl.RegistrationDAOImpl;
 import dao.impl.SubjectDAOImpl;
 import dao.impl.UserDAOImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,6 +46,7 @@ public class RegistrationController extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String service = request.getParameter("service");
             RegistrationDAO registrationInterface = new RegistrationDAOImpl();
+            PricePackageDAO pricePackageDAO = new PricePackageDAOImpl();
             UserDAO userDAO = new UserDAOImpl();
             SubjectDAO subjectDAO = new SubjectDAOImpl();
             /**
@@ -65,6 +70,8 @@ public class RegistrationController extends HttpServlet {
                 String message = (String) request.getAttribute("message");
                 ArrayList<User> listUser = userDAO.getUserAllUser();
                 request.setAttribute("listUser", listUser);
+                ArrayList<PricePackage> listPackage = pricePackageDAO.getAllPricePackage();
+                request.setAttribute("listPackage", listPackage);
                 request.getRequestDispatcher("jsp/registrationDetail.jsp").forward(request, response);
                 if (message != null) {
                     request.setAttribute("message", message);
@@ -112,6 +119,17 @@ public class RegistrationController extends HttpServlet {
                     String message = "";
                     /* Get parameters from jsp */
                     int userId = Integer.parseInt(request.getParameter("userId").trim());
+                    int packageId = Integer.parseInt(request.getParameter("packageId").trim());
+                    double cost = Double.parseDouble(request.getParameter("cost"));
+                    String dateFrom = request.getParameter("validFrom"); // get request date user selected
+                    Date validFrom = Date.valueOf(dateFrom); // get values of  date  
+                    Date validTo = Date.valueOf(dateFrom);
+                    PricePackage pricePackage = pricePackageDAO.getPricePackageById(packageId);
+                    java.util.Calendar calendar = java.util.Calendar.getInstance();
+                    calendar.setTime(validTo);
+                    calendar.add(java.util.Calendar.MONTH, pricePackage.getDuration());
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    validTo = Date.valueOf(dateFormat.format(calendar.getTime()));
                     int lastUpdateBy = currUser.getUserId();
                     String note = null;
                     if (request.getParameter("note") == null) {
@@ -125,7 +143,7 @@ public class RegistrationController extends HttpServlet {
                         message = "User can not be empty";
                     } else {
                         /* Add new registration */
-                        Registration updateRegistration = new Registration(0, userId, null, lastUpdateBy, note, status);
+                        Registration updateRegistration = new Registration(0, userId, null, packageId, cost, validFrom, validTo, lastUpdateBy, note, status);
                         int check = registrationInterface.addRegistration(updateRegistration);
                         if (check > 0) {
                             message = "Add registration successfully.";
@@ -137,6 +155,8 @@ public class RegistrationController extends HttpServlet {
                     /* Get the needed lists and redirect to the courseContentJsp */
                     ArrayList<User> listUser = userDAO.getUserAllUser();
                     request.setAttribute("listUser", listUser);
+                    ArrayList<PricePackage> listPackage = pricePackageDAO.getAllPricePackage();
+                    request.setAttribute("listPackage", listPackage);
                     request.setAttribute("message", message);
                     sendDispatcher(request, response, "jsp/registrationList.jsp");
                 }
@@ -152,15 +172,19 @@ public class RegistrationController extends HttpServlet {
                 /* If user is not logged in, or not admin/expert, redirect to index */
                 if ((currUser == null) || (currRole == null)
                         || ((!currRole.getUserRoleName().equalsIgnoreCase("admin"))
-                        )) {
+                        && (!currRole.getUserRoleName().equalsIgnoreCase("sale")))) {
                     sendDispatcher(request, response, "error.jsp");
                 } else {
                     int registrationId = Integer.parseInt(request.getParameter("registrationId"));
                     String type = request.getParameter("type");
                     if (type.equalsIgnoreCase("update")) {
                         Registration updateRegistration = registrationInterface.getRegistrationById(registrationId);
+                        PricePackage pack = pricePackageDAO.getPricePackageById(updateRegistration.getPackId());
+                        request.setAttribute("pack", pack);
                         User user = userDAO.getUserById(updateRegistration.getUserId());
                         request.setAttribute("user", user);
+                        Subject subject = subjectDAO.getSubjectbyId(pack.getSubjectId());
+                        request.setAttribute("subject", subject);
                         request.setAttribute("updateRegistration", updateRegistration);
                         request.getRequestDispatcher("jsp/updateRegistration.jsp").forward(request, response);
                     }
@@ -178,7 +202,7 @@ public class RegistrationController extends HttpServlet {
                 /* If user is not logged in, or not admin/expert, redirect to index */
                 if ((currUser == null) || (currRole == null)
                         || ((!currRole.getUserRoleName().equalsIgnoreCase("admin"))
-                       )) {
+                        && (!currRole.getUserRoleName().equalsIgnoreCase("sale")))) {
                     sendDispatcher(request, response, "error.jsp");
                 } else {
                     int updateRegId = Integer.parseInt(request.getParameter("updateRegId"));

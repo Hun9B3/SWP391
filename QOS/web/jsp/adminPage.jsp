@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Admin Page</title>
         <link rel="stylesheet" href="${contextPath}/css/adminPage.css"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -37,7 +37,7 @@
                         <span class="fas fa-user-shield">Course Content List</span>  
                     </div> 
                 </a>
-                <a href="${contextPath}/jsp/questionList.jsp" style="text-decoration: none;color:black" >
+                <a href="${contextPath}/questionController?service=getFilterInformation" style="text-decoration: none;color:black" >
                     <div class="text-center big-button">
                         <span class="fas fa-user-shield">Question List</span>  
                     </div> 

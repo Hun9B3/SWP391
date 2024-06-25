@@ -23,7 +23,7 @@
         </c:if>
         <%-- Include header page --%>
         <jsp:include page="/jsp/header.jsp"/>
-        <c:if test="${ sessionScope.role.getUserRoleName().equalsIgnoreCase('admin')}">
+        <c:if test="${ sessionScope.role.getUserRoleName().equalsIgnoreCase('admin') || sessionScope.role.getUserRoleName().equalsIgnoreCase('sale')}">
             <%-- Check If user registedSubject is avaiable not, if not redirect to load information --%>
             <c:if test="${empty listUser || empty listPackage}">
                 <c:redirect url="/registrationController?service=getInformationDetail"/>
@@ -91,7 +91,7 @@
                 </div>
 
             </c:if>
-            <c:if test="${ !sessionScope.role.getUserRoleName().equalsIgnoreCase('admin')}">
+            <c:if test="${ !sessionScope.role.getUserRoleName().equalsIgnoreCase('admin') && !sessionScope.role.getUserRoleName().equalsIgnoreCase('sale')}">
                 <h2 style="text-align: center;">You don't have the right to access this page</h2>
             </c:if>
             <%-- Include footer page --%>

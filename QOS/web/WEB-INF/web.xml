@@ -11,6 +11,10 @@
     <servlet>
         <servlet-name>RegisterController</servlet-name>
         <servlet-class>controller.RegisterController</servlet-class>
+</servlet>
+  <servlet>
+        <servlet-name>RegistrationController</servlet-name>
+        <servlet-class>controller.RegistrationController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SubjectController</servlet-name>
@@ -44,7 +48,7 @@
         <servlet-name>SimulationExamController</servlet-name>
         <servlet-class>controller.SimulationExamController</servlet-class>
     </servlet>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>SimulationExamController</servlet-name>
         <url-pattern>/simulationExamController</url-pattern>
     </servlet-mapping>
@@ -67,6 +71,10 @@
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/register</url-pattern>
+</servlet-mapping>
+  <servlet-mapping>
+        <servlet-name>RegistrationController</servlet-name>
+        <url-pattern>/registrationController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SubjectController</servlet-name>
