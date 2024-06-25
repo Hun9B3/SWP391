@@ -64,5 +64,35 @@ public class DimensionDAOImpl extends DBConnection implements DimensionDAO {
         }
         return dimensions;
     }
+    
+    @Override
+    public int addDimension(Dimension dimension) throws Exception {
+        Connection conn = null;
+        ResultSet rs = null;
+        /* Result set returned by the sqlserver */
+        PreparedStatement pre = null;
+        /* Prepared statement for executing sql queries */
+
+        String sql = "INSERT INTO dbo.Dimension(dimensionName,dimensionTypeId,subjectId,[description],[status]) VALUES(?,?,?,?,?);";
+        int check = 0;
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            pre.setString(1, dimension.getDimensionName());
+            pre.setInt(2, dimension.getDimensionTypeId());
+            pre.setInt(3, dimension.getSubjectId());
+            pre.setString(4, dimension.getDescription());
+            pre.setBoolean(5, dimension.isStatus());
+            check = pre.executeUpdate();
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+
+        return check;
+    }
 
 }

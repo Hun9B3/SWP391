@@ -17,5 +17,7 @@ public interface SubjectCateDAO {
      * @throws Exception
      */
     public ArrayList<SubjectCate> getSubjectCateBySubject(int subjectId) throws Exception;
+    
+    public ArrayList<SubjectCate> getRemainSubjectCateBySubject(int subjectId) throws Exception;
 
 }

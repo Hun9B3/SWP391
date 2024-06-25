@@ -48,4 +48,5 @@ public interface RegistrationDAO {
      */
     public ArrayList<RegistrationManage> getFilterRegistration(int subjectId, int userId) throws Exception;
 
+    public ArrayList<Subject> getRegistedSubjectbyUserId(int userId) throws Exception;
 }
