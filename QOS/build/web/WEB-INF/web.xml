@@ -9,6 +9,10 @@
         <servlet-class>controller.UserController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>RegisterController</servlet-name>
+        <servlet-class>controller.RegisterController</servlet-class>
+  </servlet>
+  <servlet>
         <servlet-name>RegistrationController</servlet-name>
         <servlet-class>controller.RegistrationController</servlet-class>
     </servlet>
@@ -23,6 +27,14 @@
     <servlet>
         <servlet-name>PracticeController</servlet-name>
         <servlet-class>controller.PracticeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserProfileController</servlet-name>
+        <servlet-class>controller.UserProfileController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangePasswordController</servlet-name>
+        <servlet-class>controller.ChangePasswordController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>QuizController</servlet-name>
@@ -57,6 +69,10 @@
         <url-pattern>/userController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>RegisterController</servlet-name>
+        <url-pattern>/register</url-pattern>
+</servlet-mapping>
+  <servlet-mapping>
         <servlet-name>RegistrationController</servlet-name>
         <url-pattern>/registrationController</url-pattern>
     </servlet-mapping>
@@ -71,6 +87,14 @@
     <servlet-mapping>
         <servlet-name>PracticeController</servlet-name>
         <url-pattern>/practiceController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserProfileController</servlet-name>
+        <url-pattern>/UserProfileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePasswordController</servlet-name>
+        <url-pattern>/changePassword</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
