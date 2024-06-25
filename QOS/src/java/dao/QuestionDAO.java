@@ -1,6 +1,7 @@
 package dao;
 
 import bean.Question;
+import bean.QuestionManage;
 import java.util.ArrayList;
 
 /**
@@ -40,4 +41,7 @@ public interface QuestionDAO {
      */
     public ArrayList<Question> getQuestionForCreateQuiz(int numberOfQuestion, int subjectId, int dimensionId) throws Exception;
 
+    public ArrayList<QuestionManage> getQuestionByContent(String content) throws Exception;
+    
+    public ArrayList<QuestionManage> getQuestionManage(int subjectId, int dimensionId, int lessonId) throws Exception;
 }

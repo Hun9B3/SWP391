@@ -37,7 +37,7 @@
                         <span class="fas fa-user-shield">Course Content List</span>  
                     </div> 
                 </a>
-                <a href="${contextPath}/jsp/questionList.jsp" style="text-decoration: none;color:black" >
+                <a href="${contextPath}/questionController?service=getFilterInformation" style="text-decoration: none;color:black" >
                     <div class="text-center big-button">
                         <span class="fas fa-user-shield">Question List</span>  
                     </div> 
