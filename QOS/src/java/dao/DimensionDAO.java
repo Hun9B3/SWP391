@@ -18,5 +18,5 @@ public interface DimensionDAO {
     
     public ArrayList<Dimension> getDimensionBySubject(int subjectId) throws Exception;
     
-    public Dimension getDimensionById(int dimensionId) throws Exception;
+
 }

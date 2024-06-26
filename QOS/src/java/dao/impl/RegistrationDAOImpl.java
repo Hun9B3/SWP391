@@ -248,5 +248,58 @@ public class RegistrationDAOImpl extends DBConnection implements RegistrationDAO
         }
         return registrationList;
     }
+    
+      @Override
+    public ArrayList<Subject> getRegistedSubjectbyUserId(int userId) throws Exception {
+        Connection conn = null;
+        ResultSet rs = null;
+        /* Result set returned by the sqlserver */
+        PreparedStatement pre = null;
+        /* Prepared statement for executing sql queries */
+
+        ArrayList<Subject> registedSubjectbyUserId = new ArrayList();
+
+        /* Sql query */
+        String sqlSubject = "SELECT  Subject.[subjectId]\n"
+                + "      ,Subject.[subjectName]\n"
+                + "      ,Subject.[description]\n"
+                + "      ,Subject.[thumbnail]\n"
+                + "      ,Subject.[featuredSubject]\n"
+                + "      ,Subject.status\n"
+                + "  FROM ([QuizSystem].[dbo].[Subject]\n"
+                + "inner JOIN PricePackage\n"
+                + "ON Subject.subjectId = PricePackage.subjectId)\n"
+                + "inner join Registration on Registration.packId=PricePackage.packId\n"
+                + "where Registration.userId=? and Subject.status=1";
+
+        /* Get the subject */
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sqlSubject);
+            pre.setInt(1, userId);
+            rs = pre.executeQuery();
+            /* Get information from resultset and add it to arrayList */
+            while (rs.next()) {
+                int subjectId = rs.getInt("subjectId");
+                String subjectName = rs.getString("subjectName");
+                String description = rs.getString("description");
+                String thumbnail = rs.getString("thumbnail");
+                Boolean featured = rs.getBoolean("featuredSubject");
+                Boolean status = rs.getBoolean("status");
+
+                registedSubjectbyUserId.add(new Subject(subjectId, subjectName, description,
+                        thumbnail, featured, status
+                ));
+            }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+        return registedSubjectbyUserId;
+    }
+
 
 }

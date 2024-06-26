@@ -88,4 +88,44 @@ public class PricePackageDAOImpl extends DBConnection implements PricePackageDAO
         return null;
     }
 
+<<<<<<< ThichDV
+    @Override
+    public ArrayList<PricePackage> getAllPricePackagesBySubject(int subjectId) throws Exception {
+        ArrayList<PricePackage> pricePackages = new ArrayList<>();
+        Connection conn = null;
+        ResultSet rs = null;
+        /* Result set returned by the sqlserver */
+        PreparedStatement pre = null;
+        /* Prepared statement for executing sql queries */
+        PricePackage pricePackage =null;
+        String sql = "SELECT * from PricePackage where subjectId = ?";
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            pre.setInt(1, subjectId);
+
+            rs = pre.executeQuery();
+            while (rs.next()) {
+                pricePackage = new PricePackage(rs.getInt("packId"),
+                        rs.getString("packname"),
+                        rs.getInt("subjectId"),
+                        rs.getInt("duration"),
+                        rs.getInt("listPrice"),
+                        rs.getInt("salePrice"),
+                        rs.getBoolean("status"));
+                pricePackages.add(pricePackage);
+                return pricePackages;
+            }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+        return null;
+    }
+
+=======
+>>>>>>> main
 }
