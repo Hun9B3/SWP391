@@ -20,10 +20,7 @@ import dao.BlogDAO;
 import dao.SliderDAO;
 import dao.SubjectDAO;
 
-/**
- *
- * @author tuan
- */
+
 public class HomeController extends HttpServlet {
 
     /**

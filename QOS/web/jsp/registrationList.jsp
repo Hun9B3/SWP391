@@ -1,4 +1,3 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
@@ -28,7 +27,7 @@
             </c:if>
             <%-- Include header page --%>
             <jsp:include page="header.jsp"/>
-            <c:if test="${ sessionScope.role.getUserRoleName().equalsIgnoreCase('admin')}">
+            <c:if test="${ sessionScope.role.getUserRoleName().equalsIgnoreCase('admin') || sessionScope.role.getUserRoleName().equalsIgnoreCase('sale')}">
 
                 <%-- Check If subjectQuizList,testTypeQuizListis avaiable not, if not redirect to load information --%>
                 <c:if test="${listFilterSubject==null || listFilterUser==null }">
@@ -149,7 +148,7 @@
                 </div>
                 <div class="space" style="min-height: 50vh;"></div>
             </c:if>
-            <c:if test="${ !sessionScope.role.getUserRoleName().equalsIgnoreCase('admin')}">
+            <c:if test="${ !sessionScope.role.getUserRoleName().equalsIgnoreCase('admin') && !sessionScope.role.getUserRoleName().equalsIgnoreCase('sale')}">
                 <h2 style="text-align: center;">You don't have the right to access this page</h2>
             </c:if>
             <%-- Include footer page --%>

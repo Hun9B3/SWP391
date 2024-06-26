@@ -20,12 +20,17 @@
         <%-- Include header page --%>
         <jsp:include page="header.jsp"/>
         <%-- Check If user is logged in or not, if not redirect to error page --%>
+        <c:if test="${(sessionScope.currUser == null)||(!sessionScope.role.getUserRoleName().equalsIgnoreCase('Admin')
+                      &&!sessionScope.role.getUserRoleName().equalsIgnoreCase('Expert'))}">
+            <c:set var = "errorMess" scope="session" value = "User not logged in"/>
+            <c:redirect url="/error.jsp"/>
+        </c:if>
 
         <div class="main">
             <div class="container" style="align-self: center; min-height: 50vh">
                 <h1 style="text-align: center;">Question Detail</h1>
                 <%-- Start form --%>
-                <form action="" method="POST">
+                <form action="${contextPath}/quizController" method="POST">
                     <div class="row">
                         <div class="col-md-6">
                             <h2 style="text-align: center;">Question</h2>
@@ -35,9 +40,10 @@
                                     <span class="glyphicon glyphicon-user"></span>
                                 </span>
                                 <select class="form-control" name="subject">
-                                    <option value="">Choose</option>
-                                    <option value="">OOP with Java</option>
-                                    <option value="">Japanese 101</option>
+                                    <option value="0">Choose</option>
+                                    <c:forEach items="${listSubject}" var="subject">
+                                        <option value="${subject.getSubjectId()}"><c:out value="${subject.getSubjectName()}" /></option>
+                                    </c:forEach>
                                 </select>
                             </div>
 
@@ -49,8 +55,9 @@
                                     </span>
                                     <select class="form-control" name="dimension">
                                         <option value="0">Choose</option>
-                                        <option value="">Java Programming</option>
-                                        <option value="">Japanese</option>
+                                        <c:forEach items="${listDimension}" var="dimension">
+                                            <option value="${dimension.getDimensionId()}"><c:out value="${dimension.getDimensionName()}" /></option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                             </div>
@@ -63,8 +70,9 @@
                                     </span>
                                     <select class="form-control" name="lesson">
                                         <option value="0">Choose</option>
-                                        <option value="">Java Programming</option>
-                                        <option value="">Japanese</option>
+                                        <c:forEach items="${listLesson}" var="lesson">
+                                            <option value="${lesson.getLessonId()}"><c:out value="${lesson.getLessonName()}" /></option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                             </div>
@@ -72,8 +80,16 @@
                             <div>
                                 <label class="label control-label">Status</label>
                                 <select id="inputState" class="form-control" style="border: 1px solid #ced4da" name="questionStatus">
-                                    <option value="">Java Programming</option>
-                                    <option value="">Japanese</option>
+                                    <c:choose>
+                                        <c:when test="${question.isStatus()}">
+                                            <option selected value="1">Available</option>
+                                            <option value="0">Disabled</option>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <option  value="1">Available</option>
+                                            <option selected value="0">Disabled</option>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </select>
                             </div>
 
@@ -148,7 +164,11 @@
                         </div>
 
                         <%-- Display messages, if any --%>
-                        
+                        <div>
+                            <c:if test="${!empty questionMessage}">
+                                <h6 style="color: ${questionColor}"><c:out value="${questionMessage}"/></h6>
+                            </c:if>
+                        </div>
                         <br>
                         <%-- Submit form --%>
                         <div class="input-group" >

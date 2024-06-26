@@ -88,6 +88,7 @@ public class PricePackageDAOImpl extends DBConnection implements PricePackageDAO
         return null;
     }
 
+<<<<<<< ThichDV
     @Override
     public ArrayList<PricePackage> getAllPricePackagesBySubject(int subjectId) throws Exception {
         ArrayList<PricePackage> pricePackages = new ArrayList<>();
@@ -125,4 +126,6 @@ public class PricePackageDAOImpl extends DBConnection implements PricePackageDAO
         return null;
     }
 
+=======
+>>>>>>> main
 }
