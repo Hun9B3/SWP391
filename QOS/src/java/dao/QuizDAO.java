@@ -1,14 +1,13 @@
 package dao;
 
-import bean.Quiz;
-import java.util.ArrayList;
-
 
 /**
  * Lớp này chứa các interface của QuizDAOImpl
  *
  */
 public interface QuizDAO {
+    
+    public ArrayList<Quiz> getQuizBySubject(int subjectId) throws Exception;
 
     /**
      * add a quiz into the database

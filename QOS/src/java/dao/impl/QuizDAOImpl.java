@@ -9,8 +9,11 @@ import bean.TestType;
 import dao.DBConnection;
 import dao.LessonDAO;
 import dao.QuizDAO;
+<<<<<<< ThichDV
+=======
 import dao.RegistrationDAO;
 import dao.SubjectDAO;
+>>>>>>> main
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,6 +26,11 @@ import java.util.ArrayList;
  */
 public class QuizDAOImpl extends DBConnection implements QuizDAO {
 
+<<<<<<< ThichDV
+       @Override
+    public ArrayList<Quiz> getQuizBySubject(int subjectId) throws Exception {
+        ArrayList<Quiz> subjectQuiz = new ArrayList<>();
+=======
     /**
      * add a quiz into the database
      *
@@ -333,6 +341,7 @@ public class QuizDAOImpl extends DBConnection implements QuizDAO {
      */
     @Override
     public Quiz getQuizByQuizTakeId(int quizTakeId) throws Exception {
+>>>>>>> main
         Connection conn = null;
         ResultSet rs = null;
         /* Result set returned by the sqlserver */
@@ -341,10 +350,18 @@ public class QuizDAOImpl extends DBConnection implements QuizDAO {
         String quizLevelName = null;
         String testTypeName = null;
         String dimensionTypeName = null;
+<<<<<<< ThichDV
+        String sql = "select * from Quiz where testTypeId = 1 and subjectId = ?";
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            pre.setInt(1, subjectId);
+=======
         String sql = "select * from Quiz as a join CustomerQuiz as b on a.quizId = b.quizId where quizTakeId=" + quizTakeId;
         try {
             conn = getConnection();
             pre = conn.prepareStatement(sql);
+>>>>>>> main
             rs = pre.executeQuery();
             if (rs.next()) {
                 if (rs.getObject("quizLevelId") != null) {
@@ -366,7 +383,11 @@ public class QuizDAOImpl extends DBConnection implements QuizDAO {
                 Lesson lesson = lessonDAO.getLessonById(rs.getInt("lessonId"));
                 SubjectDAO subjectDAO = new SubjectDAOImpl();
                 Subject subject = subjectDAO.getSubjectbyId(rs.getInt("subjectId"));
+<<<<<<< ThichDV
+                subjectQuiz.add(new Quiz(rs.getInt("quizId"),
+=======
                 return new Quiz(rs.getInt("quizId"),
+>>>>>>> main
                         lesson,
                         subject,
                         rs.getString("quizName"),
@@ -380,16 +401,28 @@ public class QuizDAOImpl extends DBConnection implements QuizDAO {
                         rs.getInt("numberQuestion"),
                         rs.getInt("dimensionTypeId"),
                         dimensionTypeName,
+<<<<<<< ThichDV
+                        rs.getBoolean("status")));
+            }
+            return subjectQuiz;
+=======
                         rs.getBoolean("status"));
             }
+>>>>>>> main
         } catch (Exception ex) {
             throw ex;
         } finally {
             closeResultSet(rs);
             closePreparedStatement(pre);
             closeConnection(conn);
+<<<<<<< ThichDV
+        }       
+    }
+    
+=======
         }
         return null;
     }
 
+>>>>>>> main
 }

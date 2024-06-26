@@ -25,4 +25,5 @@ public interface PricePackageDAO {
      * @throws Exception
      */
     public PricePackage getPricePackageById(int ppId) throws Exception;
+
 }
