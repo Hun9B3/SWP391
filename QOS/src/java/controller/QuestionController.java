@@ -1,4 +1,3 @@
-
 package controller;
 
 import bean.Answer;
@@ -119,6 +118,51 @@ public class QuestionController extends HttpServlet {
                 request.getRequestDispatcher("jsp/questionList.jsp").forward(request, response);
                 if (message != null) {
                     request.setAttribute("message", message);
+                }
+            }
+
+            if (service.equalsIgnoreCase("editQuestion")) {
+                /* Get user and role on session scope */
+                User currUser = (User) request.getSession().getAttribute("currUser");
+                UserRole currRole = (UserRole) request.getSession().getAttribute("role");
+                /* If user is not logged in, or not admin/expert, redirect to index */
+                if ((currUser == null) || (currRole == null)
+                        || ((!currRole.getUserRoleName().equalsIgnoreCase("admin"))
+                        && (!currRole.getUserRoleName().equalsIgnoreCase("expert")))) {
+                    sendDispatcher(request, response, "error.jsp");
+                } else {
+                    int questionId = Integer.parseInt(request.getParameter("questionId"));
+                    String type = request.getParameter("type");
+                    QuestionDAO questionDAO = new QuestionDAOImpl();
+                    if (type.equalsIgnoreCase("update")) {
+                        SubjectDAO subjectDAO = new SubjectDAOImpl();
+                        DimensionDAO dimensionDAO = new DimensionDAOImpl();
+                        LessonDAO lessonDAO = new LessonDAOImpl();
+                        AnswerDAO answerDAO = new AnswerDAOImpl();
+                        Question updateQuestion = questionDAO.getQuestionById(questionId);
+                        ArrayList<Subject> subjectList = subjectDAO.getAllSubjects();
+                        ArrayList<Dimension> dimensionList = dimensionDAO.getAllDimension();
+                        ArrayList<Lesson> lessonList = lessonDAO.getAllLessons();
+                        ArrayList<Answer> answerList = answerDAO.getAnswersByQuenstionId(questionId);
+                        ArrayList<Answer> wrongAnswer = new ArrayList<>();
+                        Answer trueAnswer = new Answer();
+                        for (Answer answer : answerList) {
+                            if (answer.isIsCorrect()) {
+                                trueAnswer = answer;
+                            } else {
+                                wrongAnswer.add(answer);
+                            }
+                        }
+
+                        request.setAttribute("trueAnswer", trueAnswer);
+                        request.setAttribute("wrongAnswer", wrongAnswer);
+                        request.setAttribute("listSubject", subjectList);
+                        request.setAttribute("listDimension", dimensionList);
+                        request.setAttribute("listLesson", lessonList);
+                        request.setAttribute("listAnswer", answerList);
+                        request.setAttribute("updateQuestion", updateQuestion);
+                        request.getRequestDispatcher("jsp/updateQuestion.jsp").forward(request, response);
+                    }
                 }
             }
 

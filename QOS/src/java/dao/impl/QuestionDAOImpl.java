@@ -235,4 +235,117 @@ public class QuestionDAOImpl extends DBConnection implements QuestionDAO {
         }
         return questionManageList;
     }
+    
+    @Override
+    public int addQuestion(Question newQuestion) throws Exception {
+        Connection conn = null;
+        ResultSet rs = null;/* Result set returned by the sqlserver */
+        PreparedStatement pre = null;/* Prepared statement for executing sql queries */
+
+        String sql = "INSERT INTO [Question](subjectId,dimensionId,lessonId,content,media,explanation,status) "
+                + "values (?,?,?,?,?,?,?)";
+        int count = 0;
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            pre.setInt(1, newQuestion.getSubjectId());
+            pre.setInt(2, newQuestion.getDimensionId());
+            pre.setInt(3, newQuestion.getLessonId());
+            pre.setString(4, newQuestion.getContent());
+            pre.setString(5, newQuestion.getMedia());
+            pre.setString(6, newQuestion.getExplanation());
+            pre.setBoolean(7, newQuestion.isStatus());
+            count = pre.executeUpdate();
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+        return count;
+    }
+    
+    @Override
+    public int getQuestionIdCreated(Question question) throws Exception {
+        Connection conn = null;
+        ResultSet rs = null;
+        /* Result set returned by the sqlserver */
+        PreparedStatement pre = null;
+        /* Prepared statement for executing sql queries */
+        int questionId = -1;
+        String sql = "SELECT TOP 1 [questionId]\n"
+                + "      ,[subjectId]\n"
+                + "      ,[dimensionId]\n"
+                + "      ,[lessonId]\n"
+                + "      ,[content]\n"
+                + "      ,[media]\n"
+                + "      ,[explanation]\n"
+                + "      ,[status]\n"
+                + "  FROM [QuizSystem].[dbo].[Question]\n"
+                + "  WHERE [subjectId] = ? \n"
+                + " and	[dimensionId] = ? \n"
+                + " and	[lessonId] = ? \n"
+                + " and	[content] = ? \n"
+                + " and	[status] = ? \n"
+                + "ORDER BY questionId DESC";
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            pre.setInt(1, question.getSubjectId());
+            pre.setInt(2, question.getDimensionId());
+            pre.setInt(3, question.getLessonId());
+            pre.setString(4, question.getContent());
+            pre.setBoolean(5, question.isStatus());
+            rs = pre.executeQuery();
+            if (rs.next()) {
+                questionId = rs.getInt("questionId");
+            }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+        return questionId;
+    }
+    
+    @Override
+    public int editQuestion(int questionId, Question question) throws Exception {
+        int i = 0;
+        Connection conn = null;
+        PreparedStatement pre = null;
+        /* Prepared statement for executing sql queries */
+
+        String sql = "UPDATE [Question]\n"
+                + "SET [subjectId] = ?\n"
+                + "      ,[dimensionId] =? \n"
+                + "      ,[lessonId] = ?\n"
+                + "      ,[content] = ?\n"
+                + "      ,[media]	= ?\n"
+                + "      ,[explanation] = ?\n"
+                + "      ,[status] = ?\n"
+                + " WHERE [questionId] = ?";
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            pre.setInt(1, question.getSubjectId());
+            pre.setInt(2, question.getDimensionId());
+            pre.setInt(3, question.getLessonId());
+            pre.setString(4, question.getContent());
+            pre.setString(5, question.getMedia());
+            pre.setString(6, question.getExplanation());
+            pre.setBoolean(7, question.isStatus());
+            pre.setInt(8, questionId);
+            i = pre.executeUpdate();
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+        return i;
+
+    }
 }

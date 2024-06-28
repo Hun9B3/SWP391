@@ -10,6 +10,8 @@ import bean.Quiz;
 import bean.QuizQuizHandle;
 import bean.Subject;
 import bean.User;
+import bean.UserRole;
+import dao.AnswerDAO;
 import dao.impl.CustomerQuizDAOImpl;
 import dao.impl.QuestionDAOImpl;
 import dao.impl.QuestionQuizHandleDAOImpl;
@@ -32,6 +34,7 @@ import dao.QuizDAO;
 import dao.QuizQuizHandleDAO;
 import dao.RegistrationDAO;
 import dao.SubjectDAO;
+import dao.impl.AnswerDAOImpl;
 import dao.impl.DimensionDAOImpl;
 import dao.impl.LessonDAOImpl;
 import dao.impl.RegistrationDAOImpl;
@@ -327,7 +330,7 @@ public class QuizController extends HttpServlet {
 
                         //score exam
                     } else if ((action.charAt(0) != 'P') && (action.charAt(0) != 'N')
-                                && (action.charAt(0) != 'S') && (action.charAt(0) != 'E') && (action.charAt(0) != 'F')){
+                            && (action.charAt(0) != 'S') && (action.charAt(0) != 'E') && (action.charAt(0) != 'F')) {
 
                         response.sendRedirect("quizController?service=quizReview&quizTakeId=" + quizTakeId + "&questionNumber=" + Integer.parseInt(action));
                     } else if (action.equalsIgnoreCase("Finish Review")) {
@@ -364,7 +367,7 @@ public class QuizController extends HttpServlet {
                 request.setAttribute("simulationList", simulationList);
                 request.getRequestDispatcher("quizhandle/simulationExam.jsp").forward(request, response);
             }
-            
+
             if (service.equalsIgnoreCase("getQuestionDetailsInformation")) {
                 String message = (String) request.getAttribute("message");
                 SubjectDAO subjectDAO = new SubjectDAOImpl();
@@ -382,7 +385,139 @@ public class QuizController extends HttpServlet {
                 }
             }
 
-          
+            if (service.equalsIgnoreCase("addQuestion")) {
+                /* Get user and role on session scope */
+                User currUser = (User) request.getSession().getAttribute("currUser");
+                UserRole currRole = (UserRole) request.getSession().getAttribute("role");
+                /* If user is not logged in, or not admin/expert, redirect to index */
+                if ((currUser == null) || (currRole == null)
+                        || ((!currRole.getUserRoleName().equalsIgnoreCase("admin"))
+                        && (!currRole.getUserRoleName().equalsIgnoreCase("expert")))) {
+                    sendDispatcher(request, response, "error.jsp");
+                } else {
+                    /* Else: get the Question detail  */
+ /* Get parameters from jsp */
+                    int subjectId = Integer.parseInt(request.getParameter("subject"));
+                    int dimensionId = Integer.parseInt(request.getParameter("dimension"));
+                    int lessonId = Integer.parseInt(request.getParameter("lesson"));
+                    boolean status = request.getParameter("questionStatus").equals("1");
+                    String content = (String) request.getParameter("content").trim();
+                    String media = (String) request.getParameter("media").trim();
+                    String explanation = (String) request.getParameter("explanation").trim();
+                    //get parameters answer contents
+                    String trueAnswer = (String) request.getParameter("trueAnswer").trim();
+                    String wrongAnswer1 = (String) request.getParameter("wrongAnswer1").trim();
+                    String wrongAnswer2 = (String) request.getParameter("wrongAnswer2").trim();
+                    String wrongAnswer3 = (String) request.getParameter("wrongAnswer3").trim();
+                    AnswerDAO answerDAO = new AnswerDAOImpl();
+                    QuestionDAO questionDAO = new QuestionDAOImpl();
+                    String message = "";
+                    String color = "red";
+                    if (content == null || content.length() == 0) {
+                        message = "content can not be empty";
+                    } else if (content.length() > 1023 || media.length() > 255) {
+                        message = "content is too long";
+                    } else if (content.length() > 1023) {
+                        message = "explanation is too long";
+                    } else if (subjectId == 0) {
+                        message = "subject can not be empty";
+                    } else if (dimensionId == 0) {
+                        message = "dimension can not be empty";
+                    } else if (lessonId == 0) {
+                        message = "lesson can not be empty";
+                    } else {
+                        /* Add new question */
+                        Question question = new Question(0, subjectId, dimensionId, lessonId, content, media, explanation, status);
+                        int check = questionDAO.addQuestion(question);
+                        if (check > 0) {
+                            color = "green";
+                            message = "Add question successfully.";
+                            int questionId = questionDAO.getQuestionIdCreated(question);
+                            if (trueAnswer == null || trueAnswer.length() == 0) {
+                                message = "content can not be empty";
+                            } else if (wrongAnswer1 == null || wrongAnswer1.length() == 0) {
+                                message = "content can not be empty";
+                            } else if (trueAnswer.length() > 1023 || wrongAnswer1.length() > 1023
+                                    || wrongAnswer2.length() > 1023 || wrongAnswer3.length() > 1023) {
+                                message = "content is too long";
+                            } else {
+                                /* Add new answer */
+                                answerDAO.addAnswer(new Answer(0, questionId, trueAnswer, true, true));
+                                answerDAO.addAnswer(new Answer(0, questionId, wrongAnswer1, false, true));
+                                answerDAO.addAnswer(new Answer(0, questionId, wrongAnswer2, false, true));
+                                answerDAO.addAnswer(new Answer(0, questionId, wrongAnswer3, false, true));
+                            }
+                        } else {
+                            message = "Add question failed.";
+                        }
+                    }
+                    request.setAttribute("questionColor", color);
+                    request.setAttribute("questionMessage", message);
+                    sendDispatcher(request, response, "jsp/questionDetail.jsp");
+                }
+            }
+
+            if (service.equalsIgnoreCase("updateQuestionInformation")) {
+                int updateQuestionId = Integer.parseInt(request.getParameter("updateQuestionId"));
+                int subjectId = Integer.parseInt(request.getParameter("subject"));
+                int dimensionId = Integer.parseInt(request.getParameter("dimension"));
+                int lessonId = Integer.parseInt(request.getParameter("lesson"));
+                boolean status = request.getParameter("questionStatus").equals("1");
+                String content = (String) request.getParameter("content").trim();
+                String media = (String) request.getParameter("media").trim();
+                String explanation = (String) request.getParameter("explanation").trim();
+                String trueAnswerContent = (String) request.getParameter("trueAnswer").trim();
+                String wrongAnswer1Content = (String) request.getParameter("wrongAnswer1").trim();
+                String wrongAnswer2Content = (String) request.getParameter("wrongAnswer2").trim();
+                String wrongAnswer3Content = (String) request.getParameter("wrongAnswer3").trim();
+                int trueAnswerId = Integer.parseInt(request.getParameter("trueAnswerId"));
+                int wrongAnswer1Id = Integer.parseInt(request.getParameter("wrongAnswer1Id"));
+                int wrongAnswer2Id = Integer.parseInt(request.getParameter("wrongAnswer2Id"));
+                int wrongAnswer3Id = Integer.parseInt(request.getParameter("wrongAnswer3Id"));
+                AnswerDAO answerDAO = new AnswerDAOImpl();
+                String message = "";
+                String color = "red";
+                QuestionDAO questionDAO = new QuestionDAOImpl();
+                Question updateQuestion = questionDAO.getQuestionById(updateQuestionId);
+                if (content.length() == 0) {
+                    request.setAttribute("message", "You have to enter question content");
+                    request.getRequestDispatcher("quizController?service=getQuestionDetailsInformation")
+                            .forward(request, response);
+                }
+                if (trueAnswerContent == null || trueAnswerContent.length() == 0) {
+                    message = "content can not be empty";
+                } else if (wrongAnswer1Content == null || wrongAnswer1Content.length() == 0) {
+                    message = "content can not be empty";
+                } else if (trueAnswerContent.length() > 1023 || wrongAnswer1Content.length() > 1023
+                        || wrongAnswer2Content.length() > 1023 || wrongAnswer3Content.length() > 1023) {
+                    message = "content is too long";
+                } else {
+                    /* update answer */
+                    Answer trueAnswer = answerDAO.getAnswersById(trueAnswerId);
+                    trueAnswer.setAnswerContent(trueAnswerContent);
+                    Answer wrongAnswer1 = answerDAO.getAnswersById(wrongAnswer1Id);
+                    wrongAnswer1.setAnswerContent(wrongAnswer1Content);
+                    Answer wrongAnswer2 = answerDAO.getAnswersById(wrongAnswer2Id);
+                    wrongAnswer2.setAnswerContent(wrongAnswer2Content);
+                    Answer wrongAnswer3 = answerDAO.getAnswersById(wrongAnswer3Id);
+                    wrongAnswer3.setAnswerContent(wrongAnswer3Content);
+                    answerDAO.updateAnswer(trueAnswerId, trueAnswer);
+                    answerDAO.updateAnswer(trueAnswerId, wrongAnswer1);
+                    answerDAO.updateAnswer(trueAnswerId, wrongAnswer2);
+                    answerDAO.updateAnswer(trueAnswerId, wrongAnswer3);
+                }
+                updateQuestion.setSubjectId(subjectId);
+                updateQuestion.setDimensionId(dimensionId);
+                updateQuestion.setLessonId(lessonId);
+                updateQuestion.setContent(content);
+                updateQuestion.setMedia(media);
+                updateQuestion.setStatus(status);
+                updateQuestion.setExplanation(explanation);
+                questionDAO.editQuestion(updateQuestion.getQuestionId(), updateQuestion);
+                request.setAttribute("message", "Update successfully!!");
+                request.getRequestDispatcher("quizController?service=getQuestionDetailsInformation")
+                        .forward(request, response);
+            }
 
         } catch (Exception ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
