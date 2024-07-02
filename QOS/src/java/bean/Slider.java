@@ -5,7 +5,6 @@ package bean;
  * Slider entity
  */
 public class Slider {
-
     /**
      * Slider id
      */
@@ -18,13 +17,13 @@ public class Slider {
      * Slider status
      */
     private boolean status;
-
+    
+    
     /**
      * Constructor
      */
     public Slider() {
     }
-
     /**
      * Constructor
      *
@@ -43,7 +42,7 @@ public class Slider {
         this.note = note;
         this.status = status;
     }
-
+    
     /**
      * Get value form sliderId attribute of Slider class. <br>
      *
@@ -52,7 +51,7 @@ public class Slider {
     public int getSliderId() {
         return sliderId;
     }
-
+    
     /**
      * Set value to sliderId attribute of Slider class <br>
      *
@@ -61,7 +60,7 @@ public class Slider {
     public void setSliderId(int sliderId) {
         this.sliderId = sliderId;
     }
-
+    
     /**
      * Get value from title attribute of Slider class. <br>
      *
@@ -70,7 +69,7 @@ public class Slider {
     public String getSliderTitle() {
         return sliderTitle;
     }
-
+    
     /**
      * Set value from sliderTitle attribute of Slider class. <br>
      *
@@ -79,7 +78,7 @@ public class Slider {
     public void setSliderTitle(String sliderTitle) {
         this.sliderTitle = sliderTitle;
     }
-
+    
     /**
      * Get value from image attribute of Slider class. <br>
      *
@@ -88,7 +87,7 @@ public class Slider {
     public String getImage() {
         return image;
     }
-
+    
     /**
      * Set value from image attribute of Slider class. <br>
      *
@@ -97,7 +96,7 @@ public class Slider {
     public void setImage(String image) {
         this.image = image;
     }
-
+    
     /**
      * Get value from link attribute of Slider class. <br>
      *
@@ -106,7 +105,7 @@ public class Slider {
     public String getLink() {
         return link;
     }
-
+    
     /**
      * Set value from link attribute of Slider class. <br>
      *
@@ -115,7 +114,7 @@ public class Slider {
     public void setLink(String link) {
         this.link = link;
     }
-
+    
     /**
      * Get value from note attribute of Slider class. <br>
      *
@@ -124,7 +123,7 @@ public class Slider {
     public String getNote() {
         return note;
     }
-
+    
     /**
      * Set value from note attribute of Slider class. <br>
      *
@@ -133,7 +132,7 @@ public class Slider {
     public void setNote(String note) {
         this.note = note;
     }
-
+    
     /**
      * Check value from status attribute of Slider class. <br>
      *
@@ -142,7 +141,7 @@ public class Slider {
     public boolean isStatus() {
         return status;
     }
-
+    
     /**
      * Set value from status attribute of Slider class. <br>
      *

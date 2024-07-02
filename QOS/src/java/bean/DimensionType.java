@@ -1,3 +1,4 @@
+
 package bean;
 
 /**
@@ -5,13 +6,9 @@ package bean;
  */
 public class DimensionType {
 
-    private int dimensionTypeId;
-    /*Dimension type id*/
-    private String dimensionTypeName;
-    /*Dimension type name*/
-    private boolean status;
-
-    /*Dimension Type Status*/
+    private int dimensionTypeId; /*Dimension type id*/
+    private String dimensionTypeName; /*Dimension type name*/
+    private boolean status; /*Dimension Type Status*/
 
     /**
      * Blank constructor
@@ -21,10 +18,9 @@ public class DimensionType {
 
     /**
      * Complete constructor
-     *
      * @param dimensionTypeId
      * @param dimensionTypeName
-     * @param status
+     * @param status 
      */
     public DimensionType(int dimensionTypeId, String dimensionTypeName, boolean status) {
         this.dimensionTypeId = dimensionTypeId;
@@ -34,8 +30,7 @@ public class DimensionType {
 
     /**
      * Get dimension Type Id
-     *
-     * @return
+     * @return 
      */
     public int getDimensionTypeId() {
         return dimensionTypeId;
@@ -43,8 +38,7 @@ public class DimensionType {
 
     /**
      * Set dimension Type id
-     *
-     * @param dimensionTypeId
+     * @param dimensionTypeId 
      */
     public void setDimensionTypeId(int dimensionTypeId) {
         this.dimensionTypeId = dimensionTypeId;
@@ -52,8 +46,7 @@ public class DimensionType {
 
     /**
      * Get Dimension Type name
-     *
-     * @return
+     * @return 
      */
     public String getDimensionTypeName() {
         return dimensionTypeName;
@@ -61,8 +54,7 @@ public class DimensionType {
 
     /**
      * Get dimension Type status
-     *
-     * @return
+     * @return 
      */
     public boolean isStatus() {
         return status;
@@ -70,8 +62,7 @@ public class DimensionType {
 
     /**
      * Set dimension Type name
-     *
-     * @param dimensionTypeName
+     * @param dimensionTypeName 
      */
     public void setDimensionTypeName(String dimensionTypeName) {
         this.dimensionTypeName = dimensionTypeName;
@@ -79,8 +70,7 @@ public class DimensionType {
 
     /**
      * Set dimension type status
-     *
-     * @param status
+     * @param status 
      */
     public void setStatus(boolean status) {
         this.status = status;

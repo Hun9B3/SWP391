@@ -5,19 +5,12 @@ import java.util.ArrayList;
 /**
  * QuestionQuizHandle entity
  *
- *
  */
 public class QuestionQuizHandle {
-
-    private Question question;
-    /*Question entity*/
-    private ArrayList<Answer> answerList;
-    /*Arraylist Answer of Question*/
-    private int answeredId;
-    /*Answered answer id*/
-    private boolean marked;
-
-    /*Question Marked/Not*/
+    private Question question; /*Question entity*/
+    private ArrayList<Answer> answerList; /*Arraylist Answer of Question*/
+    private int answeredId; /*Answered answer id*/
+    private boolean marked; /*Question Marked/Not*/
 
     /**
      * Blank Constructor
@@ -25,13 +18,13 @@ public class QuestionQuizHandle {
     public QuestionQuizHandle() {
     }
 
+    
     /**
      * Complete constructor
-     *
      * @param question
      * @param answerList
      * @param answeredId
-     * @param marked
+     * @param marked 
      */
     public QuestionQuizHandle(Question question, ArrayList<Answer> answerList, int answeredId, boolean marked) {
         this.question = question;
@@ -42,8 +35,7 @@ public class QuestionQuizHandle {
 
     /**
      * Get Marked
-     *
-     * @return
+     * @return 
      */
     public boolean isMarked() {
         return marked;
@@ -51,8 +43,7 @@ public class QuestionQuizHandle {
 
     /**
      * Set Marked
-     *
-     * @param marked
+     * @param marked 
      */
     public void setMarked(boolean marked) {
         this.marked = marked;
@@ -60,8 +51,7 @@ public class QuestionQuizHandle {
 
     /**
      * Get Answered ID
-     *
-     * @return
+     * @return 
      */
     public int getAnsweredId() {
         return answeredId;
@@ -69,8 +59,7 @@ public class QuestionQuizHandle {
 
     /**
      * Set answered Id
-     *
-     * @param answeredId
+     * @param answeredId 
      */
     public void setAnsweredId(int answeredId) {
         this.answeredId = answeredId;
@@ -78,8 +67,7 @@ public class QuestionQuizHandle {
 
     /**
      * Get question
-     *
-     * @return
+     * @return 
      */
     public Question getQuestion() {
         return question;
@@ -87,8 +75,7 @@ public class QuestionQuizHandle {
 
     /**
      * Set question
-     *
-     * @param question
+     * @param question 
      */
     public void setQuestion(Question question) {
         this.question = question;
@@ -96,8 +83,7 @@ public class QuestionQuizHandle {
 
     /**
      * Get AnswerList
-     *
-     * @return
+     * @return 
      */
     public ArrayList<Answer> getAnswerList() {
         return answerList;
@@ -105,8 +91,7 @@ public class QuestionQuizHandle {
 
     /**
      * Set AnswerList
-     *
-     * @param answerList
+     * @param answerList 
      */
     public void setAnswerList(ArrayList<Answer> answerList) {
         this.answerList = answerList;

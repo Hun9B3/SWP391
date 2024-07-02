@@ -1,9 +1,6 @@
-
 package bean;
 
-/**
- *
- */
+
 public class Answer {
     private int answerId;   /* Answer Id */
     private int questionId; /* Question's Id */

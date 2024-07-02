@@ -1,8 +1,9 @@
+
 package bean;
 
 /**
  * this entity hold statistics data (name, value, date)
- *
+ * 
  */
 public class ItemDashboard {
 
@@ -42,5 +43,7 @@ public class ItemDashboard {
     public void setDate(long date) {
         this.date = date;
     }
+
+
 
 }

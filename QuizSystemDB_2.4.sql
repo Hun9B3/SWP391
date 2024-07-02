@@ -295,7 +295,15 @@ INSERT INTO dbo.DimensionType(dimensionTypeName,status) VALUES('Domain',1);
 INSERT INTO dbo.DimensionType(dimensionTypeName,status) VALUES('Group',1);
 ----------dbo.[User]-----------------------
 INSERT INTO dbo.[User](userName,[password],roleId,profilePic,userMail,gender,userMobile,[status]) 
-				VALUES('HungTV',1,5,'','HungTVHE176630@fpt.edu.vn',1,'0696044711',1);
+				VALUES('DienON',1,5,'','dienonhe180377@fpt.edu.vn',1,'0696044711',1);
+INSERT INTO dbo.[User](userName,[password],roleId,profilePic,userMail,gender,userMobile,[status]) 
+				VALUES('HungTV',1,5,'','hungtvhe176630@fpt.edu.vn',1,'0969044712',1);
+INSERT INTO dbo.[User](userName,[password],roleId,profilePic,userMail,gender,userMobile,[status]) 
+				VALUES('BinhDG',1,5,'','binhdghe170773@fpt.edu.vn',1,'0969044713',1);
+INSERT INTO dbo.[User](userName,[password],roleId,profilePic,userMail,gender,userMobile,[status]) 
+				VALUES('ThichDV',1,5,'','thichdvhe172796@fpt.edu.vn',1,'0969044714',1);
+INSERT INTO dbo.[User](userName,[password],roleId,profilePic,userMail,gender,userMobile,[status]) 
+				VALUES('QuyLM',1,5,'','quylmhe170670@fpt.edu.vn',1,'0969044715',1);
 INSERT INTO dbo.[User](userName,[password],roleId,profilePic,userMail,gender,userMobile,[status]) 
 				VALUES('Expert1',1,4,'','Expert1@gmail.com',0,'0969044716',1);
 INSERT INTO dbo.[User](userName,[password],roleId,profilePic,userMail,gender,userMobile,[status]) 
@@ -551,7 +559,14 @@ INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[val
 INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (1,'2021-10-12',5,20.0,'2020-12-12','2021-6-12',1,null,NULL)
 INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (8,'2021-10-7',1,20.0,'2021-10-8','2022-6-12',1,null,1)
 INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (8,'2021-10-8',2,20.0,'2021-10-9','2022-6-12',1,null,NULL)
+INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (9,'2021-10-7',2,20.0,'2021-10-8','2022-6-12',1,null,1)
+INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (9,'2021-10-6',1,20.0,'2021-10-7','2022-6-12',1,null,0)
+INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (10,'2021-10-7',3,20.0,'2021-10-11','2022-6-12',1,null,1)
+INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (10,'2021-10-6',5,20.0,'2021-10-11','2022-6-12',1,null,NULL)
+INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (11,'2021-10-6',5,20.0,'2021-10-11','2022-6-12',1,null,0)
+INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (11,'2021-10-7',4,20.0,'2021-10-11','2022-6-12',1,null,NULL)
 INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (7,'2021-10-8',3,20.0,'2021-10-15','2022-6-12',1,null,1)
+INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (7,'2021-10-6',5,20.0,'2021-10-7','2022-6-12',1,null,NULL)
 INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (6,'2021-10-9',5,20.0,'2021-10-9','2022-6-12',1,null,1)
 INSERT INTO dbo.Registration([userId],[regTime],[packId],[cost],[validFrom],[validTo],[lastUpdatedBy],[note],[status]) VALUES (6,'2021-10-10',4,20.0,'2021-10-12','2022-6-12',1,null,0)
 -------------------------------------------

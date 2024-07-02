@@ -21,6 +21,10 @@
         <servlet-class>controller.SubjectListController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>QuizListController</servlet-name>
+        <servlet-class>controller.QuizListController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>PracticeController</servlet-name>
         <servlet-class>controller.PracticeController</servlet-class>
     </servlet>
@@ -65,12 +69,16 @@
         <url-pattern>/subjectController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SubjectListController</servlet-name>
-        <url-pattern>/SubjectList</url-pattern>
+        <servlet-name>QuizListController</servlet-name>
+        <url-pattern>/QuizListController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PracticeController</servlet-name>
         <url-pattern>/practiceController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubjectListController</servlet-name>
+        <url-pattern>/subjectList</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

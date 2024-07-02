@@ -2,16 +2,12 @@ package bean;
 
 /**
  * QuizLevel entity
+ * 
  */
 public class QuizLevel {
-
-    private int quizLevelId;
-    /*Quiz Level Id*/
-    private String quizLevelName;
-    /*Quiz Level Name*/
-    private boolean status;
-
-    /*Quiz Status*/
+    private int quizLevelId; /*Quiz Level Id*/
+    private String quizLevelName; /*Quiz Level Name*/
+    private boolean status; /*Quiz Status*/
 
     /**
      * Blank constructor
@@ -21,10 +17,9 @@ public class QuizLevel {
 
     /**
      * Complete constructor
-     *
      * @param quizLevelId
      * @param quizLevelName
-     * @param status
+     * @param status 
      */
     public QuizLevel(int quizLevelId, String quizLevelName, boolean status) {
         this.quizLevelId = quizLevelId;
@@ -34,8 +29,7 @@ public class QuizLevel {
 
     /**
      * Get quiz level id
-     *
-     * @return
+     * @return 
      */
     public int getQuizLevelId() {
         return quizLevelId;
@@ -43,8 +37,7 @@ public class QuizLevel {
 
     /**
      * Set quiz level id
-     *
-     * @param quizLevelId
+     * @param quizLevelId 
      */
     public void setQuizLevelId(int quizLevelId) {
         this.quizLevelId = quizLevelId;
@@ -52,8 +45,7 @@ public class QuizLevel {
 
     /**
      * Get quiz level Name
-     *
-     * @return
+     * @return 
      */
     public String getQuizLevelName() {
         return quizLevelName;
@@ -61,8 +53,7 @@ public class QuizLevel {
 
     /**
      * Set quiz level name
-     *
-     * @param quizLevelName
+     * @param quizLevelName 
      */
     public void setQuizLevelName(String quizLevelName) {
         this.quizLevelName = quizLevelName;
@@ -70,8 +61,7 @@ public class QuizLevel {
 
     /**
      * Get status
-     *
-     * @return
+     * @return 
      */
     public boolean isStatus() {
         return status;
@@ -79,8 +69,7 @@ public class QuizLevel {
 
     /**
      * Get status
-     *
-     * @param status
+     * @param status 
      */
     public void setStatus(boolean status) {
         this.status = status;

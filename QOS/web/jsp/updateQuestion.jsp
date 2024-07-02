@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> d5e36955cc9ec229149d0ec694d37420cb6e5a01
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
