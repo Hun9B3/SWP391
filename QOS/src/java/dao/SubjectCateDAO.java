@@ -18,4 +18,13 @@ public interface SubjectCateDAO {
      */
     public ArrayList<SubjectCate> getSubjectCateBySubject(int subjectId) throws Exception;
 
+       /**
+     * Get subject categories that is not referenced by a specified subject
+     *
+     * @param subjectId
+     * @return
+     * @throws Exception
+     */
+    public ArrayList<SubjectCate> getRemainSubjectCateBySubject(int subjectId) throws Exception;
+ 
 }

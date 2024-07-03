@@ -11,8 +11,8 @@
     <servlet>
         <servlet-name>RegisterController</servlet-name>
         <servlet-class>controller.RegisterController</servlet-class>
-  </servlet>
-  <servlet>
+    </servlet>
+    <servlet>
         <servlet-name>RegistrationController</servlet-name>
         <servlet-class>controller.RegistrationController</servlet-class>
     </servlet>
@@ -23,6 +23,10 @@
     <servlet>
         <servlet-name>SubjectListController</servlet-name>
         <servlet-class>controller.SubjectListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>QuizListController</servlet-name>
+        <servlet-class>controller.QuizListController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PracticeController</servlet-name>
@@ -48,6 +52,10 @@
         <servlet-name>SimulationExamController</servlet-name>
         <servlet-class>controller.SimulationExamController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>QuestionController</servlet-name>
+        <servlet-class>controller.QuestionController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SimulationExamController</servlet-name>
         <url-pattern>/simulationExamController</url-pattern>
@@ -71,8 +79,8 @@
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/register</url-pattern>
-</servlet-mapping>
-  <servlet-mapping>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>RegistrationController</servlet-name>
         <url-pattern>/registrationController</url-pattern>
     </servlet-mapping>
@@ -81,12 +89,20 @@
         <url-pattern>/subjectController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SubjectListController</servlet-name>
-        <url-pattern>/SubjectList</url-pattern>
+        <servlet-name>QuizListController</servlet-name>
+        <url-pattern>/QuizListController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PracticeController</servlet-name>
         <url-pattern>/practiceController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubjectListController</servlet-name>
+        <url-pattern>/subjectList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QuestionController</servlet-name>
+        <url-pattern>/questionController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UserProfileController</servlet-name>

@@ -2,8 +2,6 @@ package controller;
 
 import bean.Answer;
 import bean.CustomerQuiz;
-import bean.Dimension;
-import bean.Lesson;
 import bean.Question;
 import bean.QuestionQuizHandle;
 import bean.Quiz;
@@ -24,18 +22,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import dao.CustomerQuizDAO;
-import dao.DimensionDAO;
-import dao.LessonDAO;
 import dao.QuestionDAO;
 import dao.QuestionQuizHandleDAO;
 import dao.QuizDAO;
 import dao.QuizQuizHandleDAO;
 import dao.RegistrationDAO;
-import dao.SubjectDAO;
-import dao.impl.DimensionDAOImpl;
-import dao.impl.LessonDAOImpl;
 import dao.impl.RegistrationDAOImpl;
-import dao.impl.SubjectDAOImpl;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
@@ -363,23 +355,6 @@ public class QuizController extends HttpServlet {
                 request.setAttribute("subjectList", subjectList);
                 request.setAttribute("simulationList", simulationList);
                 request.getRequestDispatcher("quizhandle/simulationExam.jsp").forward(request, response);
-            }
-            
-            if (service.equalsIgnoreCase("getQuestionDetailsInformation")) {
-                String message = (String) request.getAttribute("message");
-                SubjectDAO subjectDAO = new SubjectDAOImpl();
-                DimensionDAO dimensionDAO = new DimensionDAOImpl();
-                LessonDAO lessonDAO = new LessonDAOImpl();
-                ArrayList<Subject> listSubject = subjectDAO.getAllSubjects();
-                ArrayList<Dimension> listDimension = dimensionDAO.getAllDimension();
-                ArrayList<Lesson> listLesson = lessonDAO.getAllLessons();
-                request.getSession().setAttribute("listSubject", listSubject);
-                request.getSession().setAttribute("listDimension", listDimension);
-                request.getSession().setAttribute("listLesson", listLesson);
-                request.getRequestDispatcher("jsp/questionDetail.jsp").forward(request, response);
-                if (message != null) {
-                    request.setAttribute("message", message);
-                }
             }
 
           

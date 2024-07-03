@@ -1,9 +1,10 @@
-
 package bean;
 
 import java.util.Date;
 
-
+/**
+ *
+ */
 public class RegistrationManage {
      private int regId; /*Registration ID*/
     private String userMail; /*User Mail Registered*/

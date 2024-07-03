@@ -5,26 +5,15 @@ package bean;
  *
  */
 public class Lesson {
-
-    private int lessonId;
-    /*Lesson id*/
-    private int subjectId;
-    /*Subject Id*/
-    private String lessonName;
-    /*Lesson Name*/
-    private int lessonOrder;
-    /*Lesson order number*/
-    private int lessonTypeId;
-    /*Lesson type Id*/
-    private String videoLink;
-    /*Lesson video link*/
-    private String content;
-    /*Lesson content*/
-    private boolean status;
-    /*Lesson status*/
-    private String lessonTypeName;
-
-    /*Lesson type name*/
+    private int lessonId; /*Lesson id*/
+    private int subjectId; /*Subject Id*/
+    private String lessonName; /*Lesson Name*/
+    private int lessonOrder; /*Lesson order number*/
+    private int lessonTypeId; /*Lesson type Id*/
+    private String videoLink; /*Lesson video link*/
+    private String content; /*Lesson content*/
+    private boolean status; /*Lesson status*/
+    private String lessonTypeName; /*Lesson type name*/
 
     /**
      * Blank Constructor
@@ -34,7 +23,6 @@ public class Lesson {
 
     /**
      * Complete constructor
-     *
      * @param lessonId
      * @param subjectId
      * @param lessonName
@@ -43,7 +31,7 @@ public class Lesson {
      * @param videoLink
      * @param content
      * @param status
-     * @param lessonTypeName
+     * @param lessonTypeName 
      */
     public Lesson(int lessonId, int subjectId, String lessonName, int lessonOrder, int lessonTypeId, String videoLink, String content, boolean status, String lessonTypeName) {
         this.lessonId = lessonId;
@@ -59,8 +47,7 @@ public class Lesson {
 
     /**
      * Get lesson Id
-     *
-     * @return
+     * @return 
      */
     public int getLessonId() {
         return lessonId;
@@ -68,8 +55,7 @@ public class Lesson {
 
     /**
      * Set lesson Id
-     *
-     * @param lessonId
+     * @param lessonId 
      */
     public void setLessonId(int lessonId) {
         this.lessonId = lessonId;
@@ -77,8 +63,7 @@ public class Lesson {
 
     /**
      * Get subject ID
-     *
-     * @return
+     * @return 
      */
     public int getSubjectId() {
         return subjectId;
@@ -86,8 +71,7 @@ public class Lesson {
 
     /**
      * Set subject Id
-     *
-     * @param subjectId
+     * @param subjectId 
      */
     public void setSubjectId(int subjectId) {
         this.subjectId = subjectId;
@@ -95,8 +79,7 @@ public class Lesson {
 
     /**
      * Get lesson Name
-     *
-     * @return
+     * @return 
      */
     public String getLessonName() {
         return lessonName;
@@ -104,8 +87,7 @@ public class Lesson {
 
     /**
      * Set lesson Name
-     *
-     * @param lessonName
+     * @param lessonName 
      */
     public void setLessonName(String lessonName) {
         this.lessonName = lessonName;
@@ -113,8 +95,7 @@ public class Lesson {
 
     /**
      * Get lesson Order #
-     *
-     * @return
+     * @return 
      */
     public int getLessonOrder() {
         return lessonOrder;
@@ -122,8 +103,7 @@ public class Lesson {
 
     /**
      * Set lesson order #
-     *
-     * @param lessonOrder
+     * @param lessonOrder 
      */
     public void setLessonOrder(int lessonOrder) {
         this.lessonOrder = lessonOrder;
@@ -131,8 +111,7 @@ public class Lesson {
 
     /**
      * Get lesson type id
-     *
-     * @return
+     * @return 
      */
     public int getLessonTypeId() {
         return lessonTypeId;
@@ -140,8 +119,7 @@ public class Lesson {
 
     /**
      * Set lesson type ID
-     *
-     * @param lessonTypeId
+     * @param lessonTypeId 
      */
     public void setLessonTypeId(int lessonTypeId) {
         this.lessonTypeId = lessonTypeId;
@@ -149,8 +127,7 @@ public class Lesson {
 
     /**
      * Get lesson video link
-     *
-     * @return
+     * @return 
      */
     public String getVideoLink() {
         return videoLink;
@@ -158,8 +135,7 @@ public class Lesson {
 
     /**
      * Set lesson video link
-     *
-     * @param videoLink
+     * @param videoLink 
      */
     public void setVideoLink(String videoLink) {
         this.videoLink = videoLink;
@@ -167,8 +143,7 @@ public class Lesson {
 
     /**
      * Get lesson content
-     *
-     * @return
+     * @return 
      */
     public String getContent() {
         return content;
@@ -176,8 +151,7 @@ public class Lesson {
 
     /**
      * Set lesson content
-     *
-     * @param content
+     * @param content 
      */
     public void setContent(String content) {
         this.content = content;
@@ -185,8 +159,7 @@ public class Lesson {
 
     /**
      * Get lesson status
-     *
-     * @return
+     * @return 
      */
     public boolean isStatus() {
         return status;
@@ -194,8 +167,7 @@ public class Lesson {
 
     /**
      * Set lesson status
-     *
-     * @param status
+     * @param status 
      */
     public void setStatus(boolean status) {
         this.status = status;
@@ -203,8 +175,7 @@ public class Lesson {
 
     /**
      * Get Lesson type name
-     *
-     * @return
+     * @return 
      */
     public String getLessonTypeName() {
         return lessonTypeName;
@@ -212,11 +183,11 @@ public class Lesson {
 
     /**
      * Set lesson type name
-     *
-     * @param lessonTypeName
+     * @param lessonTypeName 
      */
     public void setLessonTypeName(String lessonTypeName) {
         this.lessonTypeName = lessonTypeName;
     }
 
+    
 }

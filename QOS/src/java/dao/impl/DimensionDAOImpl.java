@@ -99,30 +99,32 @@ public class DimensionDAOImpl extends DBConnection implements DimensionDAO {
         return dimensions;
     }
 
+  
+    /**
+     * Add new subject dimension
+     * @param dimension
+     * @return
+     * @throws Exception 
+     */
     @Override
-    public Dimension getDimensionById(int dimensionId) throws Exception {
+    public int addDimension(Dimension dimension) throws Exception {
         Connection conn = null;
         ResultSet rs = null;
         /* Result set returned by the sqlserver */
         PreparedStatement pre = null;
         /* Prepared statement for executing sql queries */
 
-        Dimension dimensionById = null;
-        String sql = "SELECT * FROM [Dimension] WHERE [dimensionId] = ?";
-
+        String sql = "INSERT INTO dbo.Dimension(dimensionName,dimensionTypeId,subjectId,[description],[status]) VALUES(?,?,?,?,?);";
+        int check = 0;
         try {
             conn = getConnection();
             pre = conn.prepareStatement(sql);
-            pre.setInt(1, dimensionId);
-            rs = pre.executeQuery();
-            if (rs.next()) {
-                int subjectId = rs.getInt("subjectId");
-                int dimensionTypeId = rs.getInt("dimensionTypeId");
-                String dimensionName = rs.getString("dimensionName");
-                String description = rs.getString("description");
-                Boolean status = rs.getBoolean("status");
-                dimensionById = new Dimension(dimensionId, subjectId, dimensionTypeId, dimensionName, dimensionName, description, status);
-            }
+            pre.setString(1, dimension.getDimensionName());
+            pre.setInt(2, dimension.getDimensionTypeId());
+            pre.setInt(3, dimension.getSubjectId());
+            pre.setString(4, dimension.getDescription());
+            pre.setBoolean(5, dimension.isStatus());
+            check = pre.executeUpdate();
         } catch (Exception ex) {
             throw ex;
         } finally {
@@ -130,6 +132,9 @@ public class DimensionDAOImpl extends DBConnection implements DimensionDAO {
             closePreparedStatement(pre);
             closeConnection(conn);
         }
-        return dimensionById;
+
+        return check;
     }
+
+
 }

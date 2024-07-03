@@ -1,17 +1,25 @@
-
 package bean;
 
 /**
- *  Hold the data of dimension entity
+ * Hold the data of dimension entity
  */
 public class Dimension {
-    private int dimensionId; /*Dimension Id*/
-    private int subjectId; /*Subject's Id*/
-    private int dimensionTypeId; /*Dimension Type Id*/
-    private String dimensionTypeName; /*Dimension Type Name*/
-    private String dimensionName; /*Dimension Name*/
-    private String description; /*Dimension Description*/
-    private boolean status; /*Dimension Status*/
+
+    private int dimensionId;
+    /*Dimension Id*/
+    private int subjectId;
+    /*Subject's Id*/
+    private int dimensionTypeId;
+    /*Dimension Type Id*/
+    private String dimensionTypeName;
+    /*Dimension Type Name*/
+    private String dimensionName;
+    /*Dimension Name*/
+    private String description;
+    /*Dimension Description*/
+    private boolean status;
+
+    /*Dimension Status*/
 
     /**
      * Blank constructor
@@ -21,13 +29,14 @@ public class Dimension {
 
     /**
      * Complete constructor
+     *
      * @param dimensionId
      * @param subjectId
      * @param dimensionTypeId
      * @param dimensionTypeName
      * @param dimensionName
      * @param description
-     * @param status 
+     * @param status
      */
     public Dimension(int dimensionId, int subjectId, int dimensionTypeId, String dimensionTypeName, String dimensionName, String description, boolean status) {
         this.dimensionId = dimensionId;
@@ -41,7 +50,8 @@ public class Dimension {
 
     /**
      * Get dimension Id
-     * @return 
+     *
+     * @return
      */
     public int getDimensionId() {
         return dimensionId;
@@ -49,7 +59,8 @@ public class Dimension {
 
     /**
      * Set Dimension ID
-     * @param dimensionId 
+     *
+     * @param dimensionId
      */
     public void setDimensionId(int dimensionId) {
         this.dimensionId = dimensionId;
@@ -57,7 +68,8 @@ public class Dimension {
 
     /**
      * Get subject Id
-     * @return 
+     *
+     * @return
      */
     public int getSubjectId() {
         return subjectId;
@@ -65,7 +77,8 @@ public class Dimension {
 
     /**
      * Set Subject Id
-     * @param subjectId 
+     *
+     * @param subjectId
      */
     public void setSubjectId(int subjectId) {
         this.subjectId = subjectId;
@@ -73,15 +86,17 @@ public class Dimension {
 
     /**
      * Get dimension Type Id
-     * @return 
+     *
+     * @return
      */
     public int getDimensionTypeId() {
         return dimensionTypeId;
     }
-   
+
     /**
      * Set dimension Type Id
-     * @param dimensionTypeId 
+     *
+     * @param dimensionTypeId
      */
     public void setDimensionTypeId(int dimensionTypeId) {
         this.dimensionTypeId = dimensionTypeId;
@@ -89,7 +104,8 @@ public class Dimension {
 
     /**
      * Get dimension Type Id
-     * @return 
+     *
+     * @return
      */
     public String getDimensionTypeName() {
         return dimensionTypeName;
@@ -97,7 +113,8 @@ public class Dimension {
 
     /**
      * Set dimension type Name
-     * @param dimensionTypeName 
+     *
+     * @param dimensionTypeName
      */
     public void setDimensionTypeName(String dimensionTypeName) {
         this.dimensionTypeName = dimensionTypeName;
@@ -105,7 +122,8 @@ public class Dimension {
 
     /**
      * get Dimension Name
-     * @return 
+     *
+     * @return
      */
     public String getDimensionName() {
         return dimensionName;
@@ -113,7 +131,8 @@ public class Dimension {
 
     /**
      * Set dimension Name
-     * @param dimensionName 
+     *
+     * @param dimensionName
      */
     public void setDimensionName(String dimensionName) {
         this.dimensionName = dimensionName;
@@ -121,7 +140,8 @@ public class Dimension {
 
     /**
      * Get dimension Description
-     * @return 
+     *
+     * @return
      */
     public String getDescription() {
         return description;
@@ -129,7 +149,8 @@ public class Dimension {
 
     /**
      * Set dimension description
-     * @param description 
+     *
+     * @param description
      */
     public void setDescription(String description) {
         this.description = description;
@@ -137,7 +158,8 @@ public class Dimension {
 
     /**
      * Get dimension status
-     * @return 
+     *
+     * @return
      */
     public boolean isStatus() {
         return status;
@@ -145,11 +167,11 @@ public class Dimension {
 
     /**
      * Set dimension status
-     * @param status 
+     *
+     * @param status
      */
     public void setStatus(boolean status) {
         this.status = status;
     }
-    
-    
+
 }

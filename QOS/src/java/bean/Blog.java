@@ -1,11 +1,7 @@
-
 package bean;
 
 import java.sql.Date;
 
-/**
- *
- */
 public class Blog {
 
     private int blogId; /* Blog's Id */

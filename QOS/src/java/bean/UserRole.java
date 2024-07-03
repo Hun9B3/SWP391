@@ -1,8 +1,7 @@
-
 package bean;
 
 /**
- * Hold the data of userRole entity
+
  */
 public class UserRole {
     private int userRoleId; /*User role id*/

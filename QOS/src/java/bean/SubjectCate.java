@@ -1,8 +1,7 @@
-
 package bean;
 
 /**
-
+ *  Hold the information of the subject category entity
  */
 public class SubjectCate {
     private int subjectCateId; /*Subject category id*/

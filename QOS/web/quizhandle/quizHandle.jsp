@@ -71,7 +71,6 @@
                         <div class="col-11">
                             <form id='questionForm' action='${contextPath}/quizHandleController?service=quizHandle&quizId=${quizId}&questionNumber=${questionNumber}' method='POST'>
                                 <ul>
-
                                     <c:forEach items="${questionQH.getAnswerList()}" var="answer">
                                         <div class="checkbox-inline" style="display: -webkit-inline-box;">
                                             <label class="labelA" for="${answer.getAnswerId()}">
@@ -195,7 +194,6 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-
                         </div>
                         <div class="modal-body">
                             <div>

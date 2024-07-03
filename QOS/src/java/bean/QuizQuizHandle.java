@@ -6,16 +6,10 @@ import java.util.ArrayList;
  * QuizQuizHandle Entity
  */
 public class QuizQuizHandle {
-
-    private Quiz quiz;
-    /*Quiz entiry*/
-    private ArrayList<QuestionQuizHandle> questions;
-    /*List of question*/
-    private User user;
-    /*User Entity(taken the quiz)*/
-    private int Time;
-
-    /*Quiz time taken(in second)*/
+    private Quiz quiz; /*Quiz entiry*/
+    private ArrayList<QuestionQuizHandle> questions; /*List of question*/
+    private User user; /*User Entity(taken the quiz)*/
+    private int Time;   /*Quiz time taken(in second)*/
 
     /**
      * Constructor with blank question list
@@ -26,11 +20,10 @@ public class QuizQuizHandle {
 
     /**
      * Complete constructor
-     *
      * @param quiz
      * @param questions
      * @param user
-     * @param Time
+     * @param Time 
      */
     public QuizQuizHandle(Quiz quiz, ArrayList<QuestionQuizHandle> questions, User user, int Time) {
         this.quiz = quiz;
@@ -38,11 +31,10 @@ public class QuizQuizHandle {
         this.user = user;
         this.Time = Time;
     }
-
+    
     /**
      * Constructor with question list
-     *
-     * @param questions
+     * @param questions 
      */
     public QuizQuizHandle(ArrayList<QuestionQuizHandle> questions) {
         this.questions = questions;
@@ -50,8 +42,7 @@ public class QuizQuizHandle {
 
     /**
      * Get question
-     *
-     * @return
+     * @return 
      */
     public ArrayList<QuestionQuizHandle> getQuestions() {
         return questions;
@@ -59,8 +50,7 @@ public class QuizQuizHandle {
 
     /**
      * Set question
-     *
-     * @param questions
+     * @param questions 
      */
     public void setQuestions(ArrayList<QuestionQuizHandle> questions) {
         this.questions = questions;
@@ -68,8 +58,7 @@ public class QuizQuizHandle {
 
     /**
      * Get user
-     *
-     * @return
+     * @return 
      */
     public User getUser() {
         return user;
@@ -77,8 +66,7 @@ public class QuizQuizHandle {
 
     /**
      * Set user
-     *
-     * @param user
+     * @param user 
      */
     public void setUser(User user) {
         this.user = user;
@@ -86,8 +74,7 @@ public class QuizQuizHandle {
 
     /**
      * Get quiz
-     *
-     * @return
+     * @return 
      */
     public Quiz getQuiz() {
         return quiz;
@@ -95,8 +82,7 @@ public class QuizQuizHandle {
 
     /**
      * Set quiz
-     *
-     * @param quiz
+     * @param quiz 
      */
     public void setQuiz(Quiz quiz) {
         this.quiz = quiz;
@@ -104,8 +90,7 @@ public class QuizQuizHandle {
 
     /**
      * Get time taken
-     *
-     * @return
+     * @return 
      */
     public int getTime() {
         return Time;
@@ -113,8 +98,7 @@ public class QuizQuizHandle {
 
     /**
      * Set time taken
-     *
-     * @param Time
+     * @param Time 
      */
     public void setTime(int Time) {
         this.Time = Time;
@@ -122,18 +106,16 @@ public class QuizQuizHandle {
 
     /**
      * Get question by number of questions
-     *
      * @param questionNumber
-     * @return
-     */
-    public QuestionQuizHandle getQuestionByNumber(int questionNumber) {
-        return questions.get(questionNumber - 1);
+     * @return 
+     */    
+    public QuestionQuizHandle getQuestionByNumber(int questionNumber){
+        return questions.get(questionNumber-1);
     }
 
     /**
      * Add question
-     *
-     * @param question
+     * @param question 
      */
     public void addQuestion(QuestionQuizHandle question) {
         questions.add(question);
@@ -141,8 +123,7 @@ public class QuizQuizHandle {
 
     /**
      * Remove question
-     *
-     * @param question
+     * @param question 
      */
     public void removeQuestion(QuestionQuizHandle question) {
         questions.remove(question);

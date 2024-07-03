@@ -4,32 +4,19 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
-/**
- *
- */
+
 public class CustomerQuiz {
 
-    private int quizTakeId;
-    /*Quiz take id(The attempt)*/
-    private int quizId;
-    /*Quiz Id(The real quiz)*/
-    private int userId;
-    /*User Id(Taken the quiz)*/
-    private int score;
-    /*Attempt Score*/
-    private int time;
-    /*Attempt time*/
-    private Timestamp submitedAt;
-    /*Time submitted*/
-    private boolean status;
-    /*Status*/
-    private String quizName;
-    /*Quiz's name*/
-    private String subjectName;
-    /*Subject;s name*/
-    private String testTypeName;
-
-    /*Test type's name*/
+    private int quizTakeId; /*Quiz take id(The attempt)*/
+    private int quizId; /*Quiz Id(The real quiz)*/
+    private int userId; /*User Id(Taken the quiz)*/
+    private int score; /*Attempt Score*/
+    private int time; /*Attempt time*/
+    private Timestamp submitedAt; /*Time submitted*/
+    private boolean status; /*Status*/
+    private String quizName; /*Quiz's name*/
+    private String subjectName; /*Subject;s name*/
+    private String testTypeName; /*Test type's name*/
 
     /**
      * Blank constructor
@@ -39,14 +26,13 @@ public class CustomerQuiz {
 
     /**
      * Complete constructor
-     *
      * @param quizTakeId
      * @param quizId
      * @param userId
      * @param score
      * @param time
      * @param submitedAt
-     * @param status
+     * @param status 
      */
     public CustomerQuiz(int quizTakeId, int quizId, int userId, int score, int time, Timestamp submitedAt, boolean status) {
         this.quizTakeId = quizTakeId;
@@ -60,8 +46,7 @@ public class CustomerQuiz {
 
     /**
      * Set testTypeName
-     *
-     * @param testTypeName
+     * @param testTypeName 
      */
     public void setTestTypeName(String testTypeName) {
         this.testTypeName = testTypeName;
@@ -69,8 +54,7 @@ public class CustomerQuiz {
 
     /**
      * Get testTypeName
-     *
-     * @return
+     * @return 
      */
     public String getTestTypeName() {
         return testTypeName;
@@ -78,8 +62,7 @@ public class CustomerQuiz {
 
     /**
      * Get quizName
-     *
-     * @return
+     * @return 
      */
     public String getQuizName() {
         return quizName;
@@ -87,8 +70,7 @@ public class CustomerQuiz {
 
     /**
      * Get subjectName
-     *
-     * @return
+     * @return 
      */
     public String getSubjectName() {
         return subjectName;
@@ -96,8 +78,7 @@ public class CustomerQuiz {
 
     /**
      * Set quizName
-     *
-     * @param quizName
+     * @param quizName 
      */
     public void setQuizName(String quizName) {
         this.quizName = quizName;
@@ -105,8 +86,7 @@ public class CustomerQuiz {
 
     /**
      * Set subjectName
-     *
-     * @param subjectName
+     * @param subjectName 
      */
     public void setSubjectName(String subjectName) {
         this.subjectName = subjectName;
@@ -114,8 +94,7 @@ public class CustomerQuiz {
 
     /**
      * Get quiz Time
-     *
-     * @return
+     * @return 
      */
     public int getTime() {
         return time;
@@ -123,8 +102,7 @@ public class CustomerQuiz {
 
     /**
      * Set quiz Time
-     *
-     * @param time
+     * @param time 
      */
     public void setTime(int time) {
         this.time = time;
@@ -132,8 +110,7 @@ public class CustomerQuiz {
 
     /**
      * Get quiz Take Id
-     *
-     * @return
+     * @return 
      */
     public int getQuizTakeId() {
         return quizTakeId;
@@ -141,8 +118,7 @@ public class CustomerQuiz {
 
     /**
      * Set quizTakeId
-     *
-     * @param quizTakeId
+     * @param quizTakeId 
      */
     public void setQuizTakeId(int quizTakeId) {
         this.quizTakeId = quizTakeId;
@@ -150,8 +126,7 @@ public class CustomerQuiz {
 
     /**
      * Get QuizId
-     *
-     * @return
+     * @return 
      */
     public int getQuizId() {
         return quizId;
@@ -159,8 +134,7 @@ public class CustomerQuiz {
 
     /**
      * Set QuizId
-     *
-     * @param quizId
+     * @param quizId 
      */
     public void setQuizId(int quizId) {
         this.quizId = quizId;
@@ -168,8 +142,7 @@ public class CustomerQuiz {
 
     /**
      * Get UserId
-     *
-     * @return
+     * @return 
      */
     public int getUserId() {
         return userId;
@@ -177,8 +150,7 @@ public class CustomerQuiz {
 
     /**
      * Set userId
-     *
-     * @param userId
+     * @param userId 
      */
     public void setUserId(int userId) {
         this.userId = userId;
@@ -186,8 +158,7 @@ public class CustomerQuiz {
 
     /**
      * Get Score
-     *
-     * @return
+     * @return 
      */
     public int getScore() {
         return score;
@@ -195,8 +166,7 @@ public class CustomerQuiz {
 
     /**
      * Set Score
-     *
-     * @param score
+     * @param score 
      */
     public void setScore(int score) {
         this.score = score;
@@ -204,8 +174,7 @@ public class CustomerQuiz {
 
     /**
      * Get time submitted
-     *
-     * @return
+     * @return 
      */
     public Timestamp getSubmitedAt() {
         return submitedAt;
@@ -213,8 +182,7 @@ public class CustomerQuiz {
 
     /**
      * Set time submitted
-     *
-     * @param submitedAt
+     * @param submitedAt 
      */
     public void setSubmitedAt(Timestamp submitedAt) {
         this.submitedAt = submitedAt;
@@ -222,8 +190,7 @@ public class CustomerQuiz {
 
     /**
      * Get status
-     *
-     * @return
+     * @return 
      */
     public boolean isStatus() {
         return status;
@@ -231,8 +198,7 @@ public class CustomerQuiz {
 
     /**
      * Set status
-     *
-     * @param status
+     * @param status 
      */
     public void setStatus(boolean status) {
         this.status = status;
@@ -240,8 +206,7 @@ public class CustomerQuiz {
 
     /**
      * Get quiz taken date
-     *
-     * @return
+     * @return 
      */
     public String getDateTaken() {
         Date date = new Date(submitedAt.getTime());
@@ -249,13 +214,12 @@ public class CustomerQuiz {
         String dateTaken = simpleDateFormat.format(date);
         return dateTaken;
     }
-
+    
     /**
      * Get duration in string
-     *
-     * @return
+     * @return 
      */
-    public String getDurationString() {
+    public String getDurationString(){
         String durationString = "";
         int minute = time / 60;
         int second = time % 60;

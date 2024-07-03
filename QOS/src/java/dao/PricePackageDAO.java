@@ -25,4 +25,13 @@ public interface PricePackageDAO {
      * @throws Exception
      */
     public PricePackage getPricePackageById(int ppId) throws Exception;
+       
+    /**
+     * get all price package by subjectId
+     * @param subjectId
+     * @return
+     * @throws Exception 
+     */
+    public ArrayList<PricePackage> getAllPricePackagesBySubject(int subjectId) throws Exception;
+    
 }

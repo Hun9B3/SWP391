@@ -1,6 +1,7 @@
 package dao;
 
 import bean.QuizLevel;
+import java.util.ArrayList;
 
 /**
  * Lớp này chứa các interface của QuizLevelDAOImpl
@@ -8,5 +9,13 @@ import bean.QuizLevel;
  */
 public interface QuizLevelDAO {
 
+    /**
+     * get all quizlevel in the database where status = 1 
+     *
+     * @return <code>ArrayList<QuizLevel></code>
+     * @throws Exception
+     */
+    public ArrayList<QuizLevel> getAllQuizLevel() throws Exception;
+    
     public QuizLevel getQuizLevelById(int quizLevelId) throws Exception;
 }

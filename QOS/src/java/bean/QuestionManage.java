@@ -2,27 +2,16 @@ package bean;
 
 /**
  *
- *
  */
 public class QuestionManage {
-
-    private int questionId;
-    /*Question ID*/
-    private String subjectName;
-    /*Subject Name*/
-    private String dimensionName;
-    /*Question Dimension Name*/
-    private String lessonName;
-    /*Question Lesson name*/
-    private String content;
-    /*Question content*/
-    private String media;
-    /*Question media*/
-    private String explanation;
-    /*Question Explaination*/
-    private boolean status;
-
-    /*Question status*/
+    private int questionId; /*Question ID*/
+    private String subjectName; /*Subject Name*/
+    private String dimensionName; /*Question Dimension Name*/
+    private String lessonName; /*Question Lesson name*/
+    private String content; /*Question content*/
+    private String media; /*Question media*/
+    private String explanation; /*Question Explaination*/
+    private boolean status; /*Question status*/
 
     /**
      * Blank Constructor
@@ -30,9 +19,9 @@ public class QuestionManage {
     public QuestionManage() {
     }
 
+    
     /**
      * Complete constructor
-     *
      * @param questionId
      * @param subjectName
      * @param dimensionName
@@ -40,7 +29,7 @@ public class QuestionManage {
      * @param content
      * @param media
      * @param explanation
-     * @param status
+     * @param status 
      */
     public QuestionManage(int questionId, String subjectName, String dimensionName, String lessonName, String content, String media, String explanation, boolean status) {
         this.questionId = questionId;
@@ -53,10 +42,10 @@ public class QuestionManage {
         this.status = status;
     }
 
+    
     /**
      * Get QuestionId
-     *
-     * @return
+     * @return 
      */
     public int getQuestionId() {
         return questionId;
@@ -64,8 +53,7 @@ public class QuestionManage {
 
     /**
      * Set QuestionId
-     *
-     * @param questionId
+     * @param questionId 
      */
     public void setQuestionId(int questionId) {
         this.questionId = questionId;
@@ -73,8 +61,7 @@ public class QuestionManage {
 
     /**
      * Get SubjectName
-     *
-     * @return
+     * @return 
      */
     public String getSubjectName() {
         return subjectName;
@@ -82,8 +69,7 @@ public class QuestionManage {
 
     /**
      * Set SubjectName
-     *
-     * @param subjectName
+     * @param subjectName 
      */
     public void setSubjectName(String subjectName) {
         this.subjectName = subjectName;
@@ -91,8 +77,7 @@ public class QuestionManage {
 
     /**
      * Get DimensionName
-     *
-     * @return
+     * @return 
      */
     public String getDimensionName() {
         return dimensionName;
@@ -100,8 +85,7 @@ public class QuestionManage {
 
     /**
      * Set DimensionName
-     *
-     * @param dimensionName
+     * @param dimensionName 
      */
     public void setDimensionName(String dimensionName) {
         this.dimensionName = dimensionName;
@@ -109,8 +93,7 @@ public class QuestionManage {
 
     /**
      * Get LessonName
-     *
-     * @return
+     * @return 
      */
     public String getLessonName() {
         return lessonName;
@@ -118,8 +101,7 @@ public class QuestionManage {
 
     /**
      * Set LessonName
-     *
-     * @param lessonName
+     * @param lessonName 
      */
     public void setLessonName(String lessonName) {
         this.lessonName = lessonName;
@@ -127,17 +109,15 @@ public class QuestionManage {
 
     /**
      * Get Content
-     *
-     * @return
+     * @return 
      */
     public String getContent() {
         return content;
     }
-
+    
     /**
      * Set Content
-     *
-     * @param content
+     * @param content 
      */
     public void setContent(String content) {
         this.content = content;
@@ -145,8 +125,7 @@ public class QuestionManage {
 
     /**
      * Get Media
-     *
-     * @return
+     * @return 
      */
     public String getMedia() {
         return media;
@@ -154,8 +133,7 @@ public class QuestionManage {
 
     /**
      * Set Media
-     *
-     * @param media
+     * @param media 
      */
     public void setMedia(String media) {
         this.media = media;
@@ -163,8 +141,7 @@ public class QuestionManage {
 
     /**
      * Get Explanation
-     *
-     * @return
+     * @return 
      */
     public String getExplanation() {
         return explanation;
@@ -172,8 +149,7 @@ public class QuestionManage {
 
     /**
      * Set explanation
-     *
-     * @param explanation
+     * @param explanation 
      */
     public void setExplanation(String explanation) {
         this.explanation = explanation;
@@ -181,8 +157,7 @@ public class QuestionManage {
 
     /**
      * Get Status
-     *
-     * @return
+     * @return 
      */
     public boolean isStatus() {
         return status;
@@ -190,11 +165,11 @@ public class QuestionManage {
 
     /**
      * Set Status
-     *
-     * @param status
+     * @param status 
      */
     public void setStatus(boolean status) {
         this.status = status;
     }
-
+    
+    
 }
