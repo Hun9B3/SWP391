@@ -3,7 +3,6 @@ package dao;
 import bean.Quiz;
 import java.util.ArrayList;
 
-
 /**
  * Lớp này chứa các interface của QuizDAOImpl
  *
@@ -33,6 +32,33 @@ public interface QuizDAO {
     public ArrayList<Quiz> getAllSimulationQuizByUser(int userId, int subjectId, String quizName) throws Exception;
 
     /**
+     * Find all quiz in the database
+     *
+     * @return <code>ArrayList<Quiz></code>
+     * @throws Exception
+     */
+    public ArrayList<Quiz> getAllQuiz() throws Exception;
+
+    /**
+     * edit existed quiz in the database
+     *
+     * @param quizId
+     * @param quiz
+     * @return
+     * @throws Exception
+     */
+    public int editQuiz(int quizId, Quiz quiz) throws Exception;
+
+    /**
+     * delete a quiz from the database
+     *
+     * @param quizId
+     * @return
+     * @throws Exception
+     */
+    public int deleteQuiz(int quizId) throws Exception;
+
+    /**
      * get taken quiz by takeQuiz's Id
      *
      * @param quizTakeId the target quiz's id. It is a <code>int</code>
@@ -52,6 +78,24 @@ public interface QuizDAO {
     public int getQuizIdCreated(Quiz quiz) throws Exception;
 
     /**
+     * Get all quiz that have the name similar to searchName
+     *
+     * @param searchName
+     * @return
+     * @throws Exception
+     */
+    public ArrayList<Quiz> getQuizByName(String searchName) throws Exception;
+       
+    /**
+     * get quiz by subjectId
+     * @param subjectId
+     * @return
+     * @throws Exception 
+     */
+    public ArrayList<Quiz> getQuizBySubject(int subjectId) throws Exception;
+  
+
+    /**
      * add quiz's question to the database
      *
      * @param quizId
@@ -61,5 +105,25 @@ public interface QuizDAO {
      */
     public int addQuizQuestion(int quizId, int questionId) throws Exception;
 
+    /**
+     * Get all quiz that have the same subjectId and quizTypeId
+     *
+     * @param subjectId
+     * @param quizTypeId
+     * @return
+     * @throws Exception
+     */
+    public ArrayList<Quiz> getFilteredQuiz(int subjectId, int quizTypeId) throws Exception;
+
     public Quiz getQuizById(int quizId) throws Exception;
+
+    /**
+     * delete all question of a quiz
+     *
+     * @param quizId
+     * @return
+     * @throws Exception
+     */
+    public int removeQuizQuestion(int quizId) throws Exception;
+
 }

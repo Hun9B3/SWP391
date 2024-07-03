@@ -11,8 +11,8 @@
     <servlet>
         <servlet-name>RegisterController</servlet-name>
         <servlet-class>controller.RegisterController</servlet-class>
-</servlet>
-  <servlet>
+    </servlet>
+    <servlet>
         <servlet-name>RegistrationController</servlet-name>
         <servlet-class>controller.RegistrationController</servlet-class>
     </servlet>
@@ -23,6 +23,10 @@
     <servlet>
         <servlet-name>SubjectListController</servlet-name>
         <servlet-class>controller.SubjectListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>QuizListController</servlet-name>
+        <servlet-class>controller.QuizListController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PracticeController</servlet-name>
@@ -75,8 +79,8 @@
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/register</url-pattern>
-</servlet-mapping>
-  <servlet-mapping>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>RegistrationController</servlet-name>
         <url-pattern>/registrationController</url-pattern>
     </servlet-mapping>
@@ -93,11 +97,14 @@
         <url-pattern>/practiceController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-
+        <servlet-name>QuizListController</servlet-name>
+        <url-pattern>/QuizListController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>QuestionController</servlet-name>
         <url-pattern>/questionController</url-pattern>
-</servlet-mapping>
-  <servlet-mapping>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>UserProfileController</servlet-name>
         <url-pattern>/UserProfileController</url-pattern>
     </servlet-mapping>

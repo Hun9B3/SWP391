@@ -1,7 +1,7 @@
 
 package controller;
 
-import bean.SystemEmail;
+//import bean.SystemEmail;
 import bean.User;
 import dao.UserDAO;
 import dao.impl.UserDAOImpl;
@@ -125,15 +125,15 @@ public class RegisterController extends HttpServlet {
                 addUser.setRoleId(4);
                 userDAO.addUser(addUser);
 
-                SystemEmail se = new SystemEmail();
-                //create confirm account link
-                String otp = givenUsingJava8_whenGeneratingRandomAlphanumericString_thenCorrect();
-                request.getSession().setAttribute("otp", otp);
-                String content = "Your otp is : " + otp;
-                se.sendEmail(userMail, "Confirm Your Account", content);
-                mess = "An otp have been sent to your email address!";
-                request.setAttribute("mess", mess);
-                request.getRequestDispatcher("login/register.jsp").forward(request, response);
+//                SystemEmail se = new SystemEmail();
+//                //create confirm account link
+//                String otp = givenUsingJava8_whenGeneratingRandomAlphanumericString_thenCorrect();
+//                request.getSession().setAttribute("otp", otp);
+//                String content = "Your otp is : " + otp;
+//                se.sendEmail(userMail, "Confirm Your Account", content);
+//                mess = "An otp have been sent to your email address!";
+//                request.setAttribute("mess", mess);
+//                request.getRequestDispatcher("login/register.jsp").forward(request, response);
             }
 
             //change status for user account
