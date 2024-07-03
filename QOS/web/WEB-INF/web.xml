@@ -104,7 +104,7 @@
         <servlet-name>QuestionController</servlet-name>
         <url-pattern>/questionController</url-pattern>
     </servlet-mapping>
-  <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>UserProfileController</servlet-name>
         <url-pattern>/UserProfileController</url-pattern>
     </servlet-mapping>
