@@ -19,4 +19,9 @@ public interface AnswerDAO {
      */
     public ArrayList<Answer> getAnswersByQuenstionId(int questionId) throws Exception;
     
+    public int addAnswer(Answer newAnswer) throws Exception;
+    
+    public Answer getAnswersById(int answerId) throws Exception;
+    
+    public int updateAnswer(int answerId, Answer updatedAnswer) throws Exception;
 }
