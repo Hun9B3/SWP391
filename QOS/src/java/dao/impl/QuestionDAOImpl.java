@@ -1,8 +1,12 @@
 package dao.impl;
 
 import bean.Question;
+import bean.QuestionManage;
 import dao.DBConnection;
+import dao.DimensionDAO;
+import dao.LessonDAO;
 import dao.QuestionDAO;
+import dao.SubjectDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

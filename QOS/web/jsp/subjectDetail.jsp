@@ -53,11 +53,11 @@
 
                     </div>
 
-                    <div class="content row" style="text-align: justify;">
+<!--                    <div class="content row" style="text-align: justify;">
                         <c:forEach items = "${pricePackage}" var="pricePackage" begin = "0" end = "2">
                             <h3>${pricePackage.getAllPricePackagesBySubject()}</h3>
                             </c:forEach>
-                    </div>
+                    </div>-->
                     <div class="content row" style="text-align: justify;">
                         <c:forEach items="${requestScope.quizs}" var="i">
                             <div class="col-3">

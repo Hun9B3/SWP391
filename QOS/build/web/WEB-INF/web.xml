@@ -111,6 +111,7 @@
     <servlet-mapping>
         <servlet-name>ChangePasswordController</servlet-name>
         <url-pattern>/changePassword</url-pattern>
+
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -1,6 +1,7 @@
 package dao;
 
 import bean.Question;
+import bean.QuestionManage;
 import java.util.ArrayList;
 
 /**

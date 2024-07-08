@@ -16,6 +16,14 @@ public interface DimensionDAO {
      */
     public ArrayList<Dimension> getAllDimension() throws Exception;
     
+     /**
+     * Get dimension by a specified id
+     * @param dimensionId
+     * @return
+     * @throws Exception 
+     */
+    public Dimension getDimensionById(int dimensionId) throws Exception;
+    
       
     /**
      * Add new subject dimension

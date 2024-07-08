@@ -17,8 +17,7 @@ import java.sql.ResultSet;
  */
 public class SubjectDAOImpl extends DBConnection implements SubjectDAO {
 
-
-     /**
+/**
      *
      * @param subjectId
      * @return
