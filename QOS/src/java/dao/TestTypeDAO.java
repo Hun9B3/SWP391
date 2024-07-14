@@ -18,4 +18,10 @@ public interface TestTypeDAO {
     public ArrayList<TestType> getAllTestTypes() throws Exception;
 
     public TestType getTestTypeById(int testTypeId) throws Exception;
+    
+    ArrayList<TestType> getAllStatusTestTypes() throws Exception;
+
+    int updateTestType(TestType updatedTestType) throws Exception;
+
+    int addTestType(TestType newTestType) throws Exception;
 }

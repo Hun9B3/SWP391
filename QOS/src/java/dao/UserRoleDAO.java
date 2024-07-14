@@ -23,4 +23,9 @@ public interface UserRoleDAO {
      */
     public UserRole getUserRoleById(int roleId) throws Exception;
     
+    ArrayList<UserRole> getAllStatusUserRole() throws Exception;
+
+    int addRole(UserRole userRole) throws Exception;
+
+    int editRole(UserRole userRole) throws Exception;
 }

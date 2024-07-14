@@ -18,4 +18,10 @@ public interface QuizLevelDAO {
     public ArrayList<QuizLevel> getAllQuizLevel() throws Exception;
     
     public QuizLevel getQuizLevelById(int quizLevelId) throws Exception;
+    
+     ArrayList<QuizLevel> getAllStatusQuizLevel() throws Exception;
+
+    int addQuizLevel(QuizLevel quizLevel) throws Exception;
+
+    int editQuizLevel(QuizLevel quizLevel) throws Exception;
 }

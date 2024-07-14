@@ -77,4 +77,107 @@ public class DimensionTypeDAOImpl extends DBConnection implements DimensionTypeD
         return null;
     }
 
+    /**
+     * Get all dimension type
+     *
+     * @return <code>ArrayList</code>
+     * @throws Exception
+     */
+    @Override
+    public ArrayList<DimensionType> getAllStatusDimensionTypes() throws Exception {
+        Connection conn = null;
+        ResultSet rs = null;
+        /* Result set returned by the sqlserver */
+        PreparedStatement pre = null;
+        /* Prepared statement for executing sql queries */
+        ArrayList<DimensionType> dimensionTypesList = new ArrayList<>();
+        String sql = "SELECT [dimensionTypeId]\n"
+                + "      ,[dimensionTypeName]\n"
+                + "      ,[status]\n"
+                + "  FROM [QuizSystem].[dbo].[DimensionType]";
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            rs = pre.executeQuery();
+            while (rs.next()) {
+                dimensionTypesList.add(
+                        new DimensionType(rs.getInt("dimensionTypeId"),
+                                rs.getString("dimensionTypeName"),
+                                rs.getBoolean("status")));
+            }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+        return dimensionTypesList;
+    }
+
+    /**
+     * Add new dimension Type
+     *
+     * @param newDimensionType
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public int addDimensionType(DimensionType newDimensionType) throws Exception {
+        Connection conn = null;
+        ResultSet rs = null;
+        /* Result set returned by the sqlserver */
+        PreparedStatement pre = null;
+        /* Prepared statement for executing sql queries */
+
+        String sql = "INSERT INTO dbo.DimensionType(dimensionTypeName,status) VALUES(?,1)";
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            pre.setString(1, newDimensionType.getDimensionTypeName());
+            return pre.executeUpdate();
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+    }
+
+    /**
+     * Update dimension type
+     *
+     * @param updatedDimensionType
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public int updateDimensionType(DimensionType updatedDimensionType) throws Exception {
+        Connection conn = null;
+        ResultSet rs = null;
+        /* Result set returned by the sqlserver */
+        PreparedStatement pre = null;
+        /* Prepared statement for executing sql queries */
+
+        String sql = "  UPDATE [QuizSystem].[dbo].[DimensionType] \n"
+                + "  SET [dimensionTypeName] = ?\n"
+                + "      ,[status] = ?\n"
+                + "  WHERE dimensionTypeId = ?";
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            pre.setString(1, updatedDimensionType.getDimensionTypeName());
+            pre.setBoolean(2, updatedDimensionType.isStatus());
+            pre.setInt(3, updatedDimensionType.getDimensionTypeId());
+            return pre.executeUpdate();
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+    }
+
 }
