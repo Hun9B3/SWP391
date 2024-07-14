@@ -8,7 +8,7 @@ import java.util.ArrayList;
  *
  */
 public interface UserRoleDAO {
-  /**
+    /**
      * Get all user role where status = 1 
      * @return
      * @throws Exception 
@@ -22,10 +22,27 @@ public interface UserRoleDAO {
      * @throws Exception 
      */
     public UserRole getUserRoleById(int roleId) throws Exception;
+   
+    /**
+     * Get all user role
+     * @return
+     * @throws Exception 
+     */
+    public ArrayList<UserRole> getAllStatusUserRole() throws Exception;
+   
+        /**
+     * Edit user Role
+     * @param userRole
+     * @return
+     * @throws Exception 
+     */
+    public int editRole(UserRole userRole) throws Exception;
     
-    ArrayList<UserRole> getAllStatusUserRole() throws Exception;
-
-    int addRole(UserRole userRole) throws Exception;
-
-    int editRole(UserRole userRole) throws Exception;
-}
+    /**
+     * Add new user role
+     * @param userRole
+     * @return
+     * @throws Exception 
+     */
+    public int addRole(UserRole userRole) throws Exception;
+   }
