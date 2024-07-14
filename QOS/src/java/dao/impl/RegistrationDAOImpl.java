@@ -4,6 +4,10 @@ import bean.ItemDashboard;
 import bean.Registration;
 import bean.Subject;
 import bean.RegistrationManage;
+<<<<<<< HEAD
+=======
+import bean.Subject;
+>>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
 import com.google.gson.Gson;
 import dao.DBConnection;
 import dao.PricePackageDAO;
@@ -15,6 +19,10 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+<<<<<<< HEAD
+=======
+import java.util.ArrayList;
+>>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
 import java.util.HashMap;
 
 /**
@@ -253,6 +261,7 @@ public class RegistrationDAOImpl extends DBConnection implements RegistrationDAO
     }
 
     /**
+<<<<<<< HEAD
      * get all subjects registed by userId
      *
      * @param userId
@@ -311,6 +320,21 @@ public class RegistrationDAOImpl extends DBConnection implements RegistrationDAO
     }
 
     @Override
+=======
+     * get statistic from database
+     *
+     *
+     * @param from Lower range limit. <code>String</code>
+     * @param to Upper range limit. <code>String</code>
+     * @param subjectList list of target subject.
+     * <code>java.util.ArrayList</code> object
+     * @param type revenue or registration. <code>String</code>
+     * @return list of statistics data. It is a <code>java.util.ArrayList</code>
+     * object.
+     * @throws java.lang.Exception
+     */
+    @Override
+>>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
     public ArrayList<ItemDashboard> getSubjectStatistics(String from, String to, ArrayList<Subject> subjectList, String type) throws Exception {
         ArrayList<ItemDashboard> list = new ArrayList();
         Connection conn = null;
@@ -413,6 +437,46 @@ public class RegistrationDAOImpl extends DBConnection implements RegistrationDAO
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * get all subject registed
+     *
+     * @param userId
+     * @return @throws Exception get registed subject by user's Id
+     */
+    @Override
+    public ArrayList<Subject> getRegistedSubject(int userId) throws Exception {
+        Connection conn = null;
+        ResultSet rs = null;
+        /* Result set returned by the sqlserver */
+        PreparedStatement pre = null;
+        /* Prepared statement for executing sql queries */
+        SubjectDAO subjectDAO = new SubjectDAOImpl();
+        ArrayList<Subject> registedSubject = new ArrayList<>();
+        String sql = "SELECT b.subjectId\n"
+                + "  FROM [QuizSystem].[dbo].[Registration] as a "
+                + "inner join [QuizSystem].[dbo].[PricePackage] as b "
+                + "on a.packId = b.packId where a.userId = ?";
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            pre.setInt(1, userId);
+            rs = pre.executeQuery();
+            while (rs.next()) {
+                registedSubject.add(subjectDAO.getSubjectbyId(rs.getInt("subjectId")));
+            }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+        return registedSubject;
+    }
+
+    /**
+>>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
      * get statistic from database
      *
      *
@@ -569,11 +633,15 @@ public class RegistrationDAOImpl extends DBConnection implements RegistrationDAO
             while (rs.next()) {
                 list.add(new Registration(rs.getInt("regId"),
                         rs.getInt("userId"),
+<<<<<<< HEAD
                         rs.getDate("regTime"),
                         rs.getInt("packId"),
                         rs.getDouble("cost"),
                         rs.getDate("validFrom"),
                         rs.getDate("validTo"),
+=======
+                        rs.getDate("regTime"),        
+>>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
                         rs.getInt("lastUpdateBy"),
                         rs.getString("note"),
                         rs.getBoolean("status"))
@@ -610,10 +678,13 @@ public class RegistrationDAOImpl extends DBConnection implements RegistrationDAO
                 registrationsList.add(new Registration(rs.getInt("regId"),
                         rs.getInt("userId"),
                         rs.getDate("regTime"),
+<<<<<<< HEAD
                         rs.getInt("packId"),
                         rs.getDouble("cost"),
                         rs.getDate("validFrom"),
                         rs.getDate("validTo"),
+=======
+>>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
                         rs.getInt("lastUpdatedBy"),
                         rs.getString("note"),
                         rs.getBoolean("status")));
@@ -651,10 +722,13 @@ public class RegistrationDAOImpl extends DBConnection implements RegistrationDAO
                 list.add(new Registration(rs.getInt("regId"),
                         rs.getInt("userId"),
                         rs.getDate("regTime"),
+<<<<<<< HEAD
                         rs.getInt("packId"),
                         rs.getDouble("cost"),
                         rs.getDate("validFrom"),
                         rs.getDate("validTo"),
+=======
+>>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
                         rs.getInt("lastUpdatedBy"),
                         rs.getString("note"),
                         rs.getBoolean("status"))

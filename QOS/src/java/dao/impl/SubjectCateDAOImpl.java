@@ -58,6 +58,7 @@ public class SubjectCateDAOImpl extends DBConnection implements SubjectCateDAO {
     }
 
     /**
+<<<<<<< HEAD
      * Get subject categories that is not referenced by a specified subject
      *
      * @param subjectId
@@ -100,6 +101,8 @@ public class SubjectCateDAOImpl extends DBConnection implements SubjectCateDAO {
     }
 
     /**
+=======
+>>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
      * Get all subject categories
      *
      * @return
@@ -138,6 +141,7 @@ public class SubjectCateDAOImpl extends DBConnection implements SubjectCateDAO {
     }
 
     /**
+<<<<<<< HEAD
      * Get subject category by Id
      *
      * @param scId Subject Category ID
@@ -239,6 +243,8 @@ public class SubjectCateDAOImpl extends DBConnection implements SubjectCateDAO {
     }
 
     /**
+=======
+>>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
      * Get subject count by subject categories
      *
      * @return <code>HashMap</code>

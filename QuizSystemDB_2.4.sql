@@ -299,7 +299,20 @@ INSERT INTO dbo.[User](userName,[password],roleId,profilePic,userMail,gender,use
 INSERT INTO dbo.[User](userName,[password],roleId,profilePic,userMail,gender,userMobile,[status]) 
 				VALUES('Expert1',1,4,'','Expert1@gmail.com',0,'0969044716',1);
 INSERT INTO dbo.[User](userName,[password],roleId,profilePic,userMail,gender,userMobile,[status]) 
+<<<<<<< HEAD:QuizSystemDB_2.4.sql
 				VALUES('Expert2',1,4,'','Expert2@gmail.com',1,'0969044717',1);
+=======
+				VALUES('BinhDG',1,5,'','BinhDGHE170773@fpt.edu.vn',1,'0969044713',1);
+INSERT INTO dbo.[User](userName,[password],roleId,profilePic,userMail,gender,userMobile,[status]) 
+				VALUES('ThichDV',1,5,'','ThichDvhe172796@fpt.edu.vn',1,'0969044714',1);
+INSERT INTO dbo.[User](userName,[password],roleId,profilePic,userMail,gender,userMobile,[status]) 
+				VALUES('QuyLM',1,5,'','QuyLMHE170670@fpt.edu.vn',1,'0969044777',1);
+
+INSERT INTO dbo.[User](userName,[password],roleId,profilePic,userMail,gender,userMobile,[status]) 
+				VALUES('Teacher1',1,4,'','teacher1@gmail.com',0,'0969044716',1);
+INSERT INTO dbo.[User](userName,[password],roleId,profilePic,userMail,gender,userMobile,[status]) 
+				VALUES('Teacher2',1,4,'','teacher2@gmail.com',1,'0969044717',1);
+>>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5:DB_QOS.sql
 INSERT INTO dbo.[User](userName,[password],roleId,profilePic,userMail,gender,userMobile,[status]) 
 				VALUES('User1',1,1,'','User1@gmail.com',1,'0969044718',1);
 INSERT INTO dbo.[User](userName,[password],roleId,profilePic,userMail,gender,userMobile,[status]) 

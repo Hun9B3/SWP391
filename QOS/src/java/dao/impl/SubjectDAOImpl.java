@@ -11,13 +11,18 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 
 /**
- *  The class has methods needed for initialize connection with database and 
+ * The class has methods needed for initialize connection with database and
  * execute queries with Subject and associate tables
+ *
  * @author admin
  */
 public class SubjectDAOImpl extends DBConnection implements SubjectDAO {
 
+<<<<<<< HEAD
 /**
+=======
+    /**
+>>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
      *
      * @param subjectId
      * @return
@@ -114,9 +119,10 @@ public class SubjectDAOImpl extends DBConnection implements SubjectDAO {
         return featuredSubjects;
     }
 
-      /**
-     *  Get all available subject in the Subject table (status = 1)
-     * @return @throws Exception 
+    /**
+     * Get all available subject in the Subject table (status = 1)
+     *
+     * @return @throws Exception
      */
     @Override
     public ArrayList<Subject> getAllSubjects() throws Exception {
@@ -159,7 +165,7 @@ public class SubjectDAOImpl extends DBConnection implements SubjectDAO {
         }
         return allSubject;
     }
-    
+
     @Override
     public ArrayList<Subject> getSubjectsPaging(int page) throws Exception {
         Connection conn = null;
@@ -172,17 +178,17 @@ public class SubjectDAOImpl extends DBConnection implements SubjectDAO {
         DimensionDAO dimensionDAO = new DimensionDAOImpl();
         SubjectCateDAO subjectCateDAO = new SubjectCateDAOImpl();
 
-        String sqlSubject = "SELECT * FROM \n" +
-                            "(SELECT * \n" +
-                            "		,ROW_NUMBER()  OVER(ORDER BY subjectId ASC) as num\n" +
-                            "		FROM [Subject] WHERE status=1) A\n" +
-                            "WHERE A.num BETWEEN ? AND ?;";
+        String sqlSubject = "SELECT * FROM \n"
+                + "(SELECT * \n"
+                + "		,ROW_NUMBER()  OVER(ORDER BY subjectId ASC) as num\n"
+                + "		FROM [Subject] WHERE status=1) A\n"
+                + "WHERE A.num BETWEEN ? AND ?;";
         /* Get the subject */
         try {
             conn = getConnection();
             pre = conn.prepareStatement(sqlSubject);
-            pre.setInt(1, (page-1)*7+1);
-            pre.setInt(2, page*7);
+            pre.setInt(1, (page - 1) * 7 + 1);
+            pre.setInt(2, page * 7);
             rs = pre.executeQuery();
             /* Get information from resultset and add it to arrayList */
             while (rs.next()) {
@@ -207,6 +213,7 @@ public class SubjectDAOImpl extends DBConnection implements SubjectDAO {
         }
         return allSubject;
     }
+<<<<<<< HEAD
  /**
      *
      * @param userId
@@ -300,6 +307,8 @@ public class SubjectDAOImpl extends DBConnection implements SubjectDAO {
         }
         return allSubject;
     }
+=======
+>>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
 
     /**
      *
@@ -346,4 +355,8 @@ public class SubjectDAOImpl extends DBConnection implements SubjectDAO {
         }
         return allSubject;
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
 }

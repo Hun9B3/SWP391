@@ -16,6 +16,16 @@ public interface PostCateDAO {
 
     int updatePostCate(PostCate updatedPostCate) throws Exception;
         /**
+
+    /**
+     * get all post categories where status = 1
+     *
+     * @return
+     * @throws Exception
+     */
+    public ArrayList<PostCate> getAllPostCates() throws Exception;
+
+    /**
      * get blog category id by blog id
      *
      * @param blogId
@@ -23,11 +33,4 @@ public interface PostCateDAO {
      * @throws Exception
      */
     public int getBlogCateByBlogId(int blogId) throws Exception;
-        /**
-     * get all psot categories where status = 1
-     *
-     * @return
-     * @throws Exception
-     */
-    public ArrayList<PostCate> getAllPostCates() throws Exception;
 }

@@ -36,7 +36,10 @@
                             <a class="nav-link active" aria-current="page" href="${contextPath}/index.jsp" style="font-weight: bold;">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="${contextPath}/subjectList" style="font-weight: bold;">All Courses</a>
+                            <a class="nav-link" href="${contextPath}/jsp/subjectList.jsp" style="font-weight: bold;">All Courses</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="${contextPath}/blog?search=&service=blogList" style="font-weight: bold;">Blogs</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="${contextPath}/blog?search=&service=blogList" style="font-weight: bold;">Blogs</a>
@@ -44,7 +47,7 @@
                         <%-- If role is admin or owner--%>
                         <c:if test="${currUser != null && !role.getUserRoleName().equalsIgnoreCase('customer')}">
                             <li class="nav-item">
-                                <a class="nav-link" href="${contextPath}/jsp/adminPage.jsp" style="font-weight: bold;">
+                                <a class="nav-link" href="${contextPath}/adminPage.jsp" style="font-weight: bold;">
                                     System Manage  
                                 </a>
                             </li>

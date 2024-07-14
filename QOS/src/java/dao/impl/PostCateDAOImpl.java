@@ -16,13 +16,21 @@ import java.util.ArrayList;
 public class PostCateDAOImpl extends DBConnection implements PostCateDAO {
 
     /**
+<<<<<<< HEAD
      * get all psot categories
+=======
+     * get all psot categories where status = 1
+>>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
      *
      * @return
      * @throws Exception
      */
     @Override
+<<<<<<< HEAD
     public ArrayList<PostCate> getAllStatusPostCates() throws Exception {
+=======
+    public ArrayList<PostCate> getAllPostCates() throws Exception {
+>>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
         Connection conn = null;
         ResultSet rs = null;
         /* Result set returned by the sqlserver */
@@ -30,7 +38,11 @@ public class PostCateDAOImpl extends DBConnection implements PostCateDAO {
         /* Prepared statement for executing sql queries */
 
         ArrayList<PostCate> allPostCate = new ArrayList();
+<<<<<<< HEAD
         String sql = "SELECT * FROM [PostCate]";
+=======
+        String sql = "SELECT * FROM [PostCate] where status = 1 ";
+>>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
         try {
             conn = getConnection();
             pre = conn.prepareStatement(sql);
@@ -51,6 +63,7 @@ public class PostCateDAOImpl extends DBConnection implements PostCateDAO {
     }
 
     /**
+<<<<<<< HEAD
      * get post categoory by id
      *
      * @param postCateId
@@ -152,6 +165,8 @@ public class PostCateDAOImpl extends DBConnection implements PostCateDAO {
     }
 
     /**
+=======
+>>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
      * get blog category id by blog id
      *
      * @param blogId
@@ -185,19 +200,30 @@ public class PostCateDAOImpl extends DBConnection implements PostCateDAO {
     }
 
     /**
+<<<<<<< HEAD
      * get all psot categories where status = 1
      *
+=======
+     * get post categoory by id
+     *
+     * @param postCateId
+>>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
      * @return
      * @throws Exception
      */
     @Override
+<<<<<<< HEAD
     public ArrayList<PostCate> getAllPostCates() throws Exception {
+=======
+    public PostCate getPostCateById(int pcId) throws Exception {
+>>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
         Connection conn = null;
         ResultSet rs = null;
         /* Result set returned by the sqlserver */
         PreparedStatement pre = null;
         /* Prepared statement for executing sql queries */
 
+<<<<<<< HEAD
         ArrayList<PostCate> allPostCate = new ArrayList();
         String sql = "SELECT * FROM [PostCate] where status = 1 ";
         try {
@@ -210,6 +236,19 @@ public class PostCateDAOImpl extends DBConnection implements PostCateDAO {
                         rs.getBoolean("status")));
             }
             return allPostCate;
+=======
+        String sql = "SELECT * FROM [PostCate] WHERE postCateId = ?";
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            pre.setInt(1, pcId);
+            rs = pre.executeQuery();
+            while (rs.next()) {
+                return new PostCate(rs.getInt("postCateId"),
+                        rs.getString("postCateName"),
+                        rs.getBoolean("status"));
+            }
+>>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
         } catch (Exception ex) {
             throw ex;
         } finally {
@@ -217,5 +256,11 @@ public class PostCateDAOImpl extends DBConnection implements PostCateDAO {
             closePreparedStatement(pre);
             closeConnection(conn);
         }
+<<<<<<< HEAD
     }
+=======
+        return null;
+    }
+
+>>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
 }

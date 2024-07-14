@@ -16,11 +16,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- * This class has the process request of blog(public feature)
- *
- * @author ADMIN
- */
+
 public class BlogController extends HttpServlet {
 
     /**

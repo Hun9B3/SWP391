@@ -39,9 +39,13 @@ public interface SubjectDAO {
     public ArrayList<Subject> getSubjectsAssigned(int userId) throws Exception;
 
     public ArrayList<Subject> getSubjectsPaging(int page) throws Exception;
+<<<<<<< HEAD
 
     public ArrayList<Subject> getTrueAllSubjects() throws Exception;
 
+=======
+    
+>>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
     /**
      *
      * @return @throws Exception Get 5 las added subject in the Subject table

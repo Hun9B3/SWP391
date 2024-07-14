@@ -23,6 +23,16 @@ public interface ViewDAO {
      */
     public boolean checkCurrentDateViewExist() throws Exception;
 
+
+    /**
+     * get total view count
+     *
+     * @return <code>int</code>
+     * @throws java.lang.Exception
+     */
+    public int getTotalView() throws Exception;
+
+
     /**
      * get statistic from database
      *
@@ -34,13 +44,6 @@ public interface ViewDAO {
      */
     public ArrayList<ItemDashboard> getViewStatistics(String from, String to) throws Exception;
 
-    /**
-     * get total view count
-     *
-     * @return <code>int</code>
-     * @throws java.lang.Exception
-     */
-    public int getTotalView() throws Exception;
 
     /**
      * Convert statistics data into JSon string
