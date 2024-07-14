@@ -95,4 +95,52 @@ public class LessonDAOImpl extends DBConnection implements LessonDAO {
         }
         return lessonById;
     }
+    
+    @Override
+    public ArrayList<Lesson> getAllLessonBySubjectId(int subjectId) throws Exception {
+        Connection conn = null;
+        ResultSet rs = null;
+        /* Result set returned by the sqlserver */
+        PreparedStatement pre = null;
+        /* Prepared statement for executing sql queries */
+
+ /* Get dimension list of the subject */
+        ArrayList<Lesson> lessons = new ArrayList<>();
+        String sql = "SELECT L.[lessonId]"
+                + "      ,S.[subjectId]\n"
+                + "      ,L.[lessonName]\n"
+                + "      ,L.[lessonOrder]\n"
+                + "      ,L.[lessonTypeId]\n"
+                + "	  ,LT.lessonTypeName\n"
+                + "      ,L.[videoLink]\n"
+                + "      ,L.[content]\n"
+                + "      ,L.[status]\n"
+                + "  FROM [QuizSystem].[dbo].[Subject] S "
+                + "  INNER JOIN [QuizSystem].[dbo].[Lesson] L ON S.subjectId = L.subjectId\n"
+                + "  INNER JOIN [QuizSystem].[dbo].[LessonType] LT ON LT.lessonTypeId = L.lessonTypeId\n"
+                + "  WHERE S.subjectId = " + subjectId;
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            rs = pre.executeQuery();
+            while (rs.next()) {
+                lessons.add(new Lesson(rs.getInt("lessonId"), 
+                        subjectId, 
+                        rs.getString("lessonName"),
+                        rs.getInt("lessonOrder"),
+                        rs.getInt("lessonTypeId"),
+                        rs.getString("videoLink"),
+                        rs.getString("content"),
+                        rs.getBoolean("status"),
+                        rs.getString("lessonTypeName")));
+            }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+        return lessons;
+    }
 }
