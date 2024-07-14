@@ -13,6 +13,10 @@
         <servlet-class>controller.RegisterController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ImportQuestionController</servlet-name>
+        <servlet-class>controller.ImportQuestionController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>RegistrationController</servlet-name>
         <servlet-class>controller.RegistrationController</servlet-class>
     </servlet>
@@ -119,7 +123,10 @@
     <servlet-mapping>
         <servlet-name>ChangePasswordController</servlet-name>
         <url-pattern>/changePassword</url-pattern>
-
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImportQuestionController</servlet-name>
+        <url-pattern>/importQuestion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
