@@ -128,6 +128,22 @@
         <servlet-name>ImportQuestionController</servlet-name>
         <url-pattern>/importQuestion</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>BlogController</servlet-name>
+        <servlet-class>controller.BlogController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BlogController</servlet-name>
+        <url-pattern>/blog</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DashboardController</servlet-name>
+        <servlet-class>controller.DashboardController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DashboardController</servlet-name>
+        <url-pattern>/dashboard</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

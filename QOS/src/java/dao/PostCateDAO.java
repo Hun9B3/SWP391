@@ -15,4 +15,19 @@ public interface PostCateDAO {
     int addPostCate(PostCate newPostCate) throws Exception;
 
     int updatePostCate(PostCate updatedPostCate) throws Exception;
+        /**
+     * get blog category id by blog id
+     *
+     * @param blogId
+     * @return
+     * @throws Exception
+     */
+    public int getBlogCateByBlogId(int blogId) throws Exception;
+        /**
+     * get all psot categories where status = 1
+     *
+     * @return
+     * @throws Exception
+     */
+    public ArrayList<PostCate> getAllPostCates() throws Exception;
 }

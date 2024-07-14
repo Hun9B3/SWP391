@@ -38,6 +38,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="${contextPath}/subjectList" style="font-weight: bold;">All Courses</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="${contextPath}/blog?search=&service=blogList" style="font-weight: bold;">Blogs</a>
+                        </li>  
                         <%-- If role is admin or owner--%>
                         <c:if test="${currUser != null && !role.getUserRoleName().equalsIgnoreCase('customer')}">
                             <li class="nav-item">

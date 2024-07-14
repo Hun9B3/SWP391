@@ -9,12 +9,13 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 /**
- * The class has methods needed for initialize connection with database and 
+ * The class has methods needed for initialize connection with database and
  * execute queries with PostCate and associate tables
  *
  */
 public class PostCateDAOImpl extends DBConnection implements PostCateDAO {
- /**
+
+    /**
      * get all psot categories
      *
      * @return
@@ -48,7 +49,6 @@ public class PostCateDAOImpl extends DBConnection implements PostCateDAO {
             closeConnection(conn);
         }
     }
-
 
     /**
      * get post categoory by id
@@ -86,7 +86,7 @@ public class PostCateDAOImpl extends DBConnection implements PostCateDAO {
         return null;
     }
 
-     /**
+    /**
      * add new post category to database
      *
      * @param newPostCate
@@ -115,7 +115,6 @@ public class PostCateDAOImpl extends DBConnection implements PostCateDAO {
             closeConnection(conn);
         }
     }
-
 
     /**
      * update a existed post category in the database
@@ -152,4 +151,71 @@ public class PostCateDAOImpl extends DBConnection implements PostCateDAO {
         }
     }
 
+    /**
+     * get blog category id by blog id
+     *
+     * @param blogId
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public int getBlogCateByBlogId(int blogId) throws Exception {
+        Connection conn = null;
+        ResultSet rs = null;
+        /* Result set returned by the sqlserver */
+        PreparedStatement pre = null;
+        /* Prepared statement for executing sql queries */
+
+        String sql = "SELECT * FROM [BlogCate] WHERE blogId=" + blogId;
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            rs = pre.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("postCateId");
+            }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+        return 0;
+    }
+
+    /**
+     * get all psot categories where status = 1
+     *
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public ArrayList<PostCate> getAllPostCates() throws Exception {
+        Connection conn = null;
+        ResultSet rs = null;
+        /* Result set returned by the sqlserver */
+        PreparedStatement pre = null;
+        /* Prepared statement for executing sql queries */
+
+        ArrayList<PostCate> allPostCate = new ArrayList();
+        String sql = "SELECT * FROM [PostCate] where status = 1 ";
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            rs = pre.executeQuery();
+            while (rs.next()) {
+                allPostCate.add(new PostCate(rs.getInt("postCateId"),
+                        rs.getString("postCateName"),
+                        rs.getBoolean("status")));
+            }
+            return allPostCate;
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+    }
 }

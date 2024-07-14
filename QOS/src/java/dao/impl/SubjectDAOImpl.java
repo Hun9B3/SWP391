@@ -300,4 +300,50 @@ public class SubjectDAOImpl extends DBConnection implements SubjectDAO {
         }
         return allSubject;
     }
+
+    /**
+     *
+     * @return @throws Exception Get 5 las added subject in the Subject table
+     */
+    @Override
+    public ArrayList<Subject> get5LastAddedSubject() throws Exception {
+        Connection conn = null;
+        ResultSet rs = null;
+        /* Result set returned by the sqlserver */
+        PreparedStatement pre = null;
+        /* Prepared statement for executing sql queries */
+
+        ArrayList<Subject> allSubject = new ArrayList();
+        DimensionDAO dimensionDAO = new DimensionDAOImpl();
+        SubjectCateDAO subjectCateDAO = new SubjectCateDAOImpl();
+
+        String sqlSubject = "SELECT TOP 5 * FROM [Subject] ORDER BY subjectId DESC";
+        /* Get the subject */
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sqlSubject);
+            rs = pre.executeQuery();
+            /* Get information from resultset and add it to arrayList */
+            while (rs.next()) {
+                int subjectId = rs.getInt("subjectId");
+                String subjectName = rs.getString("subjectName");
+                String description = rs.getString("description");
+                String thumbnail = rs.getString("thumbnail");
+                Boolean featured = rs.getBoolean("featuredSubject");
+                Boolean status = rs.getBoolean("status");
+
+                allSubject.add(new Subject(subjectId, subjectName, description,
+                        thumbnail, featured, status,
+                        dimensionDAO.getDimensionBySubject(subjectId),
+                        subjectCateDAO.getSubjectCateBySubject(subjectId)));
+            }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+        return allSubject;
+    }
 }
