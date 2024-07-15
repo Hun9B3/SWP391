@@ -45,6 +45,14 @@
         <servlet-class>controller.ChangePasswordController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ResetPasswordController</servlet-name>
+        <servlet-class>controller.ResetPasswordController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserListController</servlet-name>
+        <servlet-class>controller.UserListController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>SystemSettingController</servlet-name>
         <servlet-class>controller.SystemSettingController</servlet-class>
     </servlet>
@@ -101,6 +109,10 @@
         <url-pattern>/QuizListController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>UserListController</servlet-name>
+        <url-pattern>/userList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>PracticeController</servlet-name>
         <url-pattern>/practiceController</url-pattern>
     </servlet-mapping>
@@ -123,6 +135,10 @@
     <servlet-mapping>
         <servlet-name>ChangePasswordController</servlet-name>
         <url-pattern>/changePassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResetPasswordController</servlet-name>
+        <url-pattern>/ResetPasswordController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ImportQuestionController</servlet-name>

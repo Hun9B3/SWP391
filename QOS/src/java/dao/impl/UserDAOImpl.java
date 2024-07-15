@@ -285,4 +285,285 @@ public class UserDAOImpl extends DBConnection implements UserDAO {
         return check;
     }
 
+    /**
+     * update a user from User table
+     *
+     * @param updatedUser is a <code>User</code> object
+     * @return a int.
+     */
+    @Override
+    public int updateUser(User updatedUser) throws Exception {
+        Connection conn = null;
+        /* Result set returned by the sqlserver */
+        ResultSet rs = null;
+        /* Prepared statement for executing sql queries */
+        PreparedStatement pre = null;
+
+        String sql = " UPDATE [User] set userName = ?, "
+                + "[password] = ?,  "
+                + "roleId = ?, "
+                + "profilePic = ?, "
+                + "userMail = ?, "
+                + "gender = ?, "
+                + "userMobile = ?, "
+                + "status = ? "
+                + "where userId = ?";
+        int check = 0;
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            pre.setString(1, updatedUser.getUserName());
+            pre.setString(2, updatedUser.getPassword());
+            pre.setInt(3, updatedUser.getRoleId());
+            pre.setString(4, updatedUser.getProfilePic());
+            pre.setString(5, updatedUser.getUserMail());
+            pre.setBoolean(6, updatedUser.isGender());
+            pre.setString(7, updatedUser.getUserMobile());
+            pre.setBoolean(8, updatedUser.isStatus());
+            pre.setInt(9, updatedUser.getUserId());
+            check = pre.executeUpdate();
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+
+        return check;
+    }
+    
+        /**
+     * Get filtered and sort Users paginated
+     * @param page
+     * @param gender
+     * @param role
+     * @param status
+     * @param sortCriteria
+     * @param sort
+     * @return
+     * @throws Exception 
+     */
+    @Override
+    public ArrayList<User> getFilteredUserPaging(int page, int gender, int role, int status, String sortCriteria, String sort) throws Exception {
+        ArrayList<User> newUserList = new ArrayList();
+        /*Database Connection*/
+        Connection conn = null;
+        /*Result Set got from executing sql query*/
+        ResultSet rs = null;
+        /*Prepared Statement for executing query*/
+        PreparedStatement pre = null;
+        /*Set filter depends on the criteria*/
+        String filter = " WHERE roleId != 5";
+        if (gender != -1){
+            filter += " AND gender = ?";
+            if (role != -1){
+                filter += " AND roleId = ?";
+            }
+            if (status != -1){
+                filter += " AND [status] = ?";
+            }
+        } else if (role != -1){
+            filter += "AND roleId = ?";
+            if (status != -1){
+                filter += " AND [status] = ?";
+            }
+        } else if (status != -1){
+                filter += " AND [status] = ?";
+        }
+        /**
+         * Sort
+         */
+        switch (sortCriteria){
+            case "sortId": sort = " Order By userId " + sort;
+                        break;
+            case "sortName": sort = " Order By userName " + sort;
+                        break;
+            case "sortGender": sort = " Order By gender " + sort;
+                        break;
+            case "sortMail": sort = " Order By userMail " + sort;
+                        break;
+            case "sortMobile": sort = " Order By userMobile " + sort;
+                        break;
+            case "sortRole": sort = " Order By roleId " + sort;
+                        break;
+            case "sortStatus": sort = " Order By status " + sort;
+                        break;
+            default: sort = " Order By userId ASC";
+        }
+        
+        /*Set page boundaries*/
+        String pageBoundary = "";
+        
+        if (page > 0){
+            pageBoundary = "  WHERE A.num BETWEEN ? AND ?";
+        }
+        
+        /*SQL query with the criteria*/
+        String sql = "  SELECT * FROM (SELECT ROW_NUMBER()  OVER("+ sort +") as num\n"
+                        + "				  ,[userId]\n"
+                        + "				  ,[userName]\n"
+                        + "				  ,[password]\n"
+                        + "				  ,[roleId]\n"
+                        + "				  ,[profilePic]\n"
+                        + "				  ,[userMail]\n"
+                        + "				  ,[gender]\n"
+                        + "				  ,[userMobile]\n"
+                        + "				  ,[status]\n"
+                        + "				  FROM [QuizSystem].dbo.[User]\n"
+                        + filter + ") A\n" + pageBoundary;
+        
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            int parameterCount = 1;
+            /*Set filter parrameter*/
+            if (gender != -1){
+                pre.setInt(parameterCount++, gender);
+            } 
+            if (role != -1){
+                pre.setInt(parameterCount++, role);
+            }
+            if (status != -1){
+                pre.setInt(parameterCount++, status);
+            }
+            /*Set paging parameter*/
+            if (page > 0){
+                pre.setInt(parameterCount++, (page-1)*7+1);
+                pre.setInt(parameterCount, page*7);
+            }
+            
+            rs = pre.executeQuery();
+            while (rs.next()) {
+                newUserList.add(new User(rs.getInt("userId"),
+                        rs.getString("userName"),
+                        rs.getString("password"),
+                        rs.getInt("roleId"),
+                        rs.getString("profilePic"),
+                        rs.getString("userMail"),
+                        rs.getBoolean("gender"),
+                        rs.getString("userMobile"),
+                        rs.getBoolean("status")));
+            }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+        return newUserList;
+    }
+
+    /**
+     * Get all user regardless of status, based on criteria and sort in a paginated form
+     * @param page
+     * @param criteriaType
+     * @param criteria
+     * @param sortCriteria
+     * @param sort
+     * @return
+     * @throws Exception 
+     */
+    @Override
+    public ArrayList<User> getTrueAllUserPaging(int page, String criteriaType, String criteria, String sortCriteria, String sort) throws Exception {
+        ArrayList<User> newUserList = new ArrayList();
+        /*Database Connection*/
+        Connection conn = null;
+        /*Result Set got from executing sql query*/
+        ResultSet rs = null;
+        /*Prepared Statement for executing query*/
+        PreparedStatement pre = null;
+        String queryCriteria = " WHERE roleId != 5";
+        /*Set criteria based on the search type*/
+        switch (criteriaType) {
+            case "userName": queryCriteria += " AND userName LIKE ? ";
+                             criteria = criteria + "%";
+                             criteria = "%" + criteria;
+                            break;
+            case "userMail": queryCriteria +=" AND userMail LIKE ? ";
+                             criteria = criteria + "%";
+                             criteria = "%" + criteria;
+                            break;
+            case "userMobile": queryCriteria +=" AND userMobile = ? ";
+                            break;
+            default:    criteriaType = null;
+                        break;
+        }
+        switch (sortCriteria){
+            case "sortId": sort = " Order By userId " + sort;
+                        break;
+            case "sortName": sort = " Order By userName " + sort;
+                        break;
+            case "sortGender": sort = " Order By gender " + sort;
+                        break;
+            case "sortMail": sort = " Order By userMail " + sort;
+                        break;
+            case "sortMobile": sort = " Order By userMobile " + sort;
+                        break;
+            case "sortRole": sort = " Order By roleId " + sort;
+                        break;
+            case "sortStatus": sort = " Order By status " + sort;
+                        break;
+            default: sort = " Order By userId ASC";
+        }
+        
+        /*Set page boundaries*/
+        String pageBoundary = "";
+        
+        if (page > 0){
+            pageBoundary = "  WHERE A.num BETWEEN ? AND ?";
+        }
+        
+        /*SQL query with the criteria*/
+        String sql = "  SELECT * FROM (SELECT ROW_NUMBER()  OVER("+ sort +") as num\n"
+                        + "				  ,[userId]\n"
+                        + "				  ,[userName]\n"
+                        + "				  ,[password]\n"
+                        + "				  ,[roleId]\n"
+                        + "				  ,[profilePic]\n"
+                        + "				  ,[userMail]\n"
+                        + "				  ,[gender]\n"
+                        + "				  ,[userMobile]\n"
+                        + "				  ,[status]\n"
+                        + "				  FROM [QuizSystem].dbo.[User]\n"
+                        + queryCriteria + ") A\n" + pageBoundary;
+        
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            if (page > 0){
+                if (criteriaType != null){
+                    pre.setString(1, criteria);
+                    pre.setInt(2, (page-1)*7+1);
+                    pre.setInt(3, page*7);
+                } else if (page > 0){
+                pre.setInt(1, (page-1)*7+1);
+                pre.setInt(2, page*7);
+                }
+            } else if (criteriaType != null) {
+                pre.setString(1, criteria);
+            }
+            
+            rs = pre.executeQuery();
+            while (rs.next()) {
+                newUserList.add(new User(rs.getInt("userId"),
+                        rs.getString("userName"),
+                        rs.getString("password"),
+                        rs.getInt("roleId"),
+                        rs.getString("profilePic"),
+                        rs.getString("userMail"),
+                        rs.getBoolean("gender"),
+                        rs.getString("userMobile"),
+                        rs.getBoolean("status")));
+            }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+        return newUserList;
+    }
 }
