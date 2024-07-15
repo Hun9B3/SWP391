@@ -40,14 +40,11 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="${contextPath}/blog?search=&service=blogList" style="font-weight: bold;">Blogs</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="${contextPath}/blog?search=&service=blogList" style="font-weight: bold;">Blogs</a>
-                        </li>  
+                        </li>                       
                         <%-- If role is admin or owner--%>
                         <c:if test="${currUser != null && !role.getUserRoleName().equalsIgnoreCase('customer')}">
                             <li class="nav-item">
-                                <a class="nav-link" href="${contextPath}/adminPage.jsp" style="font-weight: bold;">
+                                <a class="nav-link" href="${contextPath}/jsp/adminPage.jsp" style="font-weight: bold;">
                                     System Manage  
                                 </a>
                             </li>

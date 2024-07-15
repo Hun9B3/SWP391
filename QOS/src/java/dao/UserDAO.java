@@ -21,7 +21,6 @@ public interface UserDAO {
      */
     public User getUserById(int userId) throws Exception;
 
-<<<<<<< HEAD
     /**
      * get user from User table using userMail
      *
@@ -39,8 +38,6 @@ public interface UserDAO {
      */
     public User getUserByMobile(String Moblie) throws Exception;
 
-=======
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
     /**
      * Get all user
      *
@@ -50,7 +47,6 @@ public interface UserDAO {
     public ArrayList<User> getUserAllUser() throws Exception;
 
     /**
-<<<<<<< HEAD
      * add a user to User table
      *
      * @param newUser is an <code>User</code> object
@@ -68,9 +64,8 @@ public interface UserDAO {
      * @throws java.lang.Exception
      */
     public int changeStatus(int userId, boolean newStatus) throws Exception;
-        /**
-=======
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
+
+    /**
      * get new users
      *
      * @return <code>ArrayList<Use>r</code> object.

@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 
-=======
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
 package controller;
 
 import bean.ItemDashboard;
@@ -10,22 +7,18 @@ import bean.Subject;
 import bean.SubjectCate;
 import bean.User;
 import bean.UserRole;
-<<<<<<< HEAD
-import dao.RegistrationDAO;
-=======
 import dao.RegistrationDAO;        
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
 import dao.SubjectCateDAO;
 import dao.SubjectDAO;
 import dao.UserDAO;
 import dao.UserRoleDAO;
 import dao.ViewDAO;
+import dao.impl.ViewDAOImpl;
 import dao.impl.RegistrationDAOImpl;
 import dao.impl.SubjectCateDAOImpl;
 import dao.impl.SubjectDAOImpl;
 import dao.impl.UserDAOImpl;
 import dao.impl.UserRoleDAOImpl;
-import dao.impl.ViewDAOImpl;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -39,17 +32,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-<<<<<<< HEAD
 public class DashboardController extends HttpServlet {
     static final long MILISECOND_PER_WEEK = 604800000;
-=======
-/**
- * This class has the process request of dashboard
- * @author QuyLM
- */
-public class DashboardController extends HttpServlet {
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods. Service for viewing system's statistics
@@ -89,7 +73,6 @@ public class DashboardController extends HttpServlet {
                     String currentDate = formatter.format(date.getTime());
                     
                     //default date range 1 week
-<<<<<<< HEAD
                     if (to == null) {
                         to = currentDate;
                     }
@@ -99,9 +82,6 @@ public class DashboardController extends HttpServlet {
                     request.setAttribute("currentDate", currentDate);
                     request.setAttribute("from", from);
                     request.setAttribute("to", to);
-=======
-                    
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
 
                     //default view option
                     if (option == null) {

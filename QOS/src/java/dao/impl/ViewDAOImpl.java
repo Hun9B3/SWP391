@@ -8,21 +8,16 @@ import dao.ViewDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-<<<<<<< HEAD
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-
-=======
 import java.util.ArrayList;
 import java.util.HashMap;
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
 
 public class ViewDAOImpl extends DBConnection implements ViewDAO {
 
     /**
-<<<<<<< HEAD
      * update View when a session is created
      *
      * @return number of lines changed. It is a <code>int</code>
@@ -74,29 +69,12 @@ public class ViewDAOImpl extends DBConnection implements ViewDAO {
         String currentDate = sdf.format(currentDateRaw);
 
         String sql = "SELECT * FROM [ViewCount] WHERE date = '" + currentDate + "'";
-=======
-     * get total view count
-     *
-     * @return <code>int</code>
-     * @throws java.lang.Exception
-     */
-    @Override
-    public int getTotalView() throws Exception {
-        Connection conn = null;
-        ResultSet rs = null;
-        PreparedStatement pre = null;
-        String sql = "select SUM([view]) AS totalView FROM [ViewCount]";
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
         try {
             conn = getConnection();
             pre = conn.prepareStatement(sql);
             rs = pre.executeQuery();
             if (rs.next()) {
-<<<<<<< HEAD
                 return true;
-=======
-                return rs.getInt("totalView");
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
             }
         } catch (Exception ex) {
             throw ex;
@@ -105,13 +83,8 @@ public class ViewDAOImpl extends DBConnection implements ViewDAO {
             closePreparedStatement(pre);
             closeConnection(conn);
         }
-<<<<<<< HEAD
         return false;
-=======
-        return 0;
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
     }
-
     /**
      * get statistic from database
      *
@@ -150,7 +123,6 @@ public class ViewDAOImpl extends DBConnection implements ViewDAO {
     }
 
     /**
-<<<<<<< HEAD
      * get total view count
      *
      * @return <code>int</code>
@@ -180,8 +152,6 @@ public class ViewDAOImpl extends DBConnection implements ViewDAO {
     }
 
     /**
-=======
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
      * Convert statistics data into JSon string
      *
      * @param viewList statistics data
@@ -214,7 +184,6 @@ public class ViewDAOImpl extends DBConnection implements ViewDAO {
         return ret;
     }
 
-<<<<<<< HEAD
     /**
      * get name of each JSon string
      *
@@ -236,6 +205,4 @@ public class ViewDAOImpl extends DBConnection implements ViewDAO {
         }
         return nameList;
     }
-=======
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
 }

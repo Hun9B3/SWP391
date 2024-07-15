@@ -8,17 +8,12 @@ import java.util.ArrayList;
  *
  */
 public interface UserRoleDAO {
-<<<<<<< HEAD
-  /**
-=======
     /**
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
      * Get all user role where status = 1 
      * @return
      * @throws Exception 
      */
     public ArrayList<UserRole> getAllUserRole() throws Exception;
-<<<<<<< HEAD
     
     /**
      * Get user role with a specified id
@@ -33,6 +28,4 @@ public interface UserRoleDAO {
     int addRole(UserRole userRole) throws Exception;
 
     int editRole(UserRole userRole) throws Exception;
-=======
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
 }

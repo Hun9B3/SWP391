@@ -1,0 +1,28 @@
+<component name="libraryTable">
+  <library name="lib2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/QOS/build/web/WEB-INF/lib/jacocoant.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QOS/build/web/WEB-INF/lib/taglibs-standard-impl-1.2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QOS/build/web/WEB-INF/lib/jakarta.servlet.jsp.jstl-2.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QOS/build/web/WEB-INF/lib/activation-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QOS/build/web/WEB-INF/lib/sqljdbc42.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QOS/build/web/WEB-INF/lib/taglibs-standard-spec-1.2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QOS/build/web/WEB-INF/lib/org.jacoco.report-0.8.12.202403310830.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QOS/build/web/WEB-INF/lib/junit-4.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QOS/build/web/WEB-INF/lib/jacococli.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QOS/build/web/WEB-INF/lib/commons-io-2.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QOS/build/web/WEB-INF/lib/org.jacoco.ant-0.8.12.202403310830.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QOS/build/web/WEB-INF/lib/jakarta.servlet.jsp.jstl-api-2.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QOS/build/web/WEB-INF/lib/gson-2.8.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QOS/build/web/WEB-INF/lib/org.jacoco.agent-0.8.12.202403310830.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QOS/build/web/WEB-INF/lib/javax.mail-1.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QOS/build/web/WEB-INF/lib/org.jacoco.core-0.8.12.202403310830.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QOS/build/web/WEB-INF/lib/jacocoagent.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QOS/build/web/WEB-INF/lib/commons-fileupload-1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QOS/build/web/WEB-INF/lib/hamcrest-core-1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QOS/build/web/WEB-INF/lib/jaxb-api-2.3.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

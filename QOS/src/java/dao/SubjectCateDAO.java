@@ -21,7 +21,6 @@ public interface SubjectCateDAO {
     public ArrayList<SubjectCate> getSubjectCateBySubject(int subjectId) throws Exception;
 
     /**
-<<<<<<< HEAD
      * Get subject categories that is not referenced by a specified subject
      *
      * @param subjectId
@@ -36,16 +35,7 @@ public interface SubjectCateDAO {
 
     int updateSubjectCate(SubjectCate updatedSubjectCate) throws Exception;
 
-    int addSubjectCate(SubjectCate updatedSubjectCate) throws Exception;
-=======
-     * Get all subject categories
-     *
-     * @return
-     * @throws Exception
-     */
-    public ArrayList<SubjectCate> getAllStatusSubjectCates() throws Exception;
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
-
+    int addSubjectCate(SubjectCate updatedSubjectCate) throws Exception;   
     /**
      * Get subject count by subject categories
      *

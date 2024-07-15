@@ -1,13 +1,10 @@
+
 package dao.impl;
 
-import bean.ItemDashboard;
 import bean.Registration;
 import bean.Subject;
+import bean.ItemDashboard;
 import bean.RegistrationManage;
-<<<<<<< HEAD
-=======
-import bean.Subject;
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
 import com.google.gson.Gson;
 import dao.DBConnection;
 import dao.PricePackageDAO;
@@ -19,19 +16,48 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-<<<<<<< HEAD
-=======
-import java.util.ArrayList;
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
 import java.util.HashMap;
 
-/**
- * Lớp này có các phương thức thực hiện truy xuất và ghi dữ liệu vào database
- * liên quan tới bảng Registration phục vụ cho các chức năng liên quan tới
- * Registration của dự án
- *
- */
 public class RegistrationDAOImpl extends DBConnection implements RegistrationDAO {
+
+    /**
+     * getAllRegistration
+     *
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public ArrayList<Registration> getAllRegistration() throws Exception {
+        ArrayList<Registration> registrationsList = new ArrayList();
+        Connection conn = null;
+        ResultSet rs = null;
+        PreparedStatement pre = null;
+        String sql = "SELECT * FROM [Registration]";
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            rs = pre.executeQuery();
+            while (rs.next()) {
+                registrationsList.add(new Registration(rs.getInt("regId"),
+                        rs.getInt("userId"),
+                        rs.getDate("regTime"),
+                        rs.getInt("packId"),
+                        rs.getDouble("cost"),
+                        rs.getDate("validFrom"),
+                        rs.getDate("validTo"),
+                        rs.getInt("lastUpdatedBy"),
+                        rs.getString("note"),
+                        rs.getBoolean("status")));
+            }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+        return registrationsList;
+    }
 
     /**
      * getRegistrationById
@@ -149,12 +175,6 @@ public class RegistrationDAOImpl extends DBConnection implements RegistrationDAO
         return i;
     }
 
-    /**
-     * get all subject registed
-     *
-     * @param userId
-     * @return @throws Exception get registed subject by user's Id
-     */
     @Override
     public ArrayList<Subject> getRegistedSubject(int userId) throws Exception {
         Connection conn = null;
@@ -186,84 +206,8 @@ public class RegistrationDAOImpl extends DBConnection implements RegistrationDAO
         return registedSubject;
     }
 
-    @Override
-    public ArrayList<RegistrationManage> getFilterRegistration(int subjectId, int userId) throws Exception {
-        Connection conn = null;
-        ResultSet rs = null;/* Result set returned by the sqlserver */
-        PreparedStatement pre = null;/* Prepared statement for executing sql queries */
-        ArrayList<RegistrationManage> registrationList = new ArrayList<>();
-        String sql = "SELECT [regId]\n"
-                + "      ,R.[userId]\n"
-                + "      ,[regTime]\n"
-                + "	  ,S.[subjectId]\n"
-                + "      ,R.[packId]\n"
-                + "      ,[cost]\n"
-                + "      ,[validFrom]\n"
-                + "      ,[validTo]\n"
-                + "      ,[lastUpdatedBy]\n"
-                + "      ,[note]\n"
-                + "      ,R.[status]\n"
-                + "  FROM [QuizSystem].[dbo].[Registration] R INNER JOIN [QuizSystem].[dbo].[User] U ON R.userId=U.userId\n"
-                + "  INNER JOIN [QuizSystem].[dbo].PricePackage PP ON R.packId = PP.packId\n"
-                + "  INNER JOIN [QuizSystem].[dbo].[Subject] S ON S.subjectId=PP.subjectId\n"
-                + "  WHERE 1=1";
-        if (subjectId > 0) {
-            sql = sql.concat(" and S.subjectId = " + subjectId);
-        }
-        if (userId > 0) {
-            sql = sql.concat(" and U.userId = " + userId);
-        }
-        RegistrationManage registrationManage = null;
-        SubjectDAO subjectDAO = new SubjectDAOImpl();
-        PricePackageDAO pricePackageDAO = new PricePackageDAOImpl();
-        UserDAO userDAO = new UserDAOImpl();
-        try {
-            conn = getConnection();
-            pre = conn.prepareStatement(sql);
-            rs = pre.executeQuery();
-            while (rs.next()) {
-                boolean status = rs.getBoolean("status");
-                if (rs.wasNull()) {
-                    registrationManage = new RegistrationManage(rs.getInt("regId"),
-                            userDAO.getUserById(rs.getInt("userId")).getUserMail(),
-                            rs.getDate("regTime"), subjectDAO.getSubjectbyId(rs.getInt("subjectId")).getSubjectName(),
-                            pricePackageDAO.getPricePackageById(rs.getInt("packId")).getPackName(),
-                            rs.getDouble("cost"), rs.getDate("validFrom"), rs.getDate("validTo"),
-                            userDAO.getUserById(rs.getInt("userId")).getUserName(),
-                            rs.getString("note"), "Submitted");
-                } else if (status) {
-                    registrationManage = new RegistrationManage(rs.getInt("regId"),
-                            userDAO.getUserById(rs.getInt("userId")).getUserMail(),
-                            rs.getDate("regTime"), subjectDAO.getSubjectbyId(rs.getInt("subjectId")).getSubjectName(),
-                            pricePackageDAO.getPricePackageById(rs.getInt("packId")).getPackName(),
-                            rs.getDouble("cost"), rs.getDate("validFrom"), rs.getDate("validTo"),
-                            userDAO.getUserById(rs.getInt("userId")).getUserName(),
-                            rs.getString("note"), "Paid");
-                } else if (!status) {
-                    registrationManage = new RegistrationManage(rs.getInt("regId"),
-                            userDAO.getUserById(rs.getInt("userId")).getUserMail(),
-                            rs.getDate("regTime"), subjectDAO.getSubjectbyId(rs.getInt("subjectId")).getSubjectName(),
-                            pricePackageDAO.getPricePackageById(rs.getInt("packId")).getPackName(),
-                            rs.getDouble("cost"), rs.getDate("validFrom"), rs.getDate("validTo"),
-                            userDAO.getUserById(rs.getInt("userId")).getUserName(),
-                            rs.getString("note"), "Unpaid");
-                }
-                registrationList.add(registrationManage);
-            }
-        } catch (Exception ex) {
-            throw ex;
-        } finally {
-            closeResultSet(rs);
-            closePreparedStatement(pre);
-            closeConnection(conn);
-        }
-        return registrationList;
-    }
-
     /**
-<<<<<<< HEAD
-     * get all subjects registed by userId
-     *
+     *  get all subjects registed by userId
      * @param userId
      * @return @throws Exception get registed subject by user's Id
      */
@@ -319,8 +263,7 @@ public class RegistrationDAOImpl extends DBConnection implements RegistrationDAO
         return registedSubjectbyUserId;
     }
 
-    @Override
-=======
+    /**
      * get statistic from database
      *
      *
@@ -334,7 +277,6 @@ public class RegistrationDAOImpl extends DBConnection implements RegistrationDAO
      * @throws java.lang.Exception
      */
     @Override
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
     public ArrayList<ItemDashboard> getSubjectStatistics(String from, String to, ArrayList<Subject> subjectList, String type) throws Exception {
         ArrayList<ItemDashboard> list = new ArrayList();
         Connection conn = null;
@@ -382,101 +324,6 @@ public class RegistrationDAOImpl extends DBConnection implements RegistrationDAO
     }
 
     /**
-     * Convert statistics data into JSon string
-     *
-     * @param viewList statistics data
-     * @return JSon strings of data. It is a <code>java.util.ArrayList</code>
-     * object.
-     * @throws java.lang.Exception
-     */
-    @Override
-    public ArrayList<String> convertJson(ArrayList<ItemDashboard> viewList) throws Exception {
-        // create a new Gson instance
-        ArrayList<String> ret = new ArrayList();
-        Gson gson = new Gson();
-        HashMap<String, Integer> map = new HashMap<>();
-        int j = 0;
-        ArrayList<ArrayList<ItemDashboard>> list = new ArrayList();
-
-        for (ItemDashboard item : viewList) {
-            if (!map.containsKey(item.getName())) {
-                map.put(item.getName(), j);
-                j++;
-                list.add(new ArrayList<>());
-            }
-            list.get(map.get(item.getName())).add(item);
-        }
-
-        // convert your list to json
-        for (ArrayList<ItemDashboard> item : list) {
-            ret.add(gson.toJson(item));
-        }
-        return ret;
-    }
-
-    /**
-     * get name of each JSon string
-     *
-     * @param viewList statistics data
-     * @return names of data. It is a <code>java.util.ArrayList</code> object
-     * @throws java.lang.Exception
-     */
-    @Override
-    public ArrayList<String> getNameList(ArrayList<ItemDashboard> viewList) throws Exception {
-        ArrayList<String> nameList = new ArrayList();
-        HashMap<String, Integer> map = new HashMap<>();
-        int j = 0;
-        for (ItemDashboard subject : viewList) {
-            if (!map.containsKey(subject.getName())) {
-                map.put(subject.getName(), j);
-                nameList.add(subject.getName());
-                j++;
-            }
-        }
-        return nameList;
-    }
-
-    /**
-<<<<<<< HEAD
-=======
-     * get all subject registed
-     *
-     * @param userId
-     * @return @throws Exception get registed subject by user's Id
-     */
-    @Override
-    public ArrayList<Subject> getRegistedSubject(int userId) throws Exception {
-        Connection conn = null;
-        ResultSet rs = null;
-        /* Result set returned by the sqlserver */
-        PreparedStatement pre = null;
-        /* Prepared statement for executing sql queries */
-        SubjectDAO subjectDAO = new SubjectDAOImpl();
-        ArrayList<Subject> registedSubject = new ArrayList<>();
-        String sql = "SELECT b.subjectId\n"
-                + "  FROM [QuizSystem].[dbo].[Registration] as a "
-                + "inner join [QuizSystem].[dbo].[PricePackage] as b "
-                + "on a.packId = b.packId where a.userId = ?";
-        try {
-            conn = getConnection();
-            pre = conn.prepareStatement(sql);
-            pre.setInt(1, userId);
-            rs = pre.executeQuery();
-            while (rs.next()) {
-                registedSubject.add(subjectDAO.getSubjectbyId(rs.getInt("subjectId")));
-            }
-        } catch (Exception ex) {
-            throw ex;
-        } finally {
-            closeResultSet(rs);
-            closePreparedStatement(pre);
-            closeConnection(conn);
-        }
-        return registedSubject;
-    }
-
-    /**
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
      * get statistic from database
      *
      *
@@ -613,93 +460,6 @@ public class RegistrationDAOImpl extends DBConnection implements RegistrationDAO
     }
 
     /**
-     * get new registration from database
-     *
-     * @return list of new registrations. It is a
-     * <code>java.util.ArrayList</code>object.
-     * @throws java.lang.Exception
-     */
-    @Override
-    public ArrayList<Registration> get10NewRegistration() throws Exception {
-        ArrayList<Registration> list = new ArrayList();
-        Connection conn = null;
-        ResultSet rs = null;
-        PreparedStatement pre = null;
-        String sql = "SELECT TOP 10 * FROM [Registration] ORDER BY regTime DESC";
-        try {
-            conn = getConnection();
-            pre = conn.prepareStatement(sql);
-            rs = pre.executeQuery();
-            while (rs.next()) {
-                list.add(new Registration(rs.getInt("regId"),
-                        rs.getInt("userId"),
-<<<<<<< HEAD
-                        rs.getDate("regTime"),
-                        rs.getInt("packId"),
-                        rs.getDouble("cost"),
-                        rs.getDate("validFrom"),
-                        rs.getDate("validTo"),
-=======
-                        rs.getDate("regTime"),        
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
-                        rs.getInt("lastUpdateBy"),
-                        rs.getString("note"),
-                        rs.getBoolean("status"))
-                );
-            }
-        } catch (Exception ex) {
-            throw ex;
-        } finally {
-            closeResultSet(rs);
-            closePreparedStatement(pre);
-            closeConnection(conn);
-        }
-        return list;
-    }
-
-    /**
-     * getAllRegistration
-     *
-     * @return
-     * @throws Exception
-     */
-    @Override
-    public ArrayList<Registration> getAllRegistration() throws Exception {
-        ArrayList<Registration> registrationsList = new ArrayList();
-        Connection conn = null;
-        ResultSet rs = null;
-        PreparedStatement pre = null;
-        String sql = "SELECT * FROM [Registration]";
-        try {
-            conn = getConnection();
-            pre = conn.prepareStatement(sql);
-            rs = pre.executeQuery();
-            while (rs.next()) {
-                registrationsList.add(new Registration(rs.getInt("regId"),
-                        rs.getInt("userId"),
-                        rs.getDate("regTime"),
-<<<<<<< HEAD
-                        rs.getInt("packId"),
-                        rs.getDouble("cost"),
-                        rs.getDate("validFrom"),
-                        rs.getDate("validTo"),
-=======
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
-                        rs.getInt("lastUpdatedBy"),
-                        rs.getString("note"),
-                        rs.getBoolean("status")));
-            }
-        } catch (Exception ex) {
-            throw ex;
-        } finally {
-            closeResultSet(rs);
-            closePreparedStatement(pre);
-            closeConnection(conn);
-        }
-        return registrationsList;
-    }
-
-    /**
      * get paid registration
      *
      * @param type "true" or "false" == paid or unpaid
@@ -722,13 +482,10 @@ public class RegistrationDAOImpl extends DBConnection implements RegistrationDAO
                 list.add(new Registration(rs.getInt("regId"),
                         rs.getInt("userId"),
                         rs.getDate("regTime"),
-<<<<<<< HEAD
                         rs.getInt("packId"),
                         rs.getDouble("cost"),
                         rs.getDate("validFrom"),
                         rs.getDate("validTo"),
-=======
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
                         rs.getInt("lastUpdatedBy"),
                         rs.getString("note"),
                         rs.getBoolean("status"))
@@ -742,6 +499,176 @@ public class RegistrationDAOImpl extends DBConnection implements RegistrationDAO
             closeConnection(conn);
         }
         return list;
+    }
+
+    /**
+     * get new registration from database
+     *
+     * @return list of new registrations. It is a
+     * <code>java.util.ArrayList</code>object.
+     * @throws java.lang.Exception
+     */
+    @Override
+    public ArrayList<Registration> get10NewRegistration() throws Exception {
+        ArrayList<Registration> list = new ArrayList();
+        Connection conn = null;
+        ResultSet rs = null;
+        PreparedStatement pre = null;
+        String sql = "SELECT TOP 10 * FROM [Registration] ORDER BY regTime DESC";
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            rs = pre.executeQuery();
+            while (rs.next()) {
+                list.add(new Registration(rs.getInt("regId"),
+                        rs.getInt("userId"),
+                        rs.getDate("regTime"),
+                        rs.getInt("packId"),
+                        rs.getDouble("cost"),
+                        rs.getDate("validFrom"),
+                        rs.getDate("validTo"),
+                        rs.getInt("lastUpdateBy"),
+                        rs.getString("note"),
+                        rs.getBoolean("status"))
+                );
+            }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+        return list;
+    }
+
+    /**
+     * Convert statistics data into JSon string
+     *
+     * @param viewList statistics data
+     * @return JSon strings of data. It is a <code>java.util.ArrayList</code>
+     * object.
+     * @throws java.lang.Exception
+     */
+    @Override
+    public ArrayList<String> convertJson(ArrayList<ItemDashboard> viewList) throws Exception {
+        // create a new Gson instance
+        ArrayList<String> ret = new ArrayList();
+        Gson gson = new Gson();
+        HashMap<String, Integer> map = new HashMap<>();
+        int j = 0;
+        ArrayList<ArrayList<ItemDashboard>> list = new ArrayList();
+
+        for (ItemDashboard item : viewList) {
+            if (!map.containsKey(item.getName())) {
+                map.put(item.getName(), j);
+                j++;
+                list.add(new ArrayList<>());
+            }
+            list.get(map.get(item.getName())).add(item);
+        }
+
+        // convert your list to json
+        for (ArrayList<ItemDashboard> item : list) {
+            ret.add(gson.toJson(item));
+        }
+        return ret;
+    }
+
+    /**
+     * get name of each JSon string
+     *
+     * @param viewList statistics data
+     * @return names of data. It is a <code>java.util.ArrayList</code> object
+     * @throws java.lang.Exception
+     */
+    @Override
+    public ArrayList<String> getNameList(ArrayList<ItemDashboard> viewList) throws Exception {
+        ArrayList<String> nameList = new ArrayList();
+        HashMap<String, Integer> map = new HashMap<>();
+        int j = 0;
+        for (ItemDashboard subject : viewList) {
+            if (!map.containsKey(subject.getName())) {
+                map.put(subject.getName(), j);
+                nameList.add(subject.getName());
+                j++;
+            }
+        }
+        return nameList;
+    }
+
+    @Override
+    public ArrayList<RegistrationManage> getFilterRegistration(int subjectId, int userId) throws Exception {
+        Connection conn = null;
+        ResultSet rs = null;/* Result set returned by the sqlserver */
+        PreparedStatement pre = null;/* Prepared statement for executing sql queries */
+        ArrayList<RegistrationManage> registrationList = new ArrayList<>();
+        String sql = "SELECT [regId]\n"
+                + "      ,R.[userId]\n"
+                + "      ,[regTime]\n"
+                + "	  ,S.[subjectId]\n"
+                + "      ,R.[packId]\n"
+                + "      ,[cost]\n"
+                + "      ,[validFrom]\n"
+                + "      ,[validTo]\n"
+                + "      ,[lastUpdatedBy]\n"
+                + "      ,[note]\n"
+                + "      ,R.[status]\n"
+                + "  FROM [QuizSystem].[dbo].[Registration] R INNER JOIN [QuizSystem].[dbo].[User] U ON R.userId=U.userId\n"
+                + "  INNER JOIN [QuizSystem].[dbo].PricePackage PP ON R.packId = PP.packId\n"
+                + "  INNER JOIN [QuizSystem].[dbo].[Subject] S ON S.subjectId=PP.subjectId\n"
+                + "  WHERE 1=1";
+        if (subjectId > 0) {
+            sql = sql.concat(" and S.subjectId = " + subjectId);
+        }
+        if (userId > 0) {
+            sql = sql.concat(" and U.userId = " + userId);
+        }
+        RegistrationManage registrationManage = null;
+        SubjectDAO subjectDAO = new SubjectDAOImpl();
+        PricePackageDAO pricePackageDAO = new PricePackageDAOImpl();
+        UserDAO userDAO = new UserDAOImpl();
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            rs = pre.executeQuery();
+            while (rs.next()) {
+                boolean status = rs.getBoolean("status");
+                if (rs.wasNull()) {
+                    registrationManage = new RegistrationManage(rs.getInt("regId"),
+                            userDAO.getUserById(rs.getInt("userId")).getUserMail(),
+                            rs.getDate("regTime"), subjectDAO.getSubjectbyId(rs.getInt("subjectId")).getSubjectName(),
+                            pricePackageDAO.getPricePackageById(rs.getInt("packId")).getPackName(),
+                            rs.getDouble("cost"), rs.getDate("validFrom"), rs.getDate("validTo"),
+                            userDAO.getUserById(rs.getInt("userId")).getUserName(),
+                            rs.getString("note"), "Submitted");
+                } else if (status) {
+                    registrationManage = new RegistrationManage(rs.getInt("regId"),
+                            userDAO.getUserById(rs.getInt("userId")).getUserMail(),
+                            rs.getDate("regTime"), subjectDAO.getSubjectbyId(rs.getInt("subjectId")).getSubjectName(),
+                            pricePackageDAO.getPricePackageById(rs.getInt("packId")).getPackName(),
+                            rs.getDouble("cost"), rs.getDate("validFrom"), rs.getDate("validTo"),
+                            userDAO.getUserById(rs.getInt("userId")).getUserName(),
+                            rs.getString("note"), "Paid");
+                } else if (!status) {
+                    registrationManage = new RegistrationManage(rs.getInt("regId"),
+                            userDAO.getUserById(rs.getInt("userId")).getUserMail(),
+                            rs.getDate("regTime"), subjectDAO.getSubjectbyId(rs.getInt("subjectId")).getSubjectName(),
+                            pricePackageDAO.getPricePackageById(rs.getInt("packId")).getPackName(),
+                            rs.getDouble("cost"), rs.getDate("validFrom"), rs.getDate("validTo"),
+                            userDAO.getUserById(rs.getInt("userId")).getUserName(),
+                            rs.getString("note"), "Unpaid");
+                }
+                registrationList.add(registrationManage);
+            }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+        return registrationList;
     }
 
 }

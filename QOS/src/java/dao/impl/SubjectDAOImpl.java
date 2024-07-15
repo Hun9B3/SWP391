@@ -10,19 +10,11 @@ import dao.SubjectDAO;
 import java.sql.Connection;
 import java.sql.ResultSet;
 
-/**
- * The class has methods needed for initialize connection with database and
- * execute queries with Subject and associate tables
- *
- * @author admin
- */
+
 public class SubjectDAOImpl extends DBConnection implements SubjectDAO {
 
-<<<<<<< HEAD
 /**
-=======
     /**
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
      *
      * @param subjectId
      * @return
@@ -213,7 +205,6 @@ public class SubjectDAOImpl extends DBConnection implements SubjectDAO {
         }
         return allSubject;
     }
-<<<<<<< HEAD
  /**
      *
      * @param userId
@@ -307,8 +298,6 @@ public class SubjectDAOImpl extends DBConnection implements SubjectDAO {
         }
         return allSubject;
     }
-=======
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
 
     /**
      *
@@ -355,8 +344,4 @@ public class SubjectDAOImpl extends DBConnection implements SubjectDAO {
         }
         return allSubject;
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
 }
