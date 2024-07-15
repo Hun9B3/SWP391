@@ -344,4 +344,157 @@ public class SubjectDAOImpl extends DBConnection implements SubjectDAO {
         }
         return allSubject;
     }
+  /**
+     *  Method to perform the single-value parameters of subject
+     * @param subjectId
+     * @param subject
+     * @return
+     * @throws Exception 
+     */
+    @Override
+    public int updateSubjectBasic(int subjectId, Subject subject) throws Exception {
+        int i = 0;
+        Connection conn = null;
+        PreparedStatement pre = null;
+        /* Prepared statement for executing sql queries */
+
+        String sql = "UPDATE Subject\n"
+                + "  SET subjectName = ?,\n"
+                + "  description = ?,\n"
+                + "  thumbnail = ?,\n"
+                + "  featuredSubject = ?,\n"
+                + "  status = ?\n"
+                + "  WHERE subjectId = ?";
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            pre.setString(1, subject.getSubjectName());
+            pre.setString(2, subject.getDescription());
+            pre.setString(3, subject.getThumbnail());
+            pre.setBoolean(4, subject.isFeaturedSubject());
+            pre.setBoolean(5, subject.isStatus());
+            pre.setInt(6, subjectId);
+            i = pre.executeUpdate();
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+        return i;
+    }
+
+    
+
+  /**
+     * Get All subject assigned to an expert paginated
+     * @param userId
+     * @param page
+     * @return
+     * @throws Exception 
+     */
+    @Override
+    public ArrayList<Subject> getSubjectsAssignedPaging(int userId, int page) throws Exception {
+        Connection conn = null;
+        ResultSet rs = null;
+        /* Result set returned by the sqlserver */
+        PreparedStatement pre = null;
+        /* Prepared statement for executing sql queries */
+
+        ArrayList<Subject> subjectAssigned = new ArrayList();
+        DimensionDAO dimensionDAO = new DimensionDAOImpl();
+        SubjectCateDAO subjectCateDAO = new SubjectCateDAOImpl();
+
+        String sqlSubject = "SELECT * FROM (SELECT ROW_NUMBER()  OVER(ORDER BY S.subjectId ASC) as num\n" +
+                            "			,S.[subjectId],[subjectName],[description],[thumbnail],[featuredSubject],S.[status],SE.[userId]\n" +
+                            "           	FROM [QuizSystem].dbo.[Subject] S INNER JOIN [QuizSystem].dbo.[SubjectExpert] SE\n" +
+                            "                   ON S.subjectId = SE.subjectId WHERE SE.userId = ?) A\n" +
+                            "	WHERE A.num BETWEEN ? AND ?;";
+        /* Get the subject */
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sqlSubject);
+            pre.setInt(1, userId);
+            pre.setInt(2, (page-1)*7+1);
+            pre.setInt(3, page*7);
+            rs = pre.executeQuery();
+            /* Get information from resultset and add it to arrayList */
+            while (rs.next()) {
+                int subjectId = rs.getInt("subjectId");
+                String subjectName = rs.getString("subjectName");
+                String description = rs.getString("description");
+                String thumbnail = rs.getString("thumbnail");
+                Boolean featured = rs.getBoolean("featuredSubject");
+                Boolean status = rs.getBoolean("status");
+
+                subjectAssigned.add(new Subject(subjectId, subjectName, description,
+                        thumbnail, featured, status,
+                        dimensionDAO.getDimensionBySubject(subjectId),
+                        subjectCateDAO.getSubjectCateBySubject(subjectId)));
+            }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+        return subjectAssigned;
+    }
+    
+
+    /**
+     * Get all subject paginated
+     * @param page
+     * @return
+     * @throws Exception 
+     */
+    @Override
+    public ArrayList<Subject> getTrueSubjectsPaging(int page) throws Exception {
+        Connection conn = null;
+        ResultSet rs = null;
+        /* Result set returned by the sqlserver */
+        PreparedStatement pre = null;
+        /* Prepared statement for executing sql queries */
+
+        ArrayList<Subject> allSubject = new ArrayList();
+        DimensionDAO dimensionDAO = new DimensionDAOImpl();
+        SubjectCateDAO subjectCateDAO = new SubjectCateDAOImpl();
+
+        String sqlSubject = "SELECT * FROM \n" +
+                            "(SELECT * \n" +
+                            "		,ROW_NUMBER()  OVER(ORDER BY subjectId ASC) as num\n" +
+                            "		FROM [Subject]) A\n" +
+                            "WHERE A.num BETWEEN ? AND ?;";
+        /* Get the subject */
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sqlSubject);
+            pre.setInt(1, (page-1)*7+1);
+            pre.setInt(2, page*7);
+            rs = pre.executeQuery();
+            /* Get information from resultset and add it to arrayList */
+            while (rs.next()) {
+                int subjectId = rs.getInt("subjectId");
+                String subjectName = rs.getString("subjectName");
+                String description = rs.getString("description");
+                String thumbnail = rs.getString("thumbnail");
+                Boolean featured = rs.getBoolean("featuredSubject");
+                Boolean status = rs.getBoolean("status");
+
+                allSubject.add(new Subject(subjectId, subjectName, description,
+                        thumbnail, featured, status,
+                        dimensionDAO.getDimensionBySubject(subjectId),
+                        subjectCateDAO.getSubjectCateBySubject(subjectId)));
+            }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+        return allSubject;
+    }
+    
 }

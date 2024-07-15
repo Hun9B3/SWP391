@@ -349,4 +349,51 @@ public class UserDAOImpl extends DBConnection implements UserDAO {
         }
         return map;
     }
+/**
+     * update a user from User table
+     *
+     * @param updatedUser is a <code>User</code> object
+     * @return a int.
+     */
+    @Override
+    public int updateUser(User updatedUser) throws Exception {
+        Connection conn = null;
+        /* Result set returned by the sqlserver */
+        ResultSet rs = null;
+        /* Prepared statement for executing sql queries */
+        PreparedStatement pre = null;
+
+        String sql = " UPDATE [User] set userName = ?, "
+                + "[password] = ?,  "
+                + "roleId = ?, "
+                + "profilePic = ?, "
+                + "userMail = ?, "
+                + "gender = ?, "
+                + "userMobile = ?, "
+                + "status = ? "
+                + "where userId = ?";
+        int check = 0;
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            pre.setString(1, updatedUser.getUserName());
+            pre.setString(2, updatedUser.getPassword());
+            pre.setInt(3, updatedUser.getRoleId());
+            pre.setString(4, updatedUser.getProfilePic());
+            pre.setString(5, updatedUser.getUserMail());
+            pre.setBoolean(6, updatedUser.isGender());
+            pre.setString(7, updatedUser.getUserMobile());
+            pre.setBoolean(8, updatedUser.isStatus());
+            pre.setInt(9, updatedUser.getUserId());
+            check = pre.executeUpdate();
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+
+        return check;
+    }
 }

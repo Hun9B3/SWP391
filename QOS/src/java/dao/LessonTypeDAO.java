@@ -1,4 +1,3 @@
-
 package dao;
 
 import bean.LessonType;
@@ -9,7 +8,16 @@ import java.util.ArrayList;
  *
  */
 public interface LessonTypeDAO {
-     ArrayList<LessonType> getAllStatusLessonType() throws Exception;
+
+    /**
+     * get all lesson type from the database have status = 1
+     *
+     * @return
+     * @throws Exception
+     */
+    public ArrayList<LessonType> getAllLessonType() throws Exception;
+
+    ArrayList<LessonType> getAllStatusLessonType() throws Exception;
 
     LessonType getLessonTypeById(int ltId) throws Exception;
 

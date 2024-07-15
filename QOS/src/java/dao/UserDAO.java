@@ -66,6 +66,15 @@ public interface UserDAO {
     public int changeStatus(int userId, boolean newStatus) throws Exception;
 
     /**
+     * update a user from User table
+     *
+     * @param updatedUser is a <code>User</code> object
+     * @return a int.
+     * @throws java.lang.Exception
+     */
+    public int updateUser(User updatedUser) throws Exception;
+
+    /**
      * get new users
      *
      * @return <code>ArrayList<Use>r</code> object.

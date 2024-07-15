@@ -175,6 +175,74 @@ public class DimensionDAOImpl extends DBConnection implements DimensionDAO {
         }
         return dimensionById;
     }
+   /**
+     * Delete subject's dimension
+     * @param dimensionId
+     * @return
+     * @throws Exception 
+     */
+    @Override
+    public int deleteDimension(int dimensionId) throws Exception {
+        Connection conn = null;
+        ResultSet rs = null;
+        /* Result set returned by the sqlserver */
+        PreparedStatement pre = null;
+        /* Prepared statement for executing sql queries */
+
+        String sql = " DELETE FROM [Dimension] WHERE dimensionId = ?";
+        int check = 0;
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            pre.setInt(1, dimensionId);
+            check = pre.executeUpdate();
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+
+        return check;
+    }
+
+    /**
+     * Edit subject's dimension
+     * @param dimensionId
+     * @param dimension
+     * @return
+     * @throws Exception 
+     */
+    @Override
+    public int editDimension(int dimensionId, Dimension dimension) throws Exception {
+        Connection conn = null;
+        ResultSet rs = null;
+        /* Result set returned by the sqlserver */
+        PreparedStatement pre = null;
+        /* Prepared statement for executing sql queries */
+
+        String sql = " UPDATE [Dimension] set dimensionTypeId = ?, dimensionName = ?,  [description] = ? where dimensionId = ?";
+        int check = 0;
+        try {
+            conn = getConnection();
+            pre = conn.prepareStatement(sql);
+            pre.setInt(1, dimension.getDimensionTypeId());
+            pre.setString(2, dimension.getDimensionName());
+            pre.setString(3, dimension.getDescription());
+            pre.setInt(4, dimensionId);
+            check = pre.executeUpdate();
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(pre);
+            closeConnection(conn);
+        }
+
+        return check;
+    }
+
 
 
 }
