@@ -39,6 +39,11 @@ public interface SubjectDAO {
     public ArrayList<Subject> getSubjectsAssigned(int userId) throws Exception;
 
     public ArrayList<Subject> getSubjectsPaging(int page) throws Exception;
-    
+
     public ArrayList<Subject> getTrueAllSubjects() throws Exception;
+    /**
+     *
+     * @return @throws Exception Get 5 last added subject in the Subject table
+     */
+    public ArrayList<Subject> get5LastAddedSubject() throws Exception;
 }
