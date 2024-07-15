@@ -44,4 +44,15 @@ public interface QuizQuizHandleDAO {
      */
     public QuizQuizHandle getReviewQuiz(int quizTakeId) throws Exception;
 
+    
+    /**
+     * calculate score of the quiz
+     *
+     * @param quiz the target calculateScore quiz. It is a
+     * <code>QuizQuizHandle</code> object
+     * @return a <code>QuizQuizHandle</code> object.
+     * @throws java.lang.Exception
+     */
+    public double calculateScore(QuizQuizHandle quiz) throws Exception;
+
 }

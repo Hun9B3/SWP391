@@ -64,6 +64,14 @@
         <servlet-name>QuestionController</servlet-name>
         <servlet-class>controller.QuestionController</servlet-class>
     </servlet>
+     <servlet>
+        <servlet-name>CourseContentList</servlet-name>
+        <servlet-class>controller.CourseContentListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CourseContentDetail</servlet-name>
+        <servlet-class>controller.CourseContentDetailController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SimulationExamController</servlet-name>
         <url-pattern>/simulationExamController</url-pattern>
@@ -143,6 +151,14 @@
     <servlet-mapping>
         <servlet-name>DashboardController</servlet-name>
         <url-pattern>/dashboard</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>CourseContentList</servlet-name>
+        <url-pattern>/courseContentList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CourseContentDetail</servlet-name>
+        <url-pattern>/courseContentDetail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

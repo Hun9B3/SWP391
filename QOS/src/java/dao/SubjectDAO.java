@@ -38,9 +38,38 @@ public interface SubjectDAO {
      */
     public ArrayList<Subject> getSubjectsAssigned(int userId) throws Exception;
 
+    /**
+     * Method to perform the single-value parameters of subject
+     *
+     * @param subjectId
+     * @param subject
+     * @return
+     * @throws Exception
+     */
+    public int updateSubjectBasic(int subjectId, Subject subject) throws Exception;
+
     public ArrayList<Subject> getSubjectsPaging(int page) throws Exception;
+     
+    /**
+     * Get All subject assigned to an expert paginated
+     * @param userId
+     * @param page
+     * @return
+     * @throws Exception 
+     */
+    public ArrayList<Subject> getSubjectsAssignedPaging(int userId, int page) throws Exception;
+    
+     /**
+     * Get all subject paginated
+     * @param page
+     * @return
+     * @throws Exception 
+     */
+    public ArrayList<Subject> getTrueSubjectsPaging(int page) throws Exception;
+    
 
     public ArrayList<Subject> getTrueAllSubjects() throws Exception;
+
     /**
      *
      * @return @throws Exception Get 5 last added subject in the Subject table

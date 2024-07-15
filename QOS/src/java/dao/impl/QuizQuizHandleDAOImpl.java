@@ -119,5 +119,37 @@ public class QuizQuizHandleDAOImpl extends DBConnection implements QuizQuizHandl
         return reviewQuiz;
     }
 
+    /**
+     * calculate score of the quiz
+     *
+     * @param quiz the target calculateScore quiz. It is a
+     * <code>QuizQuizHandle</code> object
+     * @return a <code>QuizQuizHandle</code> object.
+     * @throws java.lang.Exception
+     */
+    @Override
+    public double calculateScore(QuizQuizHandle quiz) throws Exception {
+        ArrayList<QuestionQuizHandle> questionList = quiz.getQuestions();
+        ArrayList<Integer> rightAnswerList = new ArrayList();                       //An array of right answerid only 
+        double rightAnsweredCount = 0;
+        for (QuestionQuizHandle question : questionList) {
+            for (Answer answer : question.getAnswerList()) {
+                if (answer.isIsCorrect()) {
+                    rightAnswerList.add(answer.getAnswerId());
+                }
+            }
+        }
+        int questionNo = 0;
+        for (QuestionQuizHandle question : questionList) {
+
+            if (question.getAnsweredId() == rightAnswerList.get(questionNo)) {      //for each question, compare question's answeredId with the same index
+                rightAnsweredCount++;                                               //of the array of the right answerId
+            }
+            questionNo += 1;
+        }
+        double score = (rightAnsweredCount / questionList.size()) * 100;
+        return score;
+    }
+
   
 }
