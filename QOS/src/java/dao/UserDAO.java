@@ -2,6 +2,7 @@ package dao;
 
 import bean.User;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Lớp này chứa các interface của UserDAOImpl
@@ -63,39 +64,20 @@ public interface UserDAO {
      * @throws java.lang.Exception
      */
     public int changeStatus(int userId, boolean newStatus) throws Exception;
-    
-     /**
-     * update a user from User table
+
+    /**
+     * get new users
      *
-     * @param updatedUser is a <code>User</code> object
-     * @return a int.
+     * @return <code>ArrayList<Use>r</code> object.
      * @throws java.lang.Exception
      */
-    public int updateUser(User updatedUser) throws Exception;
-    
-    /**
-     * Get all user regardless of status, based on criteria and sort in a paginated form
-     * @param page
-     * @param criteriaType
-     * @param criteria
-     * @param sortCriteria
-     * @param sort
-     * @return
-     * @throws Exception 
-     */
-    public ArrayList<User> getTrueAllUserPaging(int page, String criteriaType, String criteria, String sortCriteria, String sort) throws Exception;
-    
-     /**
-     * Get filtered and sort Users paginated
-     * @param page
-     * @param gender
-     * @param role
-     * @param status
-     * @param sortCriteria
-     * @param sort
-     * @return
-     * @throws Exception 
-     */
-    public ArrayList<User> getFilteredUserPaging(int page, int gender, int role, int status, String sortCriteria, String sort) throws Exception;
+    public ArrayList<User> get10NewUser() throws Exception;
 
+    /**
+     * Get user count by user role
+     *
+     * @return <code>HashMap</code>
+     * @throws Exception
+     */
+    public HashMap<String, Integer> getUserCountByRole() throws Exception;
 }

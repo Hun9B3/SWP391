@@ -45,14 +45,6 @@
         <servlet-class>controller.ChangePasswordController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ResetPasswordController</servlet-name>
-        <servlet-class>controller.ResetPasswordController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>UserListController</servlet-name>
-        <servlet-class>controller.UserListController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>SystemSettingController</servlet-name>
         <servlet-class>controller.SystemSettingController</servlet-class>
     </servlet>
@@ -109,10 +101,6 @@
         <url-pattern>/QuizListController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>UserListController</servlet-name>
-        <url-pattern>/userList</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>PracticeController</servlet-name>
         <url-pattern>/practiceController</url-pattern>
     </servlet-mapping>
@@ -137,12 +125,24 @@
         <url-pattern>/changePassword</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ResetPasswordController</servlet-name>
-        <url-pattern>/ResetPasswordController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ImportQuestionController</servlet-name>
         <url-pattern>/importQuestion</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>BlogController</servlet-name>
+        <servlet-class>controller.BlogController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BlogController</servlet-name>
+        <url-pattern>/blog</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DashboardController</servlet-name>
+        <servlet-class>controller.DashboardController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DashboardController</servlet-name>
+        <url-pattern>/dashboard</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

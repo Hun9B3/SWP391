@@ -178,5 +178,4 @@ public class UserRoleDAOImpl extends DBConnection implements UserRoleDAO {
         }
         return i;
     }
-
 }
