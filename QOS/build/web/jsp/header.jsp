@@ -36,7 +36,7 @@
                             <a class="nav-link active" aria-current="page" href="${contextPath}/index.jsp" style="font-weight: bold;">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="${contextPath}/jsp/subjectList.jsp" style="font-weight: bold;">All Courses</a>
+                            <a class="nav-link" href="${contextPath}/subjectList" style="font-weight: bold;">All Courses</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="${contextPath}/blog?search=&service=blogList" style="font-weight: bold;">Blogs</a>
@@ -77,7 +77,7 @@
                                     <a href="${contextPath}/login/changePassword.jsp" style="text-decoration: none;color:black">
                                         <span class="fas fa-unlock-alt">Change Password</span>  
                                     </a>
-                                    <a href="${contextPath}/jsp/myRegistration.jsp" style="text-decoration: none;color:black">
+                                    <a href="${contextPath}/subjectController?service=myRegistration" style="text-decoration: none;color:black">
                                         <span class="fas fa-book-open">My Registration</span>  
                                     </a>
                                     </a>

@@ -131,7 +131,6 @@ public class UserDAOImpl extends DBConnection implements UserDAO {
     }
 
     /**
-<<<<<<< HEAD
      * get user from User table using userMail
      *
      * @param userMail is an String
@@ -286,8 +285,6 @@ public class UserDAOImpl extends DBConnection implements UserDAO {
     }
 
     /**
-=======
->>>>>>> 5bcf8e50d19562d997abb319c60eca73d15e41c5
      * get new users
      *
      * @return <code>ArrayList<Use>r</code> object.

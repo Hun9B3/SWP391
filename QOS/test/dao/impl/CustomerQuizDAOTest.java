@@ -15,10 +15,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Bùi Thanh Tùng
- */
 public class CustomerQuizDAOTest {
 
     public CustomerQuizDAOTest() {

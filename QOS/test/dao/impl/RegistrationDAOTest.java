@@ -16,10 +16,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Admin
- */
 public class RegistrationDAOTest {
 
     public RegistrationDAOTest() {
