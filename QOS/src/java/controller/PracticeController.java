@@ -109,6 +109,35 @@ public class PracticeController extends HttpServlet {
                 }
                 response.sendRedirect("quizHandleController?service=quizEntrance&quizId=" + practice.getQuizId());
             }
+            
+            if (service.equalsIgnoreCase("filterPracticeListInformation")) {
+                User currUser = (User) request.getSession().getAttribute("currUser");
+                int subjectId = Integer.parseInt(request.getParameter("subjectId"));
+                RegistrationDAO registrationDAO = new RegistrationDAOImpl();
+                CustomerQuizDAO customerQuizDAO = new CustomerQuizDAOImpl();
+                QuizDAO quizDAO = new QuizDAOImpl();
+                ArrayList<CustomerQuiz> filteredCustomerQuizs = new ArrayList<>();
+                //get all quiz of the user
+                ArrayList<CustomerQuiz> customerQuizs = customerQuizDAO.getQuizByUser(currUser.getUserId());
+                ArrayList<Subject> registedSubject = registrationDAO.getRegistedSubject(currUser.getUserId());
+                request.setAttribute("registedSubject", registedSubject);
+                //if user not enter any thing return all quiz
+                if (subjectId == 0) {
+                    request.setAttribute("customerQuizs", customerQuizs);
+                    request.getRequestDispatcher("jsp/practiceList.jsp").forward(request, response);
+                    return;
+                } else {
+                    //filer quiz by userId
+                    for (CustomerQuiz customerQuiz : customerQuizs) {
+                        if (quizDAO.getQuizById(customerQuiz.getQuizId()).getSubject().getSubjectId() == subjectId) {
+                            filteredCustomerQuizs.add(customerQuiz);
+                        }
+                    }
+                    request.setAttribute("customerQuizs", filteredCustomerQuizs);
+                    request.getRequestDispatcher("jsp/practiceList.jsp").forward(request, response);
+                    return;
+                }
+            }
 
         } catch (Exception ex) {
             Logger.getLogger(PracticeController.class.getName()).log(Level.SEVERE, null, ex);
